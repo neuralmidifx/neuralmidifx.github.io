@@ -18,7 +18,7 @@ Just the Docs gives your documentation a jumpstart with a responsive Jekyll them
 ---
 
 {: .warning }
-> some `warning` here. See [the CHANGELOG]({% link CHANGELOG.md %}) for a list of releases, new features, and bug fixes.
+> some `warning` here. 
 
 Referencing [^1]. 
 
