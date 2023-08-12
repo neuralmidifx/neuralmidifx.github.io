@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Installation
-nav_order: 3
+title: Overview and Architecture
+nav_order: 2
 ---
 
-# Installation
+# Overview & Architecture
 {: .no_toc }
 
 Explain what this section is about
@@ -16,9 +16,13 @@ Explain what this section is about
 1. TOC
 {:toc}
 
+[Get started now](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[View it on GitHub][Just the Docs repo]{: .btn .fs-5 .mb-4 .mb-md-0 }
+
+
 ---
 
-View this site's [\_config.yml](https://github.com/just-the-docs/just-the-docs/tree/main/_config.yml) file as an example.
+[Return to main website]({{site.baseurl}}/).
 
 ## Site logo
 
