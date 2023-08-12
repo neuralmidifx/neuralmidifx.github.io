@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Typography
-parent: UI Components
-nav_order: 1
+title: Graphical Interface
+parent: Tutorial 1 - Random Generation
+nav_order: 2
 ---
 
-# Typography
+# Graphical Interface
 {: .no_toc }
 
 ## Table of contents

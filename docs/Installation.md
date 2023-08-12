@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Overview & Installation
+title: Installation
 nav_order: 3
 ---
 
-# Overview & Installation
+# Installation
 {: .no_toc }
 
 Explain what this section is about

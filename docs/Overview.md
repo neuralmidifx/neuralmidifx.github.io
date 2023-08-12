@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Overview & Installation
+title: Overview and Architecture
 nav_order: 2
 ---
 
@@ -18,7 +18,7 @@ Explain what this section is about
 
 ---
 
-View this site's [\_config.yml](https://github.com/just-the-docs/just-the-docs/tree/main/_config.yml) file as an example.
+[Return to main website]({{site.baseurl}}/).
 
 ## Site logo
 
