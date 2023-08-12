@@ -110,5 +110,3 @@ Text can be **bold**, _italic_, or ~~strikethrough~~.
 ## Typographic Utilities
 
 There are a number of specific typographic CSS classes that allow you to override default styling for font size, font weight, line height, and capitalization.
-
-[View typography utilities]({% link docs/utilities/typography.md %}){: .btn .btn-outline }
