@@ -36,7 +36,7 @@ Lists
 
 ## About the project
 
-NeuralMidiFx is &copy; 2022-{{ "now" | date: "%Y" }} by [Patrick Marsceill](http://patrickmarsceill.com).
+NeuralMidiFx is &copy; 2022-{{ "now" | date: "%Y" }} by [Behzad Haki](http://behzadhaki.com).
 
 ### License
 
