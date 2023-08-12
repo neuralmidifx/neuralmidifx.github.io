@@ -30,26 +30,6 @@ flowchart TB
   VST3_Plugin --> Editor
   VST3_Plugin --> Parameters
   VST3_Plugin --> Midi_Only_Plugins
-  Processor --> Audio_Processing
-  Processor --> MIDI_Processing
-  Editor --> Graphical_Elements
-  Editor --> Parameter_Mapping
-  Parameters --> Preset_Management
-  Parameters --> Automation
-  Midi_Plugin_Interaction --> Information_Sent_to_Plugin
-  Midi_Plugin_Interaction --> Information_Received_from_Plugin
-  Information_Sent_to_Plugin --> MIDI_Data
-  Information_Sent_to_Plugin --> Timing_Information
-  Information_Sent_to_Plugin --> Control_Parameters
-  Information_Received_from_Plugin --> Processed_MIDI_Data
-  Information_Received_from_Plugin --> Parameter_Updates
-  Challenges_of_Plugin_Development --> Compatibility
-  Challenges_of_Plugin_Development --> Real-Time_Processing
-  Challenges_of_Plugin_Development --> User_Experience
-  Challenges_of_Deploying_NN-based_Models --> Model_Optimization
-  Challenges_of_Deploying_NN-based_Models --> Data_Preprocessing_and_Postprocessing
-  Challenges_of_Deploying_NN-based_Models --> User_Interaction
-  Challenges_of_Deploying_NN-based_Models --> Compatibility_and_Stability
 ```
 
 ### Processor
@@ -82,11 +62,30 @@ Automation refers to the ability of the host to control plugin parameters automa
 ### Midi Only Plugins
 MIDI-only plugins in VST3 offer specialized functionalities for handling MIDI data without audio processing. These plugins can range from simple tools that filter or route MIDI data to complex systems that generate entire compositions algorithmically. The VST3 architecture supports these MIDI-centric use cases efficiently, providing a robust framework for development.
 
+----
 ## Midi Plugin Interaction with Host
 The interaction between a MIDI plugin and its host application is a two-way communication involving several types of information.
 
+```mermaid
+flowchart TB
+  Midi_Plugin_Interaction --> Information_Sent_to_Plugin
+  Midi_Plugin_Interaction --> Information_Received_from_Plugin
+```
 ### Information Sent to Plugin
 The host sends various types of information to the plugin to guide its operation.
+```mermaid
+flowchart TB
+  Information_Sent_to_Plugin --> MIDI_Data
+  Information_Sent_to_Plugin --> Timing_Information
+  Information_Sent_to_Plugin --> Control_Parameters
+```
+### Information Received from Plugin
+The plugin can also send information back to the host.
+```mermaid
+flowchart TB
+  Information_Received_from_Plugin --> Processed_MIDI_Data
+  Information_Received_from_Plugin --> Parameter_Updates
+```
 
 #### MIDI Data
 This includes all the MIDI messages like note on/off, pitch bend, control changes, and more. The plugin may use this data to generate sound, apply effects, or even create visualizations.
@@ -106,9 +105,16 @@ Once the plugin processes the MIDI data, it may send it back to the host with al
 #### Parameter Updates
 As the plugin operates, it may need to communicate changes in its parameters back to the host. This ensures that any automated controls or host displays remain in sync with the plugin's internal state.
 
+---
 ## Challenges of Plugin Development
 VST3 plugin development, while offering powerful capabilities, presents its own set of challenges. 
+```mermaid
+flowchart TB
+  Challenges_of_Plugin_Development --> Compatibility
+  Challenges_of_Plugin_Development --> Real-Time_Processing
+  Challenges_of_Plugin_Development --> User_Experience
 
+```
 ### Compatibility
 Creating a plugin that functions seamlessly across different host applications, operating systems, and hardware configurations requires careful planning and extensive testing. VST3 offers some standardization, but developers still need to account for various peculiarities and potential conflicts within different hosts.
 
@@ -117,10 +123,17 @@ Ensuring that a plugin can process audio or MIDI in real time without introducin
 
 ### User Experience
 Designing a user interface that is both visually appealing and functional is an art form in itself. A good UI should provide intuitive access to all of the plugin's features, offer clear visual feedback, and align with the expectations and needs of its users.
-
+---
 ## Challenges of Deploying NN-based Generative Models of Symbolic Music as VST3 Plugins
 Deploying Neural Network (NN) based generative models within VST3 plugins adds layers of complexity and introduces unique challenges.
 
+```mermaid
+flowchart TB
+  Challenges_of_Deploying_NN-based_Models --> Model_Optimization
+  Challenges_of_Deploying_NN-based_Models --> Data_Preprocessing_and_Postprocessing
+  Challenges_of_Deploying_NN-based_Models --> User_Interaction
+  Challenges_of_Deploying_NN-based_Models --> Compatibility_and_Stability
+```
 ### Model Optimization
 NN models can be computationally intensive. Ensuring that they run efficiently within a plugin, especially in a real-time context, requires careful optimization. This includes choosing the right architecture, reducing the model size, and leveraging hardware acceleration where possible.
 
