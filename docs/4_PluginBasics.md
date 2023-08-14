@@ -29,17 +29,40 @@ flowchart TB
   VST3_Plugin --> Processor
   VST3_Plugin --> Editor
   VST3_Plugin --> Parameters
-  VST3_Plugin --> Midi_Only_Plugins
 ```
 
 ### Processor
-The processor is the core of any VST3 plugin, responsible for audio and MIDI processing. It's the part that performs the actual computations on the incoming audio, manipulating it according to the parameters set by the user or the host application. In VST3, the processor is more flexible and efficient, supporting both audio and event (such as MIDI) inputs and outputs.
+The processor is the core of any VST3 plugin, responsible for audio and MIDI processing. 
+It's the part that performs the actual computations on the incoming audio/midi, manipulating it according to the parameters set by the user or the host application. 
 
-#### Audio Processing
-Audio processing is where the transformation of sound takes place. It can include everything from simple volume adjustments to complex effects like reverb and delay. The processor handles all these tasks, applying algorithms to the input sound and producing a modified output. VST3 allows for more efficient handling and routing of audio signals, making it an industry-standard choice.
+The communication between a VST3 plugin and a compatible host is done on a per-buffer basis. 
+In the processor thread, the host provides a buffer of audio/midi data to the plugin, and the plugin is expected to process the data and return a buffer of audio/midi data back to the host.
+The processing is done in a per-buffer basis, and the plugin is expected to process the data within a limited amount of time, as the processing method 
+is called repeatedly by the host as soon as a new buffer of data is available.
+Given the limited amount of time available to process the data, there is only so much that can be done within the processing method.
+As a result, intensive computations (such as generation using a neural network) must be carried out in the background using a separate thread.
 
-#### MIDI Processing
-MIDI processing refers to the manipulation of MIDI data, which represents musical information like notes, velocities, and control changes. VST3 plugins can generate, process, or modify MIDI data, enabling creative possibilities like virtual instruments, sequencers, or arpeggiators.
+In addition to MIDI and audio data, the host also provides the plugin with information about the current state of the plugin, such as the current value of each parameter, the playhead position, 
+sample rate, meter, time signature and so on. Given that the data is not provided per-sample (but rather per-buffer), the smallest resolution at which  
+these data is available is the buffer size. 
+
+Using the playhead information, the plugin can determine the current position in the timeline. This position is 
+relative to the start of the timeline and can be accessed in different time units:
+
+- **Samples**: The number of samples since the start of the timeline.
+- **Seconds**: The number of seconds since the start of the timeline.
+- **Quarter Notes**: The number of quarter notes since the start of the timeline.
+
+With respect to MIDI data within a buffer, the host provides the exact location of the event within the buffer. 
+That said, this location is always specified in **samples relative to the start of the buffer**.
+
+Depending on what sort of timing a generative model requires, a developer should use the provided timing information to calculate the appropriate timing for the model.
+
+{: .note }
+> If you want to learn more about VST3 plugin development using JUCE, check out the 
+> following tutorial provided by [Eyal Amir](https://github.com/eyalamirmusic) on the [The Audio Programmer](https://www.youtube.com/@TheAudioProgrammer) YouTube channel:
+> <iframe width="560" height="315" src="https://www.youtube.com/embed/tgf6J8foCiw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+> 
 
 ### Editor
 The editor in a VST3 plugin represents the graphical user interface (UI). It's what the user interacts with when adjusting parameters and settings. 
