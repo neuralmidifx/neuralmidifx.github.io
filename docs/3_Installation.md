@@ -60,7 +60,7 @@ Otherwise, you will need to configure your IDE manually to the provided settings
 
 Go to Settings -> Build, Execution, Deployment -> CMake and add the following to the CMake options:
 
-![](assets/images/cmake_settings.png)
+![](/assets/images/cmake_settings.png)
 
 {: .note}
 > When debugging set it to `Debug` and when building the plugin set it to `Release`.
@@ -74,15 +74,15 @@ Go to Settings -> Build, Execution, Deployment -> CMake and add the following to
 ## Step 6. Setting up the Run Configuration
 On the top right corner of CLion, click on `Edit Configurations...`
 
-![img.png](run_config1.png)
+![](/assets/images/run_config1.png)
 
 Make sure the settings are as follows:
 
-![img.png](run_config2.png)
+![](/assets/images/run_config2.png)
 
 ## Step 7. Attaching host to the IDE
 You can debug the plugin while running in a host. This is extremely useful for debugging and testing purposes.
 To do so, go back to the `Edit Configurations...`. Then, click on `Executable > Custom Executable` and select
 the host executable (see Example below).
 
-![img.png](run_cofig3.png)
+![](/assets/images/run_cofig3.png)
