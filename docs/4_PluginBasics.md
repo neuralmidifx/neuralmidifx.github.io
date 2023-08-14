@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Plugin Basics
-nav_order: 3
+nav_order: 2
 ---
 
 # Plugin Basics
@@ -15,8 +15,6 @@ In this section, we will provide a brief guide on general VST plugin architectur
 
 1. TOC
 {:toc}
-
-[Get started now](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 [View it on GitHub][Just the Docs repo]{: .btn .fs-5 .mb-4 .mb-md-0 }
 
