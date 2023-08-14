@@ -40,6 +40,7 @@ With this wrapper, you can:
 
 ---
 
+[Previous: Home]({{site.baseurl}}){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 [Next: Installation]({{site.baseurl}}/docs/3_Installation){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 --- 
