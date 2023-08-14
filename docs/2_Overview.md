@@ -43,9 +43,10 @@ The wrapper is compatible with various operating systems and supports different 
 
 ---
 
-[Next: Installation](/docs/3_Installation.md)
+[Next: Installation]({{site.baseurl}}/docs/3_Installation.md){: .btn .fs-5 .mb-4 .mb-md-0 }
 
 --- 
 [Return to main website]({{site.baseurl}}/).
 ---
 
+[repo]: https://github.com/behzadhaki/NeuralMidiFXPlugin
