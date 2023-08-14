@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Graphical Interface
+title: Plugin Parameters and Graphical Interface Rendering
 nav_order: 5
 ---
 
-# Installation
+# Plugin Parameters and Graphical Interface Rendering
 {: .no_toc }
 
 Explain what this section is about
