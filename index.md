@@ -12,17 +12,44 @@ permalink: /
 Just the Docs gives your documentation a jumpstart with a responsive Jekyll theme that is easily customizable and hosted on GitHub Pages.
 {: .fs-6 .fw-300 }
 
-[Get started now](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
-[View it on GitHub][Just the Docs repo]{: .btn .fs-5 .mb-4 .mb-md-0 }
+[View it on GitHub][repo]{: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ---
+## NeuralMidiFx
+Welcome to the documentation for NeuralMidiFx [^1], a wrapper/template designed to simplify the deployment of AI-based generative music systems as VST3 plugins. Our goal with NeuralMidiFx is to bridge the gap between AI research and end-users who wish to harness them for performance or composition.
+
+Many researchers and musicians find themselves challenged by the technical complexity and costs associated with deploying generative music systems within traditional production and composition workflows.
+
+The complexity and resources often required for deploying these systems in meaningful and useful ways have left many unable to bridge this divide. Unfortunately, these barriers have hindered both the evaluation of these systems and the broader engagement with them, limiting their potential impact and accessibility.
+
+That's where NeuralMidiFx comes in. This wrapper/template is our effort to make the deployment of neural network-based symbolic music generation systems as VST3 plugins a bit more approachable. We've aimed to design it in such a way that even those with minimal familiarity with plugin development can navigate the process.
+
+We hope that NeuralMidiFx can serve as a helpful tool for those looking to explore the potential of AI in music without getting entangled in the technical details. We acknowledge that it's just one step towards making these exciting technologies more accessible, and we're eager to learn from your experiences and feedback as we continue to refine and improve this tool. 
+
+## Source Code
+[Get started now](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+
+## Acknowledgements
+
+## Citing NeuralMidiFx
+
+If you use NeuralMidiFx in your research, please cite it as follows:
+
+```bibtex
+
+@article{HakiNeuralMidiFx,
+	author = {Haki, Behzad and Lenz, Julian and Jorda, Sergi},
+	journal = {AIMC 2023},
+	note = {https://aimc2023.pubpub.org/pub/givwzz98},
+	publisher = {},
+	title = {NeuralMidiFx: A {Wrapper} {Template} for {Deploying} {Neural} {Networks} as {VST3} {Plugins}},
+}
+
+```
 
 {: .warning }
 > some `warning` here. 
 
-Referencing [^1]. 
-
-*italic*. Italic Link: *[customize]*
 
 ## Header 2
 
@@ -45,21 +72,8 @@ NeuralMidiFx is &copy; 2022-{{ "now" | date: "%Y" }} by [Behzad Haki](http://beh
 
 ----
 
-[^1]: The [source file for this page] uses all three markup languages.
+[1^] Haki B, Lenz J, Jorda S. NeuralMidiFx: A Wrapper Template for Deploying Neural Networks as VST3 Plugins. AIMC 2023 . Available from: https://aimc2023.pubpub.org/pub/givwzz98
 
 [^2]: [It can take up to 10 minutes for changes to your site to publish after you push the changes to GitHub](https://docs.github.com/en/pages/setting-up-a-github-pages-site-with-jekyll/creating-a-github-pages-site-with-jekyll#creating-your-site).
 
-[Jekyll]: https://jekyllrb.com
-[Markdown]: https://daringfireball.net/projects/markdown/
-[Liquid]: https://github.com/Shopify/liquid/wiki
-[Front matter]: https://jekyllrb.com/docs/front-matter/
-[Jekyll configuration]: https://jekyllrb.com/docs/configuration/
-[source file for this page]: https://github.com/just-the-docs/just-the-docs/blob/main/index.md
-[Just the Docs Template]: https://just-the-docs.github.io/just-the-docs-template/
-[Just the Docs]: https://just-the-docs.com
-[Just the Docs repo]: https://github.com/behzadhaki/NeuralMidiFXPlugin
-[Just the Docs README]: https://github.com/just-the-docs/just-the-docs/blob/main/README.md
-[GitHub Pages]: https://pages.github.com/
-[Template README]: https://github.com/just-the-docs/just-the-docs-template/blob/main/README.md
-[GitHub Pages / Actions workflow]: https://github.blog/changelog/2022-07-27-github-pages-custom-github-actions-workflows-beta/
-[use the template]: https://github.com/just-the-docs/just-the-docs-template/generate
+[repo]: https://github.com/behzadhaki/NeuralMidiFXPlugin
