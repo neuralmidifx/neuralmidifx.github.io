@@ -85,7 +85,7 @@ To add a slider, add a new `slider_tuple` to the `slider_list` vector. Each slid
 Syntax: 
     slider_tuple{label, min_val, max_val, default, top_left_corner, bottom_right_corner}
 
-e.g.
+Example:
     slider_tuple{"Slider 1", 0.0, 1.0, 0.0, "Cc", "Ek"} 
 ```
 
@@ -96,7 +96,7 @@ To add a rotary knob, add a new `rotary_tuple` to the `rotary_list` vector. Each
 Syntax: 
     rotary_tuple{label, min_val, max_val, default, top_left_corner, bottom_right_corner}
     
-e.g.
+Example:
     rotary_tuple{"Rotary 1", 0.0, 1.0, 0.5, "Vc", "Xk"}
 ```
 
@@ -107,7 +107,7 @@ To add a click button, add a new `button_tuple` to the `button_list` vector. Eac
 Syntax: 
     button_tuple{label, false, top_left_corner, bottom_right_corner}
 
-e.g.
+Example:
     button_tuple{"TriggerButton 1", false, "Wv", "Zz"}
 ```
 
@@ -118,7 +118,7 @@ To add a toggle switch button, add a new `button_tuple` to the `button_list` vec
 Syntax: 
     button_tuple{label, true, top_left_corner, bottom_right_corner}
 
-e.g.
+Example:
     button_tuple{"ToggleSwitchButton 1", true, "Wv", "Zz"}
 ```
 
