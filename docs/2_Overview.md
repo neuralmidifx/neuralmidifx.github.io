@@ -64,7 +64,9 @@ These parameters are associated with a graphical component (slider, button, etc.
 The wrapper handles the rendering of the interface and the communication between the interface and the parameters. Moreover, 
 all these parameters are automatable, meaning that the user can record their changes in the host and play them back later.
 
-More on this: [Plugin Parameters and Interface Rendering]({{site.baseurl}}/docs/5_GraphicalInterface/){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+More on this: 
+
+[Plugin Parameters and Interface Rendering]({{site.baseurl}}/docs/5_GraphicalInterface/){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 ### Input Preparation for Model Inference
 A dedicated thread (InputTensorPreparator - ITP) is provided for the input preparation stage of the inference process.
@@ -72,19 +74,25 @@ In this thread, any information necessary for input preparation/tokenization is 
 This includes the incoming MIDI messages (whether played in real-time or dragged in manually via MIDI files), 
 the playhead information of the host, and all the specified parameters of the plugin.
 
-More on this: [DeploymentThreads/Input Tensor Preparator Thread (ITP)]({{site.baseurl}}/docs/6_DeploymentThreads/6A_ITP/){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2
+More on this: 
+
+[DeploymentThreads/Input Tensor Preparator Thread (ITP)]({{site.baseurl}}/docs/6_DeploymentThreads/6A_ITP/){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2
 
 ### Model Inference
 A dedicated thread (Model - MDL) is provided for the model inference stage of the inference process.
 In this thread, you can perform the inference process using the input information provided by the ITP thread.
 
-More on this: [DeploymentThreads/Model Thread (MDL)]({{site.baseurl}}/docs/6_DeploymentThreads/6B_MDL/){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+More on this: 
+
+[DeploymentThreads/Model Thread (MDL)]({{site.baseurl}}/docs/6_DeploymentThreads/6B_MDL/){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 ### Output Preparation/Post-Processing
 A dedicated thread (PlaybackPreparator - PPP) is provided for the output preparation stage of the inference process. 
 In here you can extract the output information from the model and pass it on to the wrapper for playback.
 
-More on this: [DeploymentThreads/Playback Preparator Thread (PPP)]({{site.baseurl}}/docs/6_DeploymentThreads/6C_PPP/){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+More on this:
+
+[DeploymentThreads/Playback Preparator Thread (PPP)]({{site.baseurl}}/docs/6_DeploymentThreads/6C_PPP/){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 ### Passing Information Between Threads
 The wrapper provides thread-safe communication channels dedicated for ITP-to-MDL, MDL-to-PPP communication.
