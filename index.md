@@ -26,13 +26,6 @@ See this [video](https://www.youtube.com/watch?v=xcq-VWo0Y6U) for more informati
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xcq-VWo0Y6U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
-## Source Code
-
-[View it on GitHub][repo]{: .btn .fs-5 .mb-4 .mb-md-0 }
-
-{: .warning }
-> Please note that this project is still in development and is subject to change. We will be updating the documentation as we continue to refine the wrapper/template.
-
 ## Citing NeuralMidiFx
 
 If you use NeuralMidiFx in your research, please cite it as follows:
@@ -46,6 +39,24 @@ If you use NeuralMidiFx in your research, please cite it as follows:
 }
 ```
 
+## Source Code
+
+[View it on GitHub][repo]{: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+
+{: .warning }
+> Please note that this project is still in development and is subject to change. We will be updating the documentation as we continue to refine the wrapper/template.
+
+
+## System Requirements and Compatibility
+The wrapper is compatible with the following operating systems:
+
+- Windows 
+- macOS (Intel Only - Arm support coming soon)
+
+{: .warning }
+>No CUDA support is provided at the moment. We will be looking into this in the future.
+
+
 ## Acknowledgements
 
 
@@ -57,6 +68,9 @@ NeuralMidiFx is &copy; 2022-{{ "now" | date: "%Y" }} by [Behzad Haki](http://beh
 
 ### Contributing
 
+---
+
+[Next: Overview & Architecture]({{site.baseurl}}/docs/2_Overview){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 ----
 

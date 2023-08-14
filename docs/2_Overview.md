@@ -16,7 +16,7 @@ Explain what this section is about
 1. TOC
 {:toc}
 
-[View it on GitHub][repo]{: .btn .fs-5 .mb-4 .mb-md-0 }
+[View it on GitHub][repo]{: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 --- 
 
@@ -40,18 +40,10 @@ With this wrapper, you can:
 - Customize the user interface for control and interaction.
 - Implement/optimize real-time processing and playback.
 
-## System Requirements and Compatibility
-The wrapper is compatible with the following operating systems:
-
-- Windows 
-- macOS (Intel Only - Arm support coming soon)
-
-{: .warning }
->No CUDA support is provided at the moment. We will be looking into this in the future.
 
 ---
 
-[Previous: Home]({{site.baseurl}}){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[Previous: Home]({{site.baseurl}}/){: .btn .fs-5 .mb-4 .mb-md-0 }
 [Next: Installation]({{site.baseurl}}/docs/3_Installation){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 --- 
