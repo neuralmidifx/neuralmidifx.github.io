@@ -36,21 +36,16 @@ See this [video](https://www.youtube.com/watch?v=xcq-VWo0Y6U) for more informati
 If you use NeuralMidiFx in your research, please cite it as follows:
 
 ```bibtex
-
 @article{HakiNeuralMidiFx,
 	author = {Haki, Behzad and Lenz, Julian and Jorda, Sergi},
 	journal = {AIMC 2023},
 	note = {https://aimc2023.pubpub.org/pub/givwzz98},
-	publisher = {},
 	title = {NeuralMidiFx: A {Wrapper} {Template} for {Deploying} {Neural} {Networks} as {VST3} {Plugins}},
 }
-
 ```
 
 ## Acknowledgements
 
-{: .warning }
-> some `warning` here. 
 
 ## About the project
 
