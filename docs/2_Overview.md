@@ -36,12 +36,18 @@ The proposed wrapper, NeuralMidiFx, fully automates the deployment processes tha
 
 With this wrapper, you can:
 
-- Integrate generative neural network models with ease.
+- Integrate serialized [PyTorch](https://pytorch.org/cppdocs/) neural network models with ease.
 - Customize the user interface for control and interaction.
-- Optimize real-time processing and playback.
+- Implement/optimize real-time processing and playback.
 
 ## System Requirements and Compatibility
+The wrapper is compatible with the following operating systems:
 
+- Windows 
+- macOS (Intel Only - Arm support coming soon)
+
+{: .warning }
+>No CUDA support is provided at the moment. We will be looking into this in the future.
 
 ---
 
