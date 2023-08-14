@@ -37,8 +37,6 @@ With this wrapper, you can:
 
 ## System Requirements and Compatibility
 
-The wrapper is compatible with various operating systems and supports different neural network frameworks. Ensure that your system meets the necessary requirements for smooth operation.
-
 
 ---
 
