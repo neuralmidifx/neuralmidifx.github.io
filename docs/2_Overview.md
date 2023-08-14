@@ -75,7 +75,7 @@ the playhead information of the host, and all the specified parameters of the pl
 
 More on this: 
 
-[See DeploymentThreads/Input Tensor Preparator Thread (ITP)]({{site.baseurl}}/docs/6_DeploymentThreads/6A_ITP/){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2
+[See DeploymentThreads/Input Tensor Preparator Thread (ITP)]({{site.baseurl}}/docs/6_DeploymentThreads/6A_ITP/){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2}
 
 ### Model Inference
 A dedicated thread (Model - MDL) is provided for the model inference stage of the inference process.
