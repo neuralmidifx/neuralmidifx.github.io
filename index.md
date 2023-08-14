@@ -24,7 +24,7 @@ We hope that NeuralMidiFx can serve as a helpful tool for those looking to explo
 {: note }
 See this [video](https://www.youtube.com/watch?v=xcq-VWo0Y6U) for more information about the motivation behind this project.
 
-<iframe width="420" height="315" src="https://www.youtube.com/watch?v=xcq-VWo0Y6U" frameborder="0" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/xcq-VWo0Y6U" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 
 ## Source Code
 
