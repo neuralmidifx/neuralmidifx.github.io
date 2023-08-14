@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Plugin Basics
-nav_order: 4
+nav_order: 3
 ---
 
 # Plugin Basics
