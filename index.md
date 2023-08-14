@@ -11,7 +11,7 @@ permalink: /
 
 ---
 ## About
-Welcome to the documentation for NeuralMidiFx[^1], a wrapper/template designed to simplify the deployment of AI-based generative music systems as VST3 plugins. Our goal with NeuralMidiFx is to bridge the gap between AI research and end-users who wish to harness them for performance or composition.
+Welcome to the documentation for NeuralMidiFx [^1], a wrapper/template designed to simplify the deployment of AI-based generative music systems as VST3 plugins. Our goal with NeuralMidiFx is to bridge the gap between AI research and end-users who wish to harness them for performance or composition.
 
 Many researchers and musicians find themselves challenged by the technical complexity and costs associated with deploying generative music systems within traditional production and composition workflows.
 
