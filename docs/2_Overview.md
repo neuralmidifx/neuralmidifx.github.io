@@ -25,7 +25,7 @@ Explain what this section is about
 This guide is designed to assist researchers in deploying generative neural network models of symbolic music as VST3 plugins. Utilizing this wrapper, you can easily integrate your research models into the VST3 framework without needing expertise in VST development.
 
 {: note }
-**Target Audience:** The primary audience for this guide includes researchers and practitioners working in the field of generative symbolic music, particularly those focusing on neural network-based models.
+> **Target Audience:** The primary audience for this guide includes researchers and practitioners working in the field of generative symbolic music, particularly those focusing on neural network-based models.
 
 ## How the Wrapper Facilitates VST3 Plugin Development
 
