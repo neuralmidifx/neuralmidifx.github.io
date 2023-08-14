@@ -65,106 +65,53 @@ Depending on what sort of timing a generative model requires, a developer should
 > 
 
 ### Editor
-The editor in a VST3 plugin represents the graphical user interface (UI). It's what the user interacts with when adjusting parameters and settings. 
+The editor in a VST3 plugin represents the graphical user interface (UI). 
+It's what the user interacts with when adjusting parameters and settings. 
+The editor is responsible for rendering the UI and handling user input.
 
-#### Graphical Elements
-Creating an engaging and intuitive user interface requires careful design of graphical elements. These can include knobs, sliders, buttons, and displays, each corresponding to a specific parameter in the plugin. The graphical design not only affects the user's experience but also represents the branding and professionalism of the plugin.
+The editor is not required for a VST3 plugin to function, but it's highly recommended to include one.
+Without an editor, the plugin will be displayed as a generic window with no controls, which is not ideal for the user experience.
 
-#### Parameter Mapping
-Parameter mapping bridges the graphical elements with the internal parameters of the plugin. When a user moves a slider or turns a knob, it translates into a change in the sound or behavior of the plugin. This dynamic interaction requires careful mapping and synchronization to ensure that the UI accurately reflects the state of the plugin.
+Designing a good UI is a challenging task that requires careful consideration of the plugin's functionality and the user's needs.
+UI implementation is a complex process that involves several steps:
+- **Graphical Elements**: Creating an engaging and intuitive user interface requires careful design of graphical elements. These can include knobs, sliders, buttons, and displays, each corresponding to a specific parameter in the plugin.
+- **Parameter Mapping**: Parameter mapping bridges the graphical elements with the internal parameters of the plugin. 
+- **Preset Management**: Preset management allows users to save and recall specific settings, known as presets. This feature is vital for workflow efficiency, enabling users to quickly switch between different configurations and reuse them across various projects.
+- **Automation**: Automation refers to the ability of the host to control plugin parameters automatically over time. 
 
-### Parameters
-Parameters in a VST3 plugin define the variables that control its operation. They are the essential connection between the user's actions and the plugin's response.
+{: .warning }
+> The editor is only constructed when the plugin user interface is opened. This means that the editor is closed. 
+> As a result, no significant processing should be done in the editor. Also, correct mechanisms should be implemented 
+> to ensure that the editor restores its state correctly when it's reopened (i.e. reconstructed)
 
-#### Preset Management
-Preset management allows users to save and recall specific settings, known as presets. This feature is vital for workflow efficiency, enabling users to quickly switch between different configurations and reuse them across various projects.
 
-#### Automation
-Automation refers to the ability of the host to control plugin parameters automatically over time. It's a key feature in modern music production, allowing for dynamic changes within a track, such as a gradual increase in reverb or a sudden filter sweep.
-
-### Midi Only Plugins
-MIDI-only plugins in VST3 offer specialized functionalities for handling MIDI data without audio processing. These plugins can range from simple tools that filter or route MIDI data to complex systems that generate entire compositions algorithmically. The VST3 architecture supports these MIDI-centric use cases efficiently, providing a robust framework for development.
-
-----
-## Midi Plugin Interaction with Host
-The interaction between a MIDI plugin and its host application is a two-way communication involving several types of information.
-
-```mermaid
-flowchart TB
-  Midi_Plugin_Interaction --> Information_Sent_to_Plugin
-  Midi_Plugin_Interaction --> Information_Received_from_Plugin
-```
-### Information Sent to Plugin
-The host sends various types of information to the plugin to guide its operation.
-```mermaid
-flowchart TB
-  Information_Sent_to_Plugin --> MIDI_Data
-  Information_Sent_to_Plugin --> Timing_Information
-  Information_Sent_to_Plugin --> Control_Parameters
-```
-### Information Received from Plugin
-The plugin can also send information back to the host.
-```mermaid
-flowchart TB
-  Information_Received_from_Plugin --> Processed_MIDI_Data
-  Information_Received_from_Plugin --> Parameter_Updates
-```
-
-#### MIDI Data
-This includes all the MIDI messages like note on/off, pitch bend, control changes, and more. The plugin may use this data to generate sound, apply effects, or even create visualizations.
-
-#### Timing Information
-Accurate timing information from the host ensures that the plugin operates in sync with other elements of a project. Whether it's keeping a virtual drum machine in time with a track or synchronizing a delay effect, timing is a fundamental aspect of musical coherence.
-
-#### Control Parameters
-These are specific settings and controls that the user or host can define to modify the behavior of the plugin. They allow for intricate control and fine-tuning, aligning the plugin's functionality with the creative intent of the user.
-
-### Information Received from Plugin
-The plugin can also send information back to the host. This includes processed MIDI data, updated parameters, or even metadata like plugin state and configuration.
-
-#### Processed MIDI Data
-Once the plugin processes the MIDI data, it may send it back to the host with alterations, such as new notes generated by an arpeggiator or modified velocities from a dynamics processor.
-
-#### Parameter Updates
-As the plugin operates, it may need to communicate changes in its parameters back to the host. This ensures that any automated controls or host displays remain in sync with the plugin's internal state.
-
----
-## Challenges of Plugin Development
-VST3 plugin development, while offering powerful capabilities, presents its own set of challenges. 
-```mermaid
-flowchart TB
-  Challenges_of_Plugin_Development --> Compatibility
-  Challenges_of_Plugin_Development --> Real-Time_Processing
-  Challenges_of_Plugin_Development --> User_Experience
-
-```
-### Compatibility
-Creating a plugin that functions seamlessly across different host applications, operating systems, and hardware configurations requires careful planning and extensive testing. VST3 offers some standardization, but developers still need to account for various peculiarities and potential conflicts within different hosts.
-
-### Real-Time Processing
-Ensuring that a plugin can process audio or MIDI in real time without introducing latency or glitches is a complex task. It involves optimizing algorithms, managing resources, and handling multithreading properly to provide a smooth user experience.
-
-### User Experience
-Designing a user interface that is both visually appealing and functional is an art form in itself. A good UI should provide intuitive access to all of the plugin's features, offer clear visual feedback, and align with the expectations and needs of its users.
----
 ## Challenges of Deploying NN-based Generative Models of Symbolic Music as VST3 Plugins
 Deploying Neural Network (NN) based generative models within VST3 plugins adds layers of complexity and introduces unique challenges.
 
-```mermaid
-flowchart TB
-  Challenges_of_Deploying_NN-based_Models --> Model_Optimization
-  Challenges_of_Deploying_NN-based_Models --> Data_Preprocessing_and_Postprocessing
-  Challenges_of_Deploying_NN-based_Models --> User_Interaction
-  Challenges_of_Deploying_NN-based_Models --> Compatibility_and_Stability
-```
-### Model Optimization
-NN models can be computationally intensive. Ensuring that they run efficiently within a plugin, especially in a real-time context, requires careful optimization. This includes choosing the right architecture, reducing the model size, and leveraging hardware acceleration where possible.
+### Unavoidable Multi-threaded Implementation
+As mentioned earlier, the processing method is called repeatedly by the host as soon as a new buffer of data is available.
+Given the computational complexity of NN-based models, it is essential to run many processes involved in the generation on a separate thread:
 
-### Data Preprocessing and Postprocessing
-Handling the conversion between raw MIDI data and the specific format required by the generative models is a complex task. It requires careful mapping, scaling, and encoding, all of which must be done in real time without introducing latency or errors.
+#### Computational Resources and Performance
+NN-based models are computationally intensive and require significant processing power. 
+This can be a challenge when deploying them as VST3 plugins, as the host application may not have the necessary resources to run the models in real time.
+This is especially true for models that require GPU acceleration, 
+as GPU acceleration is rarely exploited in plugin applications (a recent example of GPU accelerated VST3 plugins is [GPU Audio](https://www.gpu.audio/beta-suite)).
 
-### User Interaction
-Creating an intuitive interface for interacting with complex NN-based models can be a significant challenge. Users need to be able to control the generative process without getting lost in technical details. This may require innovative UI design and clear visualization of complex data.
+{: .note }
+> A plugin does not necessarily need to run in real time. Even if your model is not intended to run in real time, 
+> it is still possible and very valuable to deploy it as a VST3 plugin. 
+
+
+#### Data Preprocessing and Postprocessing
+Handling the conversion between raw MIDI data and the specific format required by the generative models is a complex and potentially costly task. 
+It requires careful mapping, scaling, and encoding, all of which can be challenging to implement correctly. 
+
 
 ### Compatibility and Stability
-Ensuring compatibility and stability with various hosts and platforms becomes even more complex when dealing with NN models. Different systems may have varying support for the underlying technologies required to run the models, and developers must account for these variations to ensure a smooth user experience.
+Ensuring compatibility and stability with various hosts and platforms becomes even more complex when dealing with NN models. 
+Different systems may have varying support for the underlying technologies required to run the models, and developers must account for these variations to ensure a smooth user experience.
+
+### Deployment Language Barriers
+Most NN-based generative models are implemented in Python, which is not a supported language for VST3 plugin development.
+This means that developers must find a way to deploy their models in a supported language, such as C++.
