@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Home
-nav_order: 2
+nav_order: 1
 description: "A Wrapper/Template for Deploying Generative Neural Network Models of Symbolic Music As VST Plugins"
 permalink: /
 ---
