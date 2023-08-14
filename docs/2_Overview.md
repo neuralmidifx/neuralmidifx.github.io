@@ -40,7 +40,8 @@ With this wrapper, you can:
 - Customize the user interface for control and interaction.
 - Implement/optimize real-time processing and playback.
 
-
+## Architecture
+![img.png](/assets/images/architecture.png)
 ---
 
 [Previous: Home]({{site.baseurl}}/){: .btn .fs-5 .mb-4 .mb-md-0 }
