@@ -22,9 +22,9 @@ Explain what this section is about
 
 The first step is to clone the repository.
     
-    ```bash
-    git clone https://github.com/behzadhaki/NeuralMidiFXPlugin.git
-    ```
+```bash
+git clone https://github.com/behzadhaki/NeuralMidiFXPlugin.git
+```
 
 ## Step 2: Edit Plugin Name and Description
 
