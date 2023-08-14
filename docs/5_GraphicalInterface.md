@@ -66,19 +66,19 @@ In this file, you can define the UI elements that you would like to have in your
     }
 ```
 
-#### Adding a Tab
+### Adding a Tab
 To add a tab, add a new `tab_tuple` to the `tabList` vector.
 
-#### Showing a Grid (For Design Stage)
+### Showing a Grid (For Design Stage)
 To show a grid, set `show_grid` to `true`. To hide the grid, set `show_grid` to `false`.
 The grid is useful for aligning the UI elements in the plugin. 
 Each point in the grid is a capital letter (column) and a lowercase letter (row).
 
-#### Specify if Borders Should be Drawn for the UI Elements
+### Specify if Borders Should be Drawn for the UI Elements
 To draw borders for the UI elements, set `draw_borders_for_components` to `true`. 
 To hide the borders, set `draw_borders_for_components` to `false`.
 
-#### Adding a Slider
+### Adding a Slider
 To add a slider, add a new `slider_tuple` to the `slider_list` vector. Each slider tuple has the following format:
 
 ```c++
@@ -89,7 +89,7 @@ Example:
     slider_tuple{"Slider 1", 0.0, 1.0, 0.0, "Cc", "Ek"} 
 ```
 
-#### Adding a Rotary Knob
+### Adding a Rotary Knob
 To add a rotary knob, add a new `rotary_tuple` to the `rotary_list` vector. Each rotary tuple has the following format:
 
 ```c++
@@ -100,7 +100,7 @@ Example:
     rotary_tuple{"Rotary 1", 0.0, 1.0, 0.5, "Vc", "Xk"}
 ```
 
-#### Adding a Click Button
+### Adding a Click Button
 To add a click button, add a new `button_tuple` to the `button_list` vector. Each button tuple has the following format:
 
 ```c++
@@ -111,7 +111,7 @@ Example:
     button_tuple{"TriggerButton 1", false, "Wv", "Zz"}
 ```
 
-#### Adding a Toggle Switch Button
+### Adding a Toggle Switch Button
 To add a toggle switch button, add a new `button_tuple` to the `button_list` vector. Each button tuple has the following format:
 
 ```c++
