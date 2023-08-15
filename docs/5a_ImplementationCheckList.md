@@ -31,8 +31,9 @@ Use this checklist to make sure that you have implemented all the necessary step
 
 {: .note}
 > Anytime you update the content of the "TorchScripts" folder, you need to reload the CMAKE project.
-> <img src="/assets/images/cmake_reload.png" width="300" alt="CMAKE Reload Image">
->
+> 
+> <img src="/assets/images/cmake_reload.png" width="500" alt="CMAKE Reload Image">
+
 
 
 ```mermaid
