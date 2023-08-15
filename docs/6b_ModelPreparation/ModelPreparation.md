@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Deployment Threads
-nav_order: 8
+title: Model Preparation
+nav_order: 6
 has_children: true
-permalink: /docs/6_DeploymentThreads
+permalink: /docs/6b_ModelPreparation
 ---
 
-# Deployment Threads
+# Model Preparation
 {: .no_toc }
 
 To make it as easy as possible to write documentation in plain Markdown, most UI components are styled using default

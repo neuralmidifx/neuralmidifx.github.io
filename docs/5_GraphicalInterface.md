@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Plugin Parameters and Graphical Interface Rendering
-nav_order: 6
+nav_order: 7
 ---
 
 # Plugin Parameters and Graphical Interface Rendering
