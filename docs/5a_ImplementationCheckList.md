@@ -20,18 +20,20 @@ Use this checklist to make sure that you have implemented all the necessary step
 ---
 
 
-- [ ] Place your serialize libtorch model in "TorchScripts/MDL/" folder (within the project)
-{: .note}
-> Anytime you update the content of the "TorchScripts" folder, you need to reload the CMAKE project.
-> ![](/assets/images/cmake_reload.png)
-> 
-
+- [ ] Place your serialize libtorch model in "TorchScripts/MDL/" folder (within the project) 
+  - [ ] Reload Cmake Project (see note below)
 - [ ] Specify the GUI and Parameters
 - [ ] Specify the Model Structure and Model I/O Structures
 - [ ] Specify the Events required from the host
 - [ ] Implement the deploy method of the InputTensorPreparator (ITP) Thread
 - [ ] Implement the deploy method of the Model Thread
 - [ ] Implement the deploy method of the PlaybackPreparator (PPP) Thread
+
+{: .note}
+> Anytime you update the content of the "TorchScripts" folder, you need to reload the CMAKE project.
+> <img src="/assets/images/cmake_reload.png" width="300" alt="CMAKE Reload Image">
+>
+
 
 ```mermaid
 graph TB
