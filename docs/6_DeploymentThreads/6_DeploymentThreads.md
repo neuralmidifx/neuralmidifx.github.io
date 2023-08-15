@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Deployment Threads
-nav_order: 6
+nav_order: 7
 has_children: true
 permalink: /docs/6_DeploymentThreads
 ---
