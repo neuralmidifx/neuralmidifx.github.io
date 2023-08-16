@@ -37,10 +37,10 @@ graph TD
 
 ## Step 2 - Parameters
 
-- [ ] Parameters
-  - [ ] Identify the parameters
-  - [ ] Specify the GUI layout
-  - [ ] Specify MIDI Visualizers (if any)
+- [ ] [Parameters]({{ site.baseurl }}/docs/GraphicalInterface)
+  - [ ] [Identify the parameters]({{ site.baseurl }}/docs/GraphicalInterface/#step-1-available-user-interface-elements)
+  - [ ] [Specify the GUI layout]({{ site.baseurl }}/docs/GraphicalInterface/#step-2-define-the-ui-elements)
+  - [ ] Specify [MIDI In]({{ site.baseurl }}/docs/GraphicalInterface/#step-4-midi-in-widget) or [MIDI Out]({{ site.baseurl }}/docs/GraphicalInterface/#step-5-midi-out-widget) Visualizers (if any)
 
 ```mermaid
 graph TD
