@@ -16,8 +16,7 @@ running inference [`Model` thread, a.k.a `MDL`]({{ site.baseurl }}/docs/Deployme
 via the host  [`PlaybackPreparator` thread, a.k.a `PPP`]({{ site.baseurl }}/docs/DeploymentThreads/PPP).
 
 In these threads, the wrapper provides a set of utilities for easily receiving and sending information from/to the 
-threads via the previously implemented inter-thread communication pipelines. 
-
+threads via the previously implemented inter-thread communication pipelines.
 
 ```mermaid
 graph TD
