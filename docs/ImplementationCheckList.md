@@ -46,37 +46,36 @@ Use this checklist to make sure that you have implemented all the necessary step
 > <img src="/assets/images/cmake_reload.png" width="500" alt="CMAKE Reload Image">
 
 
-
 ```mermaid
 graph TD
 
     %% Your Model
     subgraph YourModel["Your Model"]
-        A1[Serialize your PyTorch model] --> A2[Place the model in 'TorchScripts/MDL/' folder]
-        A2 --> A3[Reload Cmake Project]
+        A1["Serialize your PyTorch model"] --> A2["Place the model in 'TorchScripts/MDL/' folder"]
+        A2 --> A3["Reload Cmake Project"]
     end
 
     %% Parameters
-    subgraph Parameters
-        B1[Identify the parameters] --> B2[Specify the GUI layout]
-        B2 --> B3[Specify MIDI Visualizers]
+    subgraph Parameters["Parameters"]
+        B1["Identify the parameters"] --> B2["Specify the GUI layout"]
+        B2 --> B3["Specify MIDI Visualizers"]
     end
 
     %% ITP Thread
     subgraph ITPThread["ITP Thread"]
-        C1[Specify the information required from the host] --> C2[Implement the deployment process]
-        C2 --> C3[Update ModelInput structure]
+        C1["Specify the information required from the host"] --> C2["Implement the deployment process"]
+        C2 --> C3["Update ModelInput structure"]
     end
 
     %% MDL Thread
     subgraph MDLThread["MDL Thread"]
-        D1[Implement the deployment process] --> D2[Update ModelOutput structure]
+        D1["Implement the deployment process"] --> D2["Update ModelOutput structure"]
     end
 
     %% PPP Thread
     subgraph PPPThread["PPP Thread"]
-        E1[Implement the deployment process] --> E2[Specify the PlaybackPolicy]
-        E2 --> E3[Specify the PlaybackSequence]
+        E1["Implement the deployment process"] --> E2["Specify the PlaybackPolicy"]
+        E2 --> E3["Specify the PlaybackSequence"]
     end
 
     %% Vertical Placement of Groups
