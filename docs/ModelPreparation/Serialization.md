@@ -49,7 +49,8 @@ support Tracing.
 
 ### Scripting a model
 In case the entire functionality of your model is encoded in the forward() function:
-```angular2html
+
+```python
 trained_model = MyModel(init_args)
 scripted_model = torch.jit.script(trained_model)
 torch.jit.save(scripted_model, "filename.pt")
@@ -59,7 +60,7 @@ You can combine multiple models / functionalities by combining them into a singl
 function of a new meta-model, and then scripting it. This is particularly useful when your 
 model has a sampling process that is separate of the forward() function. 
 
-```angular2html
+```python
 class Sampler(torch.nn.Module):
     def __init__(self, args):
         super(args, self).__init__()
@@ -96,7 +97,7 @@ torch.jit.save(scripted_model, "filename.pt")
 
 Below is an example of how to trace a HuggingFace GPT-2 model:
 
-```angular2html
+```python
 with open(os.path.join(train_path, "config.json")) as fp:
     config = json.load(fp)
 vocab_size = config["vocab_size"]
@@ -135,7 +136,7 @@ the model and save the data in another format, such as a dict.
 Any nested function in your model will prevent serialization. Be sure to define every function at the top-level
 of the class. With that said, there is no issue in calling a function within another function:
 
-```asm
+```python
 def encode(self, x):
     return x + 1
 
