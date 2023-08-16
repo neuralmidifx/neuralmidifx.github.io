@@ -21,10 +21,13 @@ threads via the previously implemented inter-thread communication pipelines.
 
 ```mermaid
 graph TD
+    %% DAW
+    DAW1["From DAW"]
+    DAW2["To DAW"]
     
     %% DeploymentThreads 
     subgraph DeploymentThreads["Deployment Threads"]
-         %% ITP Thread
+        %% ITP Thread
         subgraph ITPThread["ITP Thread"]
             C1["Specify the information required from the host"] --> C2[Implement the deployment process]
             C2 --> C3[Update ModelInput structure]
@@ -41,11 +44,13 @@ graph TD
             E2 --> E3[Specify the PlaybackSequence]
         end
         
-        
-        "DAW" -->|"Playhead, Tempo, Meter, MIDI, ..."| ITPThread
-        ITPThread -->|model_input| MDLThread
-        MDLThread -->|model_output| PPPThread
-        PPPThread -->|"PLaybackPolicy, PlaybackSequence"| "DAW"
     end
-   
+
+    DAW1 -.->|Playhead, Tempo, Meter, MIDI ... | ITPThread
+    ITPThread -->|model_input| MDLThread
+    MDLThread -->|model_output| PPPThread
+    PPPThread -.->|MIDI| DAW2
+
+    style DeploymentThreads fill:#e6e6e6
+
 ```
