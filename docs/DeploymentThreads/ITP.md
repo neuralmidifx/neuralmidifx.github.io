@@ -37,8 +37,8 @@ graph TD
     
     %% ITP Thread
     subgraph ITPThread["ITP Thread"]
-        C1["Specify the information required from the host"] --> C2[Implement the deployment process]
-        C2 --> C3[Update ModelInput structure]
+        C1["Specify the information required from the host"] --> C2[Update ModelInput structure]
+        C2 --> C3[Implement the deployment process]
     end
 
     DAW1 -.->|Playhead, Tempo, Meter, MIDI ... | ITPThread

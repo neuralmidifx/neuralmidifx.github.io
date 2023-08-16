@@ -54,22 +54,22 @@ graph TD
 # Step 3 - InputTensorPreparator Thread (ITP)
 - [ ] ITP Thread
   - [ ] Specify the information required from the host
-  - [ ] Implement the deployment process
   - [ ] Update ModelInput structure
+  - [ ] Implement the deployment process
 
 ```mermaid
 graph TD
     %% ITP Thread
     subgraph ITPThread["ITP Thread"]
-        C1[Specify the information required from the host] --> C2[Implement the deployment process]
-        C2 --> C3[Update ModelInput structure]
+        C1[Specify the information required from the host] --> C2[Update ModelInput structure]
+        C2 --> C3[Implement the deployment process]
     end
 ```
 
 # Step 4 - Model Thread (MDL)
 - [ ] MDL Thread
-  - [ ] Implement the deployment process
   - [ ] Update ModelOutput structure
+  - [ ] Implement the deployment process
 
 ```mermaid
 graph TD
@@ -77,7 +77,7 @@ graph TD
 
     %% MDL Thread
     subgraph MDLThread["MDL Thread"]
-        D1[Implement the deployment process] --> D2[Update ModelOutput structure]
+        D1[Update ModelOutput structure] --> D2[Implement the deployment process]
     end
 ```
 
