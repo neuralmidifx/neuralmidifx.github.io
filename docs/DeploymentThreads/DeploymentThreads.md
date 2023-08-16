@@ -21,33 +21,29 @@ threads via the previously implemented inter-thread communication pipelines.
 ```mermaid
 graph TD
     
-    
-    %% ITP Thread
-    subgraph ITPThread["ITP Thread"]
-        C1[Specify the information required from the host] --> C2[Implement the deployment process]
-        C2 --> C3[Update ModelInput structure]
-    end
-    
-    %% MDL Thread
-    subgraph MDLThread["MDL Thread"]
-        D1[Implement the deployment process] --> D2[Update ModelOutput structure]
-    end
-    
-    %% PPP Thread
-    subgraph PPPThread["PPP Thread"]
-        E1[Implement the deployment process] --> E2[Specify the PlaybackPolicy]
-        E2 --> E3[Specify the PlaybackSequence]
-    end
-    
     %% DeploymentThreads 
     subgraph DeploymentThreads["Deployment Threads"]
+         %% ITP Thread
+        subgraph ITPThread["ITP Thread"]
+            C1["Specify the information required from the host"] --> C2[Implement the deployment process]
+            C2 --> C3[Update ModelInput structure]
+        end
+        
+        %% MDL Thread
+        subgraph MDLThread["MDL Thread"]
+            D1[Implement the deployment process] --> D2[Update ModelOutput structure]
+        end
+        
+        %% PPP Thread
+        subgraph PPPThread["PPP Thread"]
+            E1[Implement the deployment process] --> E2[Specify the PlaybackPolicy]
+            E2 --> E3[Specify the PlaybackSequence]
+        end
+        
+        
+        
+        ITPThread -->|model_input| MDLThread
+        MDLThread -->|model_output| PPPThread
     end
-    
-    %% Vertical Placement of Groups
-    DeploymentThreads -.-> ITPThread
-    DeploymentThreads -.-> MDLThread
-    DeploymentThreads -.-> PPPThread
-    
-    ITPThread -->|model_input| MDLThread
-    MDLThread -->|model_output| PPPThread
+   
 ```
