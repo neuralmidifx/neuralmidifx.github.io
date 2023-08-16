@@ -39,7 +39,7 @@ graph TD
     end
     
     %% Vertical Placement of Groups
-    "Deployment Threads" --> "ITP Thread"
-    "Deployment Threads" --> "MDL Thread"
-    "Deployment Threads" --> "PPP Thread"
+    DeploymentThreads --> ITPThread
+    DeploymentThreads --> MDLThread
+    DeploymentThreads --> PPPThread
 ```
