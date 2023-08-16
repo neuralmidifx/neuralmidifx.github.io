@@ -17,10 +17,12 @@ Explain what this section is about
 1. TOC
 {:toc}
 
-[Get started now](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
-[View it on GitHub][Just the Docs repo]{: .btn .fs-5 .mb-4 .mb-md-0 }
+
 
 ---
+
+{: .note }
+> This guide has been prepared by [Julian Lenz](https://github.com/JLenzy)
 
 {: .note }
 > This is a modified version of the [NeutoneMIDI SDK](https://github.com/QosmoInc/neutone_sdk/tree/neutone_midi) guidelines on serializing a model

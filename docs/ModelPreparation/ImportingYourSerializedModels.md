@@ -19,3 +19,16 @@ In this guide, we will show you the steps necessary for import your **serialized
 
 ---
 
+## Getting started
+
+Once you have your model serialized, you can import it into the plugin. 
+The way the wrapper works is that whenever the cmake project is built, it will copy the [`TorchScripts`](https://github.com/behzadhaki/NeuralMidiFXPlugin/tree/master/TorchScripts/) 
+folder to a local directory:
+
+{: .note }
+> On Windows, the content will be cloned into `C:\{BaseTargetName}\TorchScripts`.
+> 
+> On Mac, the content will be cloned into `~/Library/{BaseTargetName}/TorchScripts`
+> 
+> !Remember! that `{BaseTargetName}` is the name of the target you have specified in the `CMakeLists.txt` file
+> in [NeuralMidiFXPlugin/NeuralMidiFXPlugin/CMakeLists.txt](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/master/NeuralMidiFXPlugin/NeuralMidiFXPlugin/CMakeLists.txt).
