@@ -47,8 +47,8 @@ graph TD
     end
 
     DAW1 -.->|Playhead, Tempo, Meter, MIDI ... | ITPThread
-    ITPThread -->|model_input| MDLThread
-    MDLThread -->|model_output| PPPThread
+    ITPThread -->|ModelInput| MDLThread
+    MDLThread -->|ModelOutput| PPPThread
     PPPThread -.->|MIDI| DAW2
 
     style DeploymentThreads fill:#e6e6e6
