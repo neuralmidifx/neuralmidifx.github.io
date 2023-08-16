@@ -11,7 +11,12 @@ permalink: /docs/DeploymentThreads
 
 ---
 
-Deployment threads are the threads for which you are partially responsible.
+NeuralMidiFx dedicates three threads respectively for preparing the inputs of a model (`InputTensorPreparator` thread, a.k.a `ITP`), 
+running inference (`Model` thread, a.k.a `MDL`), and reformatting the generations into MIDI messages for playback 
+via the host  (`PlaybackPreparator` thread, a.k.a `PPP`).
+
+In these threads, the wrapper provides a set of utilities for easily receiving and sending information from/to the 
+threads via the previously implemented inter-thread communication pipelines. 
 
 ```mermaid
 graph TD
@@ -39,7 +44,10 @@ graph TD
     end
     
     %% Vertical Placement of Groups
-    DeploymentThreads --> ITPThread
-    DeploymentThreads --> MDLThread
-    DeploymentThreads --> PPPThread
+    DeploymentThreads -.-> ITPThread
+    DeploymentThreads -.-> MDLThread
+    DeploymentThreads -.-> PPPThread
+    
+    ITPThread -->|model_input| MDLThread
+    MDLThread -->|model_output| PPPThread
 ```
