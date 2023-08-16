@@ -97,12 +97,6 @@ graph TD
     end
 ```
 
-{: .note}
-> Anytime you update the content of the "TorchScripts" folder, you need to reload the CMAKE project.
-> 
-> <img src="/assets/images/cmake_reload.png" width="500" alt="CMAKE Reload Image">
-
-
 ```mermaid
 graph TD
 
