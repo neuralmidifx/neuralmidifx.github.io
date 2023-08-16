@@ -22,12 +22,17 @@ Use this checklist to make sure that you have implemented all the necessary step
 
 - [ ] Place your serialize libtorch model in "TorchScripts/MDL/" folder (within the project) 
   - [ ] Reload Cmake Project (see note below)
+  - [ ] Specify the Model path and implement 
 - [ ] Specify the GUI and Parameters
-- [ ] Specify the Model Structure and Model I/O Structures
 - [ ] Specify the Events required from the host
-- [ ] Implement the deploy method of the InputTensorPreparator (ITP) Thread
-- [ ] Implement the deploy method of the Model Thread
-- [ ] Implement the deploy method of the PlaybackPreparator (PPP) Thread
+- [ ] ITP
+  - [ ] Implement the deploy method of the InputTensorPreparator (ITP) Thread
+  - [ ] Update ModelInput structure
+- [ ] MDL
+  - [ ] Implement the deploy method of the Model (MDL) Thread
+  - [ ] Update ModelOutput structure 
+- [ ] PPP
+  - [ ] Implement the deploy method of the PlaybackPreparator (PPP) Thread
 
 {: .note}
 > Anytime you update the content of the "TorchScripts" folder, you need to reload the CMAKE project.
@@ -39,8 +44,8 @@ Use this checklist to make sure that you have implemented all the necessary step
 ```mermaid
 graph TB
     A["update /TorchScripts/MDL/"] --> B["Reload CMAKE Project"]
-    B --> C["Update /NeuralMidiFXPlugin/Configs_GUI.h"]
-    C --> D["Update /NeuralMidiFXPlugin/Configs_Model.h"]
+    B --> C["Update /NeuralMidiFXPlugin/Configs_Model.h"]
+    C --> D["Update /NeuralMidiFXPlugin/Configs_GUI.h"]
     D --> E["Update /NeuralMidiFXPlugin/Configs_HostEvents.h"]
     E --> F["Update /NeuralMidiFXPlugin/ITP_Deploy.cpp"]
     F --> G["Update /NeuralMidiFXPlugin/MDL_Deploy.cpp"]
