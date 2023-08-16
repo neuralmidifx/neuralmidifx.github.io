@@ -49,17 +49,39 @@ Use this checklist to make sure that you have implemented all the necessary step
 ```mermaid
 graph TD
 
-    subgraph YourModel
-        A1 --> A2
-        A2 --> A3
+    %% Your Model
+    subgraph ModelPreparation["Model Preparation"]
+        A1[Serialize your PyTorch model] --> A2[Place the model in 'TorchScripts/MDL/' folder]
+        A2 --> A3[Reload Cmake Project]
     end
 
+    %% Parameters
     subgraph Parameters
-        B1 --> B2
-        B2 --> B3
+        B1[Identify the parameters] --> B2[Specify the GUI layout]
+        B2 --> B3[Specify MIDI Visualizers]
+    end
+
+    %% ITP Thread
+    subgraph ITPThread["ITP Thread"]
+        C1[Specify the information required from the host] --> C2[Implement the deployment process]
+        C2 --> C3[Update ModelInput structure]
+    end
+
+    %% MDL Thread
+    subgraph MDLThread["MDL Thread"]
+        D1[Implement the deployment process] --> D2[Update ModelOutput structure]
+    end
+
+    %% PPP Thread
+    subgraph PPPThread["PPP Thread"]
+        E1[Implement the deployment process] --> E2[Specify the PlaybackPolicy]
+        E2 --> E3[Specify the PlaybackSequence]
     end
 
     %% Vertical Placement of Groups
-    YourModel --> Parameters
+    ModelPreparation --> Parameters
     Parameters --> ITPThread
+    ITPThread --> MDLThread
+    MDLThread --> PPPThread
+
 ```
