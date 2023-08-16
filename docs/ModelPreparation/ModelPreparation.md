@@ -9,9 +9,17 @@ permalink: /docs/ModelPreparation
 # Model Preparation
 {: .no_toc }
 
-To make it as easy as possible to write documentation in plain Markdown, most UI components are styled using default
-Markdown elements with few additional CSS classes needed.
+In this section we will discuss the steps required to prepare a model for deployment. 
 {: .fs-6 .fw-300 }
-
 ---
 
+## Serialization of Trained PyTorch Models
+
+We have prepared a guide on how to serialize trained PyTorch models [here]({{site.baseurl}}/docs/ModelPreparation/Serialization/).
+
+{: .warning }
+> At the moment, we only support PyTorch models. We are working on adding support for [ONNX](https://github.com/onnx/tutorials) models as well.
+
+## Add a Serialized Model to the Plugin Project
+
+Once you have serialized your model, you can add it to the plugin project using the guide [here]({{site.baseurl}}/docs/ModelPreparation/ImportingYourSerializedModels/).
