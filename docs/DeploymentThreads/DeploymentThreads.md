@@ -3,7 +3,7 @@ layout: default
 title: Deployment Threads
 nav_order: 8
 has_children: true
-permalink: /docs/6_DeploymentThreads
+permalink: /docs/DeploymentThreads
 ---
 
 # Deployment Threads

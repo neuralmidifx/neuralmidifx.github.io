@@ -3,7 +3,7 @@ layout: default
 title: Model Preparation
 nav_order: 6
 has_children: true
-permalink: /docs/6b_ModelPreparation
+permalink: /docs/ModelPreparation
 ---
 
 # Model Preparation

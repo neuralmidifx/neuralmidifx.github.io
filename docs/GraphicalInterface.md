@@ -35,7 +35,7 @@ Once you have decided what sort of UI elements you would like to have in your pl
 
 ## Step 2. Define the UI Elements
 
-Go to `NeuralMidiFXPlugin/NeuralMidiFXPlugin/Source/DeploymentSettings/GuiAndParams.h`
+Go to `NeuralMidiFXPlugin/`
 
 In this file, you can define the UI elements that you would like to have in your plugin.
 
