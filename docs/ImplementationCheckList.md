@@ -20,19 +20,25 @@ Use this checklist to make sure that you have implemented all the necessary step
 ---
 
 
-- [ ] Place your serialize libtorch model in "TorchScripts/MDL/" folder (within the project) 
+- [ ] Add Your Model
+  - [ ] Serialize your PyTorch model
+  - [ ] Place the model in "TorchScripts/MDL/" folder (within the project) 
   - [ ] Reload Cmake Project (see note below)
-  - [ ] Specify the Model path and implement 
-- [ ] Specify the GUI and Parameters
-- [ ] Specify the Events required from the host
-- [ ] ITP
-  - [ ] Implement the deploy method of the InputTensorPreparator (ITP) Thread
+- [ ] Parameters
+  - [ ] Identify the parameters
+  - [ ] Specify the GUI layout
+  - [ ] Specify MIDI Visualizers (if any)
+- [ ] ITP Thread
+  - [ ] Specify the information required from the host
+  - [ ] Implement the deployment process
   - [ ] Update ModelInput structure
-- [ ] MDL
-  - [ ] Implement the deploy method of the Model (MDL) Thread
+- [ ] MDL Thread
+  - [ ] Implement the deployment process
   - [ ] Update ModelOutput structure 
-- [ ] PPP
-  - [ ] Implement the deploy method of the PlaybackPreparator (PPP) Thread
+- [ ] PPP Thread
+  - [ ] Implement the deployment process
+  - [ ] Specify the PlaybackPolicy
+  - [ ] Specify the PlaybackSequence
 
 {: .note}
 > Anytime you update the content of the "TorchScripts" folder, you need to reload the CMAKE project.
@@ -42,13 +48,40 @@ Use this checklist to make sure that you have implemented all the necessary step
 
 
 ```mermaid
-graph TB
-    A["update /TorchScripts/MDL/"] --> B["Reload CMAKE Project"]
-    B --> C["Update /NeuralMidiFXPlugin/Configs_Model.h"]
-    C --> D["Update /NeuralMidiFXPlugin/Configs_GUI.h"]
-    D --> E["Update /NeuralMidiFXPlugin/Configs_HostEvents.h"]
-    E --> F["Update /NeuralMidiFXPlugin/ITP_Deploy.cpp"]
-    F --> G["Update /NeuralMidiFXPlugin/MDL_Deploy.cpp"]
-    G --> H["Update /NeuralMidiFXPlugin/PPP_Deploy.cpp"]
-  
+graph TD
+
+    %% Your Model
+    subgraph YourModel["Your Model"]
+        A1[Serialize your PyTorch model] --> A2[Place the model in 'TorchScripts/MDL/' folder]
+        A2 --> A3[Reload Cmake Project]
+    end
+
+    %% Parameters
+    subgraph Parameters
+        B1[Identify the parameters] --> B2[Specify the GUI layout]
+        B2 --> B3[Specify MIDI Visualizers]
+    end
+
+    %% ITP Thread
+    subgraph ITPThread["ITP Thread"]
+        C1[Specify the information required from the host] --> C2[Implement the deployment process]
+        C2 --> C3[Update ModelInput structure]
+    end
+
+    %% MDL Thread
+    subgraph MDLThread["MDL Thread"]
+        D1[Implement the deployment process] --> D2[Update ModelOutput structure]
+    end
+
+    %% PPP Thread
+    subgraph PPPThread["PPP Thread"]
+        E1[Implement the deployment process] --> E2[Specify the PlaybackPolicy]
+        E2 --> E3[Specify the PlaybackSequence]
+    end
+
+    %% Vertical Placement of Groups
+    YourModel --> Parameters
+    Parameters --> ITPThread
+    ITPThread --> MDLThread
+    MDLThread --> PPPThread
 ```
