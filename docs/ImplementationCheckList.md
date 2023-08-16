@@ -21,8 +21,8 @@ Use this checklist to make sure that you have implemented all the necessary step
 
 ## Step 1 - Model Preparation
 - [ ] [Model Preparation]({{ site.baseurl }}/docs/ModelPreparation)
-  - [ ] [Serialize your PyTorch model]({{ site.baseurl }}/docs/ModelPreparation/Serialization.md)
-  - [ ] Place the model in "TorchScripts/MDL/" folder (within the project) 
+  - [ ] [Serialize your PyTorch model]({{ site.baseurl }}/docs/ModelPreparation/Serialization)
+  - [ ] [Place the model in "TorchScripts/MDL/" folder (within the project)] 
   - [ ] Reload Cmake Project (see note below)
 
 ```mermaid

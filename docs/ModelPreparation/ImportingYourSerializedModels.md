@@ -21,17 +21,23 @@ In this guide, we will show you the steps necessary for import your **serialized
 
 ## Step 1. Add your serialized model to the project
 
-Once you have your model serialized, you can import it into the plugin. 
-The way the wrapper works is that whenever the cmake project is built, it will copy the [`TorchScripts`](https://github.com/behzadhaki/NeuralMidiFXPlugin/tree/master/TorchScripts/) 
-folder to a local directory:
+Once you have your model serialized, you should add it to [`TorchScripts/MDL`](https://github.com/behzadhaki/NeuralMidiFXPlugin/tree/master/TorchScripts) 
+folder in the **project directory**.
 
-As a result, make sure to place your serialized model in the [`TorchScripts/MDL`](https://github.com/behzadhaki/NeuralMidiFXPlugin/tree/master/TorchScripts/MDL) folder of the `NeuralMidiFXPlugin` project. Once added,
-you **MUST** reload the cmake  so as for the content to be copied to the local directory. 
+
+<img src="/assets/images/TorchScriptFolderStruct.png" width="200" alt="MDLFile">
+
+
+## Step 2. Reload the cmake project
+Once ready, the wrapper will create a local directories and populate them with the content of the project directory.
+As a result, once you have your model added to the project directory (as shown in the previous step)
+you **MUST** reload the cmake project so as for the content to be copied to the local directory.
+
+
 In Clion, you can reload your cmake project as shown in the image below:
 
 
 <img src="/assets/images/cmake_reload.png" width="500" alt="CMAKE Reload Image">
-
 
 
 {: .note }
@@ -48,4 +54,3 @@ In Clion, you can reload your cmake project as shown in the image below:
 > Rather, **ALWAYS** update the content of the [`TorchScripts`](https://github.com/behzadhaki/NeuralMidiFXPlugin/tree/master/TorchScripts/) folder in the `NeuralMidiFXPlugin` project and reload the cmake project.
 
 
-## Step 2. Update the Model
