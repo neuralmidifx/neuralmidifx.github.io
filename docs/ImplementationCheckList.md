@@ -20,8 +20,8 @@ Use this checklist to make sure that you have implemented all the necessary step
 ---
 
 
-- [ ] Add Your Model
-  - [ ] Serialize your PyTorch model
+- [ ] [Model Preparation]({{ site.baseurl }}{% link docs/ModelPreparation.md %})
+  - [ ] [Serialize your PyTorch model]({{ site.baseurl }}{% link docs/ModelPreparation/Serialization.md %})
   - [ ] Place the model in "TorchScripts/MDL/" folder (within the project) 
   - [ ] Reload Cmake Project (see note below)
 - [ ] Parameters
