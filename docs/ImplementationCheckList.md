@@ -22,8 +22,8 @@ Use this checklist to make sure that you have implemented all the necessary step
 ## Step 1 - Model Preparation
 - [ ] [Model Preparation]({{ site.baseurl }}/docs/ModelPreparation)
   - [ ] [Serialize your PyTorch model]({{ site.baseurl }}/docs/ModelPreparation/Serialization)
-  - [ ] [Place the model in "TorchScripts/MDL/" folder (within the project)] 
-  - [ ] Reload Cmake Project (see note below)
+  - [ ] [Place the model in "TorchScripts/MDL/" folder (within the project)]({{ site.baseurl }}/docs/ModelPreparation/ImportingYourSerializedModels/#step-1-add-your-serialized-model-to-the-project) 
+  - [ ] [Reload Cmake Project (see note below)]({{ site.baseurl }}/docs/ModelPreparation/ImportingYourSerializedModels/#step-2-reload-the-cmake-project) 
 
 ```mermaid
 graph TD
