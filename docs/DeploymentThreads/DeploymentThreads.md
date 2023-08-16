@@ -42,9 +42,10 @@ graph TD
         end
         
         
-        
+        "DAW" -->|"Playhead, Tempo, Meter, MIDI, ..."| ITPThread
         ITPThread -->|model_input| MDLThread
         MDLThread -->|model_output| PPPThread
+        PPPThread -->|"PLaybackPolicy, PlaybackSequence"| "DAW"
     end
    
 ```
