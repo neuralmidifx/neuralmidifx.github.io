@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Step 1 - Getting Started
+title: Getting Started
 nav_order: 4
 has_children: true
 permalink: /docs/GettingStarted
