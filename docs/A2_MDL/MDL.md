@@ -1,6 +1,6 @@
 ---
 layout: default
-title: MDL Thread
+title: Inference
 has_children: true
 nav_order: 10
 permalink: /MDL

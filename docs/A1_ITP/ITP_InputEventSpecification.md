@@ -1,7 +1,7 @@
 ---
 layout: default
 title: ITP - Specification of the Information Required from the Host
-parent: Input Tensor Preparator Thread (ITP)
+parent: Input Preparation
 has_children: true
 nav_order: 1
 ---

@@ -1,6 +1,6 @@
 ---
 layout: default
-title: PPP Thread
+title: Playback Preparation
 has_children: true
 nav_order: 11
 permalink: /PPP
