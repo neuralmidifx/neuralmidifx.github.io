@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Inference
+title: 3. Inference
 has_children: true
 nav_order: 10
 permalink: /MDL

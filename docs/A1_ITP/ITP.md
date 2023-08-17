@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Input Preparation
+title: 2. Input Preparation
 has_children: true
 nav_order: 9
 permalink: /ITP
