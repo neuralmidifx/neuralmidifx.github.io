@@ -1,9 +1,9 @@
 ---
 layout: default
-title: Quick Guides
+title: Guides & References
 has_children: true
-permalink: /QuickGuides
-nav_order: 80
+permalink: /GuidesReferences
+nav_order: 90
 ---
 
 # Quick Guides

@@ -1,8 +1,9 @@
 ---
 layout: default
-title: Playback Preparator Thread (PPP)
+title: PPP Thread
 has_children: true
 nav_order: 11
+permalink: /PPP
 ---
 
 # Playback Preparator Thread (PPP)

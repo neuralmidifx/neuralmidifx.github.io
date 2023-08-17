@@ -1,9 +1,10 @@
 ---
 layout: default
-title: Data Types
-nav_order: 8
+title: Data Types 
+nav_order: 3
 has_children: true
-permalink: /docs/Datatypes
+parent: Guides & References
+permalink: /GuidesReferences/datatypes
 ---
 
 # Data Types

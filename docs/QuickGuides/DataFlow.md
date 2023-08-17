@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Data Flow
-parent: Quick Guides
-permalink: /QuickGuides/DataFlow
+parent: Guides & References
+permalink: /GuidesReferences/DataFlow
 nav_order: 2
 ---
 

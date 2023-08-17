@@ -1,8 +1,8 @@
 ---
 layout: default
 title: Implementation Checklist
-parent: Quick Guides
-permalink: /QuickGuides/ImplementationChecklist
+parent: Guides & References
+permalink: /GuidesReferences/ImplementationChecklist
 nav_order: 1
 ---
 

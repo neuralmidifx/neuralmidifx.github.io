@@ -1,8 +1,9 @@
 ---
 layout: default
-title: Model Thread (MDL)
+title: MDL Thread
 has_children: true
 nav_order: 10
+permalink: /MDL
 ---
 
 # Model Thread (MDL)
