@@ -20,7 +20,7 @@ nav_order: 9
 ---
 
 ## Overview
-Prior to running the inference on a given model, all or some of the host`s play-head information,
+Prior to running the inference on a given model, all or some of the host's play-head information,
 incoming MIDI messages, and possibly parameters controlled via a graphical interface must be 
 reformatted according to a given model`s input requirements. `ITP` thread is responsible for
 this task.
