@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Deploy() Method
-parent: 4. Playback Preparation
+parent: 5. Playback Preparation
 has_children: true
 nav_order: 2
 permalink: /DeploymentStages/PPP/Deploy

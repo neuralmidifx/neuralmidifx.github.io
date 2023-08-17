@@ -2,8 +2,7 @@
 layout: default
 title: A Guide on Serialization of PyTorch Models
 has_children: false
-parent: Model Preparation
-grand_parent: Getting Started
+parent: 1. Model Preparation
 permalink: /docs/GettingStarted/SerializationGuide
 nav_order: 1
 ---

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Deploy() Method
-parent: 3. Inference
+parent: 4. Inference
 has_children: true
 nav_order: 2
 permalink: /DeploymentStages/MDL/Deploy

@@ -1,7 +1,7 @@
 ---
 layout: default
 title: B. Deploy() Method
-parent: 2. Input Preparation
+parent: 3. Input Preparation
 has_children: true
 nav_order: 2
 permalink: /DeploymentStages/ITP/Deploy

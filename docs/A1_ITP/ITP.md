@@ -1,6 +1,6 @@
 ---
 layout: default
-title: 2. Input Preparation
+title: 3. Input Preparation
 has_children: true
 nav_order: 9
 permalink: /DeploymentStages/ITP/

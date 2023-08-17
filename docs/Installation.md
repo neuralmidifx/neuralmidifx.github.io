@@ -2,8 +2,8 @@
 layout: default
 title: Installation
 parent: Getting Started
-permalink: /docs/GettingStarted/Installation
-nav_order: 1
+permalink: /docs/Installation
+nav_order: 4
 ---
 
 # Installation

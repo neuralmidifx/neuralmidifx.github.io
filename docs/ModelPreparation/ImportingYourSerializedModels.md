@@ -2,8 +2,7 @@
 layout: default
 title: Importing Your Serialized Models
 has_children: false
-parent: Model Preparation
-grand_parent: Getting Started
+parent: 1. Model Preparation
 permalink: /docs/ModelPreparation/ImportingYourModel/
 nav_order: 2
 ---

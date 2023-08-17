@@ -1,7 +1,7 @@
 ---
 layout: default
 title: A. Specify Host Events
-parent: 2. Input Preparation
+parent: 3. Input Preparation
 has_children: true
 nav_order: 1
 permalink: /DeploymentStages/ITP/HostEvents

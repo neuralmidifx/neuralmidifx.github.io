@@ -1,10 +1,9 @@
 ---
 layout: default
-title: Model Preparation
+title: 1. Model Preparation
 nav_order: 2
 has_children: true
-parent: Getting Started
-permalink: /docs/GettingStarted/ModelPreparation
+\permalink: /docs/ModelPreparation
 ---
 
 # Model Preparation
