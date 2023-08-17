@@ -3,13 +3,12 @@ layout: default
 title: 4. Playback Preparation
 has_children: true
 nav_order: 11
-permalink: /PPP
+permalink: /DeploymentStages/PPP
 ---
 
-# Playback Preparator Thread (PPP)
+# Prepare Generated Data for Playback
 {: .no_toc }
 
-Explain what this section is about
 {: .fs-6 .fw-300 }
 
 ## Table of contents
@@ -18,7 +17,5 @@ Explain what this section is about
 1. TOC
 {:toc}
 
-[Get started now](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
-[View it on GitHub][Just the Docs repo]{: .btn .fs-5 .mb-4 .mb-md-0 }
-
 ---
+
