@@ -1,6 +1,6 @@
 ---
 layout: default
-title: |-- Overview and Architecture
+title: Overview and Architecture
 nav_order: 5
 ---
 
