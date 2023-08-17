@@ -1,14 +1,12 @@
 ---
 layout: default
-title: Plugin Parameters and Graphical Interface Rendering
+title: Parameters and GUI
 nav_order: 7
+permalink: /docs/ParametersAndGUI
 ---
 
 # Plugin Parameters and Graphical Interface Rendering
 {: .no_toc }
-
-Explain what this section is about
-{: .fs-6 .fw-300 }
 
 ## Table of contents
 {: .no_toc .text-delta }
