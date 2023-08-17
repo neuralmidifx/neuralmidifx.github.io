@@ -1,41 +1,90 @@
 ---
 layout: default
-title: Data Types
+title: Deployment Threads
 nav_order: 8
-has_children: true
-permalink: /docs/B_Datatypes
+has_children: false
+permalink: /docs/DeploymentThreads
 ---
 
-# Data Types
+# Deployment Threads
 {: .no_toc }
 
 ---
 
-There are a number of data types that you will be commonly using in the code. Some of these data types are available in 
-all of the deployment threads and some are only available in specific threads. This page will give you an overview of
-the data types. You can find more information about each data type in the corresponding subsections.
+NeuralMidiFx dedicates three threads respectively for preparing the inputs of a model [`InputTensorPreparator` thread, a.k.a `ITP`]({{ site.baseurl }}/docs/DeploymentThreads/ITP),
+running inference [`Model` thread, a.k.a `MDL`]({{ site.baseurl }}/docs/DeploymentThreads/MDL), and reformatting the generations into MIDI messages for playback 
+via the host  [`PlaybackPreparator` thread, a.k.a `PPP`]({{ site.baseurl }}/docs/DeploymentThreads/PPP).
 
-## Data Types Available in All Threads
+In these threads, the wrapper provides a set of utilities for easily receiving and sending information from/to the 
+threads via the previously implemented inter-thread communication pipelines.
 
-| Data Type           | Description                                                                                | Usage/Availability      | API      |
-|---------------------|--------------------------------------------------------------------------------------------|-------------------------|----------|
-| GuiParams           | Contains the status and value of the specified daw parameters                              | ITP, MDL, PPP           | [Here]() |
-| realtimePlaybackInfo| Contains the status of the daw in real time                                                | ITP, MDL, PPP           | [Here]() |
+```mermaid
+graph TD
+    
+    %% DAW
+    DAW_2["Incoming Midi \n and \n DAW Status \n (Tempo, Meter, Position, ...)"]
+    DAW_3["Parameters \n Edited, Audtomated \n via DAW/GUI"]
+    DAW_5["MIDI Files \n Dragged/Dropped \n into Plugin"]
+    GUI_MIDIIN["Visualize \n Incoming MIDI \n from Host \n on GUI"]
+    GUI_MIDIIN2["Visualize \n Dropped MIDI \n on GUI"]
+    
 
-## Data Types Available in Specific Threads
----
-layout: page
-title: Data Types Overview - Specific Threads Data Types
----
+    NMFX1["NeuralMidiFx"]
+    DAWOut["Play \n Generations \n via DAW"]
+    GUI_MIDI["Drag Out \n Generations \n via GUI"]
+    GUI_MIDI2["Visualization \n Generations \n on GUI"]
+    NMFX2["NeuralMidiFx"]
 
-| Data Type           | Description                                                                                | Usage/Availability      | API                 |
-|---------------------|--------------------------------------------------------------------------------------------|-------------------------|---------------------|
-| EventFromHost       | All per-buffer data received from host are wrapped in this datatype for easy access         | ITP Only                | [Here]()      |
-| MidiFileEvent       | Contains the information in a given midi file manually drag/dropped into GUI               | ITP Only                | [Here]()      |
-| ModelInput          | A structure holding any required data to be sent from ITP to MDL                           | ITP and MDL             | [Here]()      |
-| ModelOutput         | A structure holding any required data to be sent from MDL to PPP                           | MDL and PPP             | [Here]()      |
-| PlaybackSequence    | Contains the generated data to be played back or visualized                                | PPP Only                | [Here]()      |
-| PlaybackPolicy      | Specifies how generated content sent to the wrapper are to be interpreted                  | PPP Only                | [Here]()      |
+    %% DeploymentThreads 
+    subgraph DeploymentThreads[" "]
 
-Please check the API links for a more detailed description of each common data type.
+        subgraph X["Deployment Threads"]
+            %% ITP Thread
+            subgraph ITPThread["ITP_Deploy.cpp"]
+                C1["Process/Tokenize \n Events and Parameters \n "] --> |"Ready For Inference?"|C2["Wrap in ModelInput\n and \n  Send to Next Thread"]
+            
+            end
+            
+            %% MDL Thread
+            subgraph MDLThread["MDL Thread"]
+                D1[Run Inference] --> D2["Wrap in ModelOutput\n and \n  Send to Next Thread"]
+            end
+            
+            %% PPP Thread
+            subgraph PPPThread["PPP Thread"]
+                
+                E1[Extract Generations]-->|append or overwrite \n with note information|E2[Update PlaybackSequence]
+                E1[Extract Generations]-->|specify how to interpret \n the sequence |E3[Update PlaybackPolicy]
+            end
+        end
+        subgraph gui_params["gui_params \n Available in \n ITP, MDL, PPP"]
+            
+        end
+    
+    end
+        
 
+   
+    NMFX1 -.-> |GuiParams Structure| gui_params
+
+    DAW_2 -.->|"Accessed  \n according to \n Configs_HostEvents.h "| NMFX1
+    DAW_3 -.-> |"Access Info \n specified in \n Configs_HostEvents.h "|NMFX1
+    DAW_5 -.-> |"(Optional) \n if specified in \n Configs_GUI.h"|NMFX1
+    NMFX1 -.->|EventFromHost Structure| ITPThread
+    NMFX1 -.->|MidiFileEvent Structure| ITPThread
+
+    ITPThread -.->|ModelInput Structure \n Specified in Model_Input.h| MDLThread
+    MDLThread -.->|ModelOutput Structure \n Specified in Model_Output.h| PPPThread
+    PPPThread -.->|PlaybackPolicy, PlaybackSequence| NMFX2
+    NMFX2 -.->|MIDI| DAWOut
+    NMFX2 -.->|"(Optional) \n if specified in \n Configs_GUI.h"| GUI_MIDI
+    NMFX2 -.->|"(Optional) \n if specified in \n Configs_GUI.h"| GUI_MIDI2
+    NMFX2 -.->|"(Optional) \n if specified in \n Configs_GUI.h"| GUI_MIDIIN
+    NMFX2 -.->|"(Optional) \n if specified in \n Configs_GUI.h"| GUI_MIDIIN2
+
+
+    style DeploymentThreads fill:#ada1 
+    style X fill:#ada1
+
+
+```
