@@ -1,10 +1,8 @@
 ---
 layout: default
-title: ITP - Specification of the Information Required from the Host
-parent: Input Tensor Preparator Thread (ITP)
-grand_parent: Deployment Threads
+title: Input Tensor Preparator Thread (ITP)
 has_children: true
-nav_order: 1
+nav_order: 9
 ---
 
 # Input Tensor Preparator Thread (ITP)
@@ -21,7 +19,7 @@ nav_order: 1
 
 ---
 
-## Specification of the Information Required from the Host
+## Overview
 Prior to running the inference on a given model, all or some of the host`s play-head information,
 incoming MIDI messages, and possibly parameters controlled via a graphical interface must be 
 reformatted according to a given model`s input requirements. `ITP` thread is responsible for

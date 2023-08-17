@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Tutorial 1 - Random Generation
-nav_order: 90
+nav_order: 30
 has_children: true
 permalink: /docs/Tutorial1-RandomGeneration
 ---

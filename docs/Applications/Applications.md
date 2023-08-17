@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Applications
-nav_order: 9
+nav_order: 20
 has_children: true
 permalink: /docs/Applications
 ---

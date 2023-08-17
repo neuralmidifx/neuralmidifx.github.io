@@ -1,11 +1,11 @@
 ---
 layout: default
-title: Model Thread (MDL)
-parent: Deployment Threads
-nav_order: 2
+title: Playback Preparator Thread (PPP)
+has_children: true
+nav_order: 11
 ---
 
-# Model Thread (MDL)
+# Playback Preparator Thread (PPP)
 {: .no_toc }
 
 Explain what this section is about
@@ -21,7 +21,3 @@ Explain what this section is about
 [View it on GitHub][Just the Docs repo]{: .btn .fs-5 .mb-4 .mb-md-0 }
 
 ---
-## Overview
-## Implementation Guide
-## Model Output Structure
-## Sending Data to PPP
