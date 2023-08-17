@@ -14,11 +14,10 @@ permalink: /docs/ParametersAndGUI
 1. TOC
 {:toc}
 
- For this Stage of Deployment: [Edit Configs_GUI.h](){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 {: .note }
 > For this Stage of Deployment, You should modify the following file
 > 
-> [Edit Configs_HostEvents.h](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/master/NeuralMidiFXPlugin/NeuralMidiFXPlugin/Configs_GUI.h){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+> [Configs_GUI.h](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/master/NeuralMidiFXPlugin/NeuralMidiFXPlugin/Configs_GUI.h){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 ---
 
