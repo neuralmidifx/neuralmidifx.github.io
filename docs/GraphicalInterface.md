@@ -14,7 +14,7 @@ permalink: /docs/ParametersAndGUI
 1. TOC
 {:toc}
 
-[Edit Configs_GUI.h for this Stage of Deployment][https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/master/NeuralMidiFXPlugin/NeuralMidiFXPlugin/Configs_GUI.h]{: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[Edit Configs_GUI.h for this Stage of Deployment](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/master/NeuralMidiFXPlugin/NeuralMidiFXPlugin/Configs_GUI.h){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 ---
 
 ## Step 1: Available User Interface Elements
