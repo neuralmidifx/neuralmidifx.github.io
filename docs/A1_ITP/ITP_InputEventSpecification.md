@@ -1,6 +1,6 @@
 ---
 layout: default
-title: ITP - Specification of the Information Required from the Host
+title: A. Specify Host Events
 parent: 2. Input Preparation
 has_children: true
 nav_order: 1
