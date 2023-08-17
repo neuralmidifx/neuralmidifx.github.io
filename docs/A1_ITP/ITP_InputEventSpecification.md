@@ -4,6 +4,7 @@ title: A. Specify Host Events
 parent: 2. Input Preparation
 has_children: true
 nav_order: 1
+permalink: /DeploymentStages/ITP/HostEvents
 ---
 
 # Input Tensor Preparator Thread (ITP)
@@ -20,7 +21,7 @@ nav_order: 1
 {: .note }
 > For this Stage of Deployment, You should modify the following file
 > 
-> [Configs_HostEvents.h](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/master/NeuralMidiFXPlugin/NeuralMidiFXPlugin/Configs_HostEvents.h){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+> [Configs_HostEvents.h](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/master/NeuralMidiFXPlugin/NeuralMidiFXPlugin/Configs_HostEvents.h){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }~~~~
 
 ---
 

@@ -3,13 +3,12 @@ layout: default
 title: 3. Inference
 has_children: true
 nav_order: 10
-permalink: /MDL
+permalink: /DeploymentStages/MDL
 ---
 
-# Model Thread (MDL)
+# Inference Using Your Model
 {: .no_toc }
 
-Explain what this section is about
 {: .fs-6 .fw-300 }
 
 ## Table of contents
@@ -18,11 +17,5 @@ Explain what this section is about
 1. TOC
 {:toc}
 
-[Get started now](#getting-started){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
-[View it on GitHub][Just the Docs repo]{: .btn .fs-5 .mb-4 .mb-md-0 }
-
 ---
-## Overview
-## Implementation Guide
-## Model Output Structure
-## Sending Data to PPP
+

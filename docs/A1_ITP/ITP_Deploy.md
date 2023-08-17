@@ -1,12 +1,13 @@
 ---
 layout: default
-title: 2. Input Preparation
+title: B. Deploy() Method
+parent: 2. Input Preparation
 has_children: true
-nav_order: 9
-permalink: /DeploymentStages/ITP/
+nav_order: 2
+permalink: /DeploymentStages/ITP/Deploy
 ---
 
-# Input Preparation
+# Deploy() Method
 {: .no_toc }
 
 {: .fs-6 .fw-300 }
@@ -17,11 +18,15 @@ permalink: /DeploymentStages/ITP/
 1. TOC
 {:toc}
 
+{: .note }
+> For this Stage of Deployment, You should modify the following file
+> 
+> [ITP_Deploy.cpp](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/master/NeuralMidiFXPlugin/NeuralMidiFXPlugin/ITP_Deploy.cpp){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 ---
 
-## Overview
-Prior to running the inference on a given model, all or some of the host's play-head information,
+## Specification of the Information Required from the Host
+Prior to running the inference on a given model, all or some of the host`s play-head information,
 incoming MIDI messages, and possibly parameters controlled via a graphical interface must be 
 reformatted according to a given model`s input requirements. `ITP` thread is responsible for
 this task.
