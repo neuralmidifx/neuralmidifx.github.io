@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 1. Model Preparation
-nav_order: 2
+nav_order: 40
 has_children: true
 \permalink: /docs/ModelPreparation
 ---

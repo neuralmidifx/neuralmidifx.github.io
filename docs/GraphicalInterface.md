@@ -1,7 +1,7 @@
 ---
 layout: default
 title: 2. Parameters and GUI
-nav_order: 7
+nav_order: 50
 permalink: /docs/ParametersAndGUI
 ---
 

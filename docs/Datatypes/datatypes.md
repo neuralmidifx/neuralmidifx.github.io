@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Data Types 
-nav_order: 95
+nav_order: 90
 has_children: true
 permalink: /datatypes
 ---

@@ -1,9 +1,8 @@
 ---
 layout: default
 title: Installation
-parent: Getting Started
 permalink: /docs/Installation
-nav_order: 4
+nav_order: 30
 ---
 
 # Installation

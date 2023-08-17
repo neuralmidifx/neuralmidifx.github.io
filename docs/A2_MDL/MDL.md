@@ -2,7 +2,7 @@
 layout: default
 title: 4. Inference
 has_children: true
-nav_order: 10
+nav_order: 70
 permalink: /DeploymentStages/MDL
 ---
 
