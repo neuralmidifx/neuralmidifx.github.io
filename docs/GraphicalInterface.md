@@ -14,6 +14,7 @@ permalink: /docs/ParametersAndGUI
 1. TOC
 {:toc}
 
+[Edit Configs_GUI.h for this Stage of Deployment][https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/master/NeuralMidiFXPlugin/NeuralMidiFXPlugin/Configs_GUI.h]{: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 ---
 
 ## Step 1: Available User Interface Elements
@@ -120,39 +121,7 @@ Example:
     button_tuple{"ToggleSwitchButton 1", true, "Wv", "Zz"}
 ```
 
-## Step 3. Accessing the UI Parameters
-The UI parameters can be accessed in any thread using the following methods. To access the UI parameters, 
-all you need to reference the element is the name you gave it in the previous step.
-
-```c++
-    // =================================================================================
-    // ===         1.a. ACCESSING GUI PARAMETERS
-    // =================================================================================
-    /*
-    If you need to access information from the GUI, you can do so by using the
-    following methods:
-    
-           Rotary/Sliders: gui_params.getValueFor([slider/button name])
-           Toggle Buttons: gui_params.isToggleButtonOn([button name])
-           Trigger Buttons: gui_params.wasButtonClicked([button name])
-
-    If you only need this data when the GUI parameters CHANGE, you can use the
-           provided gui_params_changed_since_last_call flag 
-    */
-    
-    auto Slider1 = gui_params.getValueFor("Slider 1");
-    auto ToggleButton1 = gui_params.isToggleButtonOn("ToggleButton 1");
-    auto ButtonTrigger = gui_params.wasButtonClicked("TriggerButton 1");
-    
-    // Or get value only when a change occurs
-    if (gui_params_changed_since_last_call) {
-        auto Slider1 = gui_params.getValueFor("Slider 1");
-        auto ToggleButton1 = gui_params.isToggleButtonOn("ToggleButton 1");
-        auto ButtonTrigger = gui_params.wasButtonClicked("TriggerButton 1");
-    }
-```
-
-## Step 4. MIDI In Widget
+## Step 3. MIDI In Widget
 A MIDI In widget can be added to the bottom of the plugin to allow for the user to drop a MIDI file into the plugin.
 Moreover, the widget can be used to visualize incoming MIDI messages. To enable this widget, modify the following line in 
 `NeuralMidiFXPlugin/NeuralMidiFXPlugin/Source/DeploymentSettings/GuiAndParams.h`:
@@ -184,7 +153,7 @@ Moreover, the widget can be used to visualize incoming MIDI messages. To enable 
 > The content of a dragged in MIDI file will be provided to you in the `InputTensorPreparatorThread`.
 > More on this in the ITP section.
 
-## Step 5. MIDI Out Widget
+## Step 4. MIDI Out Widget
 A MIDI Out widget can be added to the bottom of the plugin to allow for visualization of the generations.
 To enable this widget, modify the following line in `NeuralMidiFXPlugin/NeuralMidiFXPlugin/Source/DeploymentSettings/GuiAndParams.h`:
 
