@@ -1,12 +1,12 @@
 ---
 layout: default
-title: Input Tensor Preparator Thread (ITP)
+title: ITP
 has_children: true
 nav_order: 9
 permalink: /ITP
 ---
 
-# ITP Thread
+# Input Tensor Preparator Thread (ITP)
 {: .no_toc }
 
 {: .fs-6 .fw-300 }
