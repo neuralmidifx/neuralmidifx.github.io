@@ -1,14 +1,13 @@
 ---
 layout: default
-title: Deployment Threads
-nav_order: 8
-has_children: false
-permalink: /docs/DeploymentThreads
+title: Data Flow
+parent: Quick Guides
+permalink: /QuickGuides/DataFlow
+nav_order: 2
 ---
 
 # Deployment Threads
 {: .no_toc }
-
 ---
 
 NeuralMidiFx dedicates three threads respectively for preparing the inputs of a model [`InputTensorPreparator` thread, a.k.a `ITP`]({{ site.baseurl }}/docs/DeploymentThreads/ITP),
