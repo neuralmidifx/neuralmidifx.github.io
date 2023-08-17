@@ -4,7 +4,7 @@ title: Model Preparation
 nav_order: 2
 has_children: true
 parent: Getting Started
-permalink: /docs/ModelPreparation
+permalink: /docs/GettingStarted/ModelPreparation
 ---
 
 # Model Preparation
