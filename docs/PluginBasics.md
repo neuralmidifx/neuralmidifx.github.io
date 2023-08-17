@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Plugin Basics
+title: VST Plugin Basics
 nav_order: 2
 ---
 

@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Implementation Check List
-nav_order: 5
+title: Implementation Checklist
+nav_order: 6
 ---
 
-# Implementation Check List
+# Implementation Checklist
 {: .no_toc }
 
 Use this checklist to make sure that you have implemented all the necessary steps to deploy your model!

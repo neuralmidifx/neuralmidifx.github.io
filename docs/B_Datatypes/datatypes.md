@@ -1,6 +1,6 @@
 ---
 layout: default
-title: **Data Types**
+title: Data Types
 nav_order: 8
 has_children: true
 permalink: /docs/Datatypes
