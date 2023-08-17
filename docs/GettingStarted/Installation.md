@@ -1,10 +1,11 @@
 ---
 layout: default
 title: Installation
-nav_order: 3
+parent: Getting Started
+nav_order: 1
 ---
 
-# Getting Started
+# Installation
 {: .no_toc }
 
 Explain what this section is about

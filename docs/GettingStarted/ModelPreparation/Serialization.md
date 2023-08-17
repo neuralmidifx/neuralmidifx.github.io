@@ -1,15 +1,14 @@
 ---
 layout: default
 title: A Guide on Serialization of PyTorch Models
+has_children: false
 parent: Model Preparation
+grand_parent: Getting Started
 nav_order: 1
 ---
 
 # Serializing Torch Models
 {: .no_toc }
-
-Explain what this section is about
-{: .fs-6 .fw-300 }
 
 ## Table of contents
 {: .no_toc .text-delta }

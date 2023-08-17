@@ -1,7 +1,9 @@
 ---
 layout: default
 title: Importing Your Serialized Models
+has_children: false
 parent: Model Preparation
+grand_parent: Getting Started
 nav_order: 2
 ---
 
