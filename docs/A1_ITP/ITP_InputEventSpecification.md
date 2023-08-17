@@ -17,6 +17,10 @@ nav_order: 1
 1. TOC
 {:toc}
 
+{: .note }
+> For this Stage of Deployment, You should modify the following file
+> 
+> [Edit Configs_HostEvents.h](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/master/NeuralMidiFXPlugin/NeuralMidiFXPlugin/Configs_HostEvents.h){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 ---
 
