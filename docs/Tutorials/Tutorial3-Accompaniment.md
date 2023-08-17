@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Tutorial 3 - Accompaniment
-nav_order: 30
+title: 3 - Accompaniment
+nav_order: 3
 has_children: false
 parent: Tutorials
 permalink: /Tutorials/3_Accompaniment

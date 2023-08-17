@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Tutorial 1 - Random Generation
+title: 1 - Random Generation
 nav_order: 1
 has_children: false
 parent: Tutorials

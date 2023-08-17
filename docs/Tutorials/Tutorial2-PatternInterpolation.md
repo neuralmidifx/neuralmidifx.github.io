@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Tutorial 2 - Pattern Interpolation
+title: 2 - Pattern Interpolation
 nav_order: 2
 has_children: false
 parent: Tutorials
