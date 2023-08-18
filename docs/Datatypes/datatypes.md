@@ -23,10 +23,6 @@ the data types. You can find more information about each data type in the corres
 | realtimePlaybackInfo| Contains the status of the daw in real time                                                | ITP, MDL, PPP           | [Here]({{site.baseurl}}/datatypes/RealtimePlaybackInfo)                     |
 
 ## Data Types Available in Specific Threads
----
-layout: page
-title: Data Types Overview - Specific Threads Data Types
----
 
 | Data Type           | Description                                                                                | Usage/Availability      | API                 |
 |---------------------|--------------------------------------------------------------------------------------------|-------------------------|---------------------|
