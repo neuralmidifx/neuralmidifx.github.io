@@ -49,9 +49,6 @@ graph TD
     DAW1 -.->|Playhead, Tempo, Meter, MIDI ... | ITPThread
 ```
 
-
-
-
 ## Specification of the Information Required from the Host
 
 Depending on the task at hand, the type of information as well as the frequency at which they are 
@@ -166,7 +163,3 @@ namespace event_communication_settings {
     constexpr bool FilterCCEvents_FLAG{false};
 }
 ```
-
-## Implementation of Input Preparation Process
-
-## Sending the Prepared Input to the Model Thread using the `ModelInput` Structure
