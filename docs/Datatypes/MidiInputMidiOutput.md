@@ -50,9 +50,8 @@ struct ModelInput {
 };
 ```
 
-### Using the Structures in Threads
+### Using `ModelInput`
 
-#### `ModelInput`
 In `ITP` and `MDL` Threads, `ModelInput` is already instantiate as `model_input`.
 
 In `ITP` you can modify the `model_input` as follows:
@@ -76,7 +75,8 @@ In `MDL` you can access the `model_input` as follows:
     // ... some code here
 ```
 
-#### `ModelOutput`
+### Using `ModelOutput`
+
 In `MDL` and `PPP` Threads, `ModelOutput` is already instantiate as `model_output`.
 
 In `MDL` you can modify the `model_output` as follows:
