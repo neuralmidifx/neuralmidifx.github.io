@@ -12,3 +12,4 @@ permalink: /datatypes/PlaybackSequence
 
 ---
 
+## Description
