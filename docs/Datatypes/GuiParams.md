@@ -10,6 +10,7 @@ permalink: /datatypes/GuiParams
 # GuiParams
 {: .no_toc }
 
+TOC
 {:toc}
 
 

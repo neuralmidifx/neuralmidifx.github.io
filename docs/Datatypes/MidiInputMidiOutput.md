@@ -10,6 +10,7 @@ permalink: /datatypes/ModelInputMidiOutput
 # ModelInput & ModelOutput
 {: .no_toc }
 
+TOC
 {:toc}
 
 ---

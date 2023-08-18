@@ -5,6 +5,7 @@ nav_order: 90
 has_children: true
 permalink: /datatypes
 ---
+TOC
 {:toc}
 
 # Data Types
