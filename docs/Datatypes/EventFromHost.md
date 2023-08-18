@@ -47,16 +47,16 @@ if (new_event_from_host->has_value()) {
 
 There are different types available in the `EventFromHost` data type. 
 
-| Event Type               | Check Method                        | Description |
-|--------------------------|-------------------------------------|-------------|
-| FirstBufferEvent         | `new_event_from_host->isFirstBufferEvent()`  | Sent at the beginning of the host start. |
-| PlaybackStoppedEvent     | `new_event_from_host->isPlaybackStoppedEvent()` | Sent when the host stops the playback. |
+| Event Type               | Check Method                        | Description                                                                 |
+|--------------------------|-------------------------------------|-----------------------------------------------------------------------------|
+| FirstBufferEvent         | `new_event_from_host->isFirstBufferEvent()`  | Sent at the beginning of the host start.                                    |
+| PlaybackStoppedEvent     | `new_event_from_host->isPlaybackStoppedEvent()` | Sent when the host stops the playback.                                      |
 | NewBufferEvent           | `new_event_from_host->isNewBufferEvent()` | Sent at the beginning of every new buffer or when qpm, meter, etc. changes. |
-| NewBarEvent              | `new_event_from_host->isNewBarEvent()` | Sent at the beginning of every new bar. |
-| NewTimeShiftEvent        | `new_event_from_host->isNewTimeShiftEvent()` | Sent every N QuarterNotes. |
-| NoteOnEvent              | `new_event_from_host->isNoteOnEvent()` | Sent when a note is played. |
-| NoteOffEvent             | `new_event_from_host->isNoteOffEvent()` | Sent when a note is stopped. |
-| CCEvent                  | `new_event_from_host->isCCEvent()` | Sent for Control Change events. |
+| NewBarEvent              | `new_event_from_host->isNewBarEvent()` | Sent at the beginning of every new bar.                                     |
+| NewTimeShiftEvent        | `new_event_from_host->isNewTimeShiftEvent()` | Sent every N QuarterNotes (as specified in the configs file                 |
+| NoteOnEvent              | `new_event_from_host->isNoteOnEvent()` | Sent when a note is played.                                                 |
+| NoteOffEvent             | `new_event_from_host->isNoteOffEvent()` | Sent when a note is stopped.                                                |
+| CCEvent                  | `new_event_from_host->isCCEvent()` | Sent for Control Change events.                                             |
 
 
 ## 3. Accessing the information
@@ -106,11 +106,6 @@ The following information is available for `CCEvent`:
         } else if (new_event_from_host->isNewBufferEvent()) {
 
         } else if (new_event_from_host->isNewBarEvent()) {
-
-            // the following line should be placed in the correct place in your code
-            // in this example we want to send the compiled data to the model
-            // on every bar, hence I'll set the flag to true here
-            SHOULD_SEND_TO_MODEL_FOR_GENERATION_ = true;
 
         } else if (new_event_from_host->isNewTimeShiftEvent()) {
 
