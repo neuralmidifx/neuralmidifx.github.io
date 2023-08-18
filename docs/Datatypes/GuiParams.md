@@ -25,9 +25,11 @@ If you need to access information from the GUI, you can do so by using the
 following methods:
 
 {: .highlight }
+> ```c++
 > Rotary/Sliders: gui_params.getValueFor([slider/rotary name])
 > Toggle Buttons: gui_params.isToggleButtonOn([button name])
 > Trigger Buttons: gui_params.wasButtonClicked([button name])
+> ```
 
 For example, if you have a slider named "Slider 1", a toggle button named "ToggleButton 1", and a trigger button named "TriggerButton 1", you can access them like this:
 ```c++
