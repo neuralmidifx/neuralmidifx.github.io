@@ -10,9 +10,11 @@ permalink: /datatypes/EventFromHost
 # EventFromHost
 {: .no_toc }
 
-TOC
-{:toc}
+## Table of contents
+{: .no_toc .text-delta }
 
+1. TOC
+{:toc}
 ---
 
 

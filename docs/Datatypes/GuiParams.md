@@ -10,11 +10,14 @@ permalink: /datatypes/GuiParams
 # GuiParams
 {: .no_toc }
 
-TOC
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
 {:toc}
 
-
 ---
+
 ## Description
 The GuiParams data type contains the status and value of the specified daw parameters. These values 
 are updated in real time and can be accessed in any thread. 

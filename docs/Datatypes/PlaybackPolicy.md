@@ -10,8 +10,12 @@ permalink: /datatypes/PlaybackPolicy
 # PlaybackPolicy
 {: .no_toc }
 
-TOC
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
 {:toc}
+
 ---
 
 ## Description

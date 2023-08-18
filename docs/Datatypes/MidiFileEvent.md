@@ -10,7 +10,10 @@ permalink: /datatypes/MidiFileEvent
 # MidiFileEvent
 {: .no_toc }
 
-TOC
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
 {:toc}
 
 ---
