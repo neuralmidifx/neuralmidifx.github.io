@@ -24,19 +24,20 @@ all you need to reference the element is the name you gave it in the previous st
 If you need to access information from the GUI, you can do so by using the
 following methods:
 
-```c++
-    Rotary/Sliders: gui_params.getValueFor([slider/rotary name])
-    Toggle Buttons: gui_params.isToggleButtonOn([button name])
-    Trigger Buttons: gui_params.wasButtonClicked([button name])
+{: .highlight }
+> Rotary/Sliders: gui_params.getValueFor([slider/rotary name])
+> Toggle Buttons: gui_params.isToggleButtonOn([button name])
+> Trigger Buttons: gui_params.wasButtonClicked([button name])
 
-e.g.:
-    auto Slider1 = gui_params.getValueFor("Slider 1");
-    auto ToggleButton1 = gui_params.isToggleButtonOn("ToggleButton 1");
-    auto ButtonTrigger = gui_params.wasButtonClicked("TriggerButton 1");
+For example, if you have a slider named "Slider 1", a toggle button named "ToggleButton 1", and a trigger button named "TriggerButton 1", you can access them like this:
+```c++
+auto Slider1 = gui_params.getValueFor("Slider 1");
+auto ToggleButton1 = gui_params.isToggleButtonOn("ToggleButton 1");
+auto ButtonTrigger = gui_params.wasButtonClicked("TriggerButton 1");
 ```
 
 If you only need this data when the GUI parameters CHANGE, you can use the
-provided gui_params_changed_since_last_call flag 
+provided `gui_params_changed_since_last_call` flag 
 
 ```c++
     if (gui_params_changed_since_last_call) {
