@@ -11,8 +11,13 @@ permalink: /datatypes/GuiParams
 {: .no_toc }
 
 ---
+## Description
+The GuiParams data type contains the status and value of the specified daw parameters. These values 
+are updated in real time and can be accessed in any thread. 
 
-# Accessing the UI Parameters
+Remember that the values can be modified/automated by the user in the DAW, or via the GUI.
+
+## Accessing the UI Parameters
 The UI parameters can be accessed in any thread using the following methods. To access the UI parameters, 
 all you need to reference the element is the name you gave it in the previous step.
 
