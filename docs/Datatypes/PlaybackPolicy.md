@@ -26,8 +26,25 @@ In the `PPP` thread, this data is already instantiated and can be accessed via t
 | **Overwrite Policy** | - **Delete All Events in Previous Stream**: Delete all events in the previous stream and use the new stream. <br> - **Delete All Events After Now**: Delete all events after the current time. <br> - **Keep All Previous Events**: Generations can be played on top of each other, keeping all previous events. |
 | **Additional Info**  | - **Clear Generations After Pause/Stop**: Remove generations once playback is paused or stopped. <br> - **Loop Generations Indefinitely**: Loop generations indefinitely until a new one is received. Loop starts at the specified Timing Reference. |                                                            
 
+## `playbackPolicy` Methods Summary
 
-## 
+| Method                                                                                      | Description                                                                     |
+|---------------------------------------------------------------------------------------------|---------------------------------------------------------------------------------|
+| `SetPlaybackPolicy_RelativeToNow()`                                                         | Sets the timing specification to be relative to the current time.               |
+| `SetPlaybackPolicy_RelativeToAbsoluteZero()`                                                | Sets the timing specification to be relative to absolute 0 time.                |
+| `SetPlaybackPolicy_RelativeToPlaybackStart()`                                               | Sets the timing specification to be relative to the time when playback started. |
+| `SetTimeUnitIsSeconds()`                                                                    | Sets the time unit to seconds.                                                  |
+| `SetTimeUnitIsPPQ()`                                                                        | Sets the time unit to pulses per quarter note (PPQ).                            |
+| `SetTimeUnitIsAudioSamples()`                                                               | Sets the time unit to audio samples.                                            |
+| `SetOverwritePolicy_DeleteAllEventsInPreviousStreamAndUseNewStream(forceSendNoteOffsFirst)` | Deletes all events in the previous stream and uses the new stream.              |
+| `SetOverwritePolicy_DeleteAllEventsAfterNow(forceSendNoteOffsFirst)`                        | Deletes all events after the current time.                                      |
+| `SetOverwritePolicy_KeepAllPreviousEvents(forceSendNoteOffsFirst)`                          | Retains all previous events, allowing new generations to be played on top.      |
+| `SetClearGenerationsAfterPauseStop(bool)`                                                   | Determines whether to remove generations once playback is paused or stopped.    |
+| `ActivateLooping(loopDurationInUserUnit)`                                                   | Activates looping of generations for a specific duration in user unit           |
+| `DisableLooping()`                                                                          | Deactivates looping of generations.                                             |
+
+*  forceSendNoteOffsFirst determines whether to send note offs after deleting to ensure no hanging note ons. 
+ 
 ## Example Usage
 
 This section provides code snippets demonstrating how to set various playback policies.
