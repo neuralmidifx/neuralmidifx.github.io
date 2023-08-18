@@ -28,8 +28,8 @@ the data types. You can find more information about each data type in the corres
 |---------------------|--------------------------------------------------------------------------------------------|-------------------------|-------------------------------------------------|
 | EventFromHost       | All per-buffer data received from host are wrapped in this datatype for easy access         | ITP Only                | [Here]({{site.baseurl}}/datatypes/EventFromHost) |
 | MidiFileEvent       | Contains the information in a given midi file manually drag/dropped into GUI               | ITP Only                | [Here]({{site.baseurl}}/datatypes/MidiFileEvent)                        |
-| ModelInput          | A structure holding any required data to be sent from ITP to MDL                           | ITP and MDL             | [Here]({{site.baseurl}}/datatypes/MidiInputMidiOutput)                        |
-| ModelOutput         | A structure holding any required data to be sent from MDL to PPP                           | MDL and PPP             | [Here]({{site.baseurl}}/datatypes/MidiInputMidiOutput)                        |
+| ModelInput          | A structure holding any required data to be sent from ITP to MDL                           | ITP and MDL             | [Here]({{site.baseurl}}/datatypes/ModelInputMidiOutput)                        |
+| ModelOutput         | A structure holding any required data to be sent from MDL to PPP                           | MDL and PPP             | [Here]({{site.baseurl}}/datatypes/ModelInputMidiOutput)                        |
 | PlaybackSequence    | Contains the generated data to be played back or visualized                                | PPP Only                | [Here]({{site.baseurl}}/datatypes/PlaybackSequence)                        |
 | PlaybackPolicy      | Specifies how generated content sent to the wrapper are to be interpreted                  | PPP Only                | [Here]({{site.baseurl}}/datatypes/PlaybackPolicy)                        |
 
