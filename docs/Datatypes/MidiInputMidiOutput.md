@@ -12,3 +12,5 @@ permalink: /datatypes/MidiInputMidiOutput
 
 ---
 
+## Description
+

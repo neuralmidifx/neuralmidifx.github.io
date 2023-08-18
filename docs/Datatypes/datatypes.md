@@ -7,9 +7,9 @@ permalink: /datatypes
 ---
 
 # Data Types
-{: .no_toc }
+{: .no_toc .text-delta }
 
----
+
 
 There are a number of data types that you will be commonly using in the code. Some of these data types are available in 
 all of the deployment threads and some are only available in specific threads. This page will give you an overview of

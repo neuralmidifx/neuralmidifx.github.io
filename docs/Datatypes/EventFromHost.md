@@ -63,19 +63,19 @@ There are different types available in the `EventFromHost` data type.
 
 Regardless of the type, the following information is always available within the received event:
 
-| Information                     | Access Method                                                                                                                        |
-|---------------------------------|--------------------------------------------------------------------------------------------------------------------------------------|
+| Information                     | Access Method                                                                                                                       |
+|---------------------------------|-------------------------------------------------------------------------------------------------------------------------------------|
 | **Event Time (Various Units)**      | `new_event_from_host->Time().inSeconds()`, `new_event_from_host->Time().inSamples()`, `new_event_from_host->Time().inQuarterNotes()` |
-| QPM (Tempo)                     | `new_event_from_host->qpm()`                                                                                                         |
-| Time Signature                  | `new_event_from_host->numerator()`, `new_event_from_host->denominator()`                                                             |
-| Playback Status                 | `new_event_from_host->isPlaying()`, `new_event_from_host->isRecording()`                                                             |
-| Buffer Start Time               | `new_event_from_host->BufferStartTime().inSeconds()`                                                                                 |
-| Buffer End Time (Seconds)       | `new_event_from_host->BufferEndTime().inSamples()`                                                                                   |
-| Buffer End Time (Quarter Notes) | `new_event_from_host->BufferEndTime().inQuarterNotes()`                                                                              |
-| Looping Status                  | `new_event_from_host->isLooping()`                                                                                                   |
-| Loop Start and End Times        | `new_event_from_host->loopStart()`, `new_event_from_host->loopEnd()`                                                                 |
-| Number of Bars Elapsed          | `new_event_from_host->barCount()`                                                                                                    |
-| Last Bar Position               | `new_event_from_host->lastBarPos()`                                                                                                  |
+| QPM (Tempo)                     | `new_event_from_host->qpm()`                                                                                                        |
+| Time Signature                  | `new_event_from_host->numerator()`, `new_event_from_host->denominator()`                                                            |
+| Playback Status                 | `new_event_from_host->isPlaying()`, `new_event_from_host->isRecording()`                                                            |
+| Buffer Start Time               | `new_event_from_host->BufferStartTime().inSeconds()`                                                                                |
+| Buffer End Time (Seconds)       | `new_event_from_host->BufferEndTime().inSamples()`                                                                                  |
+| Buffer End Time (Quarter Notes) | `new_event_from_host->BufferEndTime().inQuarterNotes()`                                                                             |
+| Looping Status                  | `new_event_from_host->isLooping()`                                                                                                  |
+| Loop Start and End Times  (Quarter Notes)       | `new_event_from_host->loopStart()`, `new_event_from_host->loopEnd()`                                                                |
+| Number of Bars Elapsed          | `new_event_from_host->barCount()`                                                                                                   |
+| Last Bar Position               | `new_event_from_host->lastBarPos().inSeconds()`, `new_event_from_host->lastBarPos().inSamples()`, `new_event_from_host->lastBarPos().inQuarterNotes()`,                                               |
 
 The following information is available for `NoteOnEvent` and `NoteOffEvent`:
 
