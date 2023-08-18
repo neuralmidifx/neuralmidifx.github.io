@@ -17,10 +17,10 @@ the data types. You can find more information about each data type in the corres
 
 ## Data Types Available in All Threads
 
-| Data Type           | Description                                                                                | Usage/Availability      | API           |
-|---------------------|--------------------------------------------------------------------------------------------|-------------------------|---------------|
+| Data Type           | Description                                                                                | Usage/Availability      | API                                          |
+|---------------------|--------------------------------------------------------------------------------------------|-------------------------|----------------------------------------------|
 | GuiParams           | Contains the status and value of the specified daw parameters                              | ITP, MDL, PPP           | [Here]({{site.baseurl}}/datatypes/GuiParams) |
-| realtimePlaybackInfo| Contains the status of the daw in real time                                                | ITP, MDL, PPP           | [Here]()      |
+| realtimePlaybackInfo| Contains the status of the daw in real time                                                | ITP, MDL, PPP           | [Here]({{site.baseurl}}/datatypes/RealtimePlaybackInfo)                     |
 
 ## Data Types Available in Specific Threads
 ---
@@ -30,11 +30,11 @@ title: Data Types Overview - Specific Threads Data Types
 
 | Data Type           | Description                                                                                | Usage/Availability      | API                 |
 |---------------------|--------------------------------------------------------------------------------------------|-------------------------|---------------------|
-| EventFromHost       | All per-buffer data received from host are wrapped in this datatype for easy access         | ITP Only                | [Here]()      |
-| MidiFileEvent       | Contains the information in a given midi file manually drag/dropped into GUI               | ITP Only                | [Here]()      |
-| ModelInput          | A structure holding any required data to be sent from ITP to MDL                           | ITP and MDL             | [Here]()      |
-| ModelOutput         | A structure holding any required data to be sent from MDL to PPP                           | MDL and PPP             | [Here]()      |
-| PlaybackSequence    | Contains the generated data to be played back or visualized                                | PPP Only                | [Here]()      |
-| PlaybackPolicy      | Specifies how generated content sent to the wrapper are to be interpreted                  | PPP Only                | [Here]()      |
+| EventFromHost       | All per-buffer data received from host are wrapped in this datatype for easy access         | ITP Only                | [Here]({{site.baseurl}})      |
+| MidiFileEvent       | Contains the information in a given midi file manually drag/dropped into GUI               | ITP Only                | [Here]({{site.baseurl}})      |
+| ModelInput          | A structure holding any required data to be sent from ITP to MDL                           | ITP and MDL             | [Here]({{site.baseurl}})      |
+| ModelOutput         | A structure holding any required data to be sent from MDL to PPP                           | MDL and PPP             | [Here]({{site.baseurl}})      |
+| PlaybackSequence    | Contains the generated data to be played back or visualized                                | PPP Only                | [Here]({{site.baseurl}})      |
+| PlaybackPolicy      | Specifies how generated content sent to the wrapper are to be interpreted                  | PPP Only                | [Here]({{site.baseurl}})      |
 
 Please check the API links for a more detailed description of each common data type.
