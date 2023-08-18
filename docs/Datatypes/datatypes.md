@@ -17,10 +17,10 @@ the data types. You can find more information about each data type in the corres
 
 ## Data Types Available in All Threads
 
-| Data Type           | Description                                                                                | Usage/Availability      | API      |
-|---------------------|--------------------------------------------------------------------------------------------|-------------------------|----------|
-| GuiParams           | Contains the status and value of the specified daw parameters                              | ITP, MDL, PPP           | [Here]() |
-| realtimePlaybackInfo| Contains the status of the daw in real time                                                | ITP, MDL, PPP           | [Here]() |
+| Data Type           | Description                                                                                | Usage/Availability      | API           |
+|---------------------|--------------------------------------------------------------------------------------------|-------------------------|---------------|
+| GuiParams           | Contains the status and value of the specified daw parameters                              | ITP, MDL, PPP           | [Here]({{site.baseurl}}/datatypes/GuiParams) |
+| realtimePlaybackInfo| Contains the status of the daw in real time                                                | ITP, MDL, PPP           | [Here]()      |
 
 ## Data Types Available in Specific Threads
 ---
