@@ -10,6 +10,8 @@ permalink: /datatypes/MidiFileEvent
 # MidiFileEvent
 {: .no_toc }
 
+{:toc}
+
 ---
 
 ## Description

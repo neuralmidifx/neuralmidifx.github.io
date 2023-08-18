@@ -10,6 +10,9 @@ permalink: /datatypes/GuiParams
 # GuiParams
 {: .no_toc }
 
+{:toc}
+
+
 ---
 ## Description
 The GuiParams data type contains the status and value of the specified daw parameters. These values 

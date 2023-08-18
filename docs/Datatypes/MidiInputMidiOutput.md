@@ -10,13 +10,15 @@ permalink: /datatypes/ModelInputMidiOutput
 # ModelInput & ModelOutput
 {: .no_toc }
 
+{:toc}
+
 ---
 
-## MidiInput & MidiOutput
+## ModelInput & ModelOutput
 
-`MidiInput` is a container (struct) for sending data from `ITP` to `MDL` thread.
+`ModelInput` is a container (struct) for sending data from `ITP` to `MDL` thread.
 
-`MidiOutput` is a container (struct) for sending data from `MDL` to `PPP` thread.
+`ModelOutput` is a container (struct) for sending data from `MDL` to `PPP` thread.
 
 ### Modifying the Structures
 

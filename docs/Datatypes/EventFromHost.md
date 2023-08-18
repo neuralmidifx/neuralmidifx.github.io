@@ -10,9 +10,12 @@ permalink: /datatypes/EventFromHost
 # EventFromHost
 {: .no_toc }
 
+{:toc}
+
 ---
 
-# Description
+
+## Description
 
 As mentioned before the data received from the host are provided in a per-buffer basis.
 For each buffer multiple information can be available:

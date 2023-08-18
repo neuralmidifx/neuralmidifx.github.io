@@ -5,15 +5,16 @@ nav_order: 90
 has_children: true
 permalink: /datatypes
 ---
+{:toc}
 
 # Data Types
-{: .no_toc .text-delta }
-
-
+{: .no_toc }
 
 There are a number of data types that you will be commonly using in the code. Some of these data types are available in 
 all of the deployment threads and some are only available in specific threads. This page will give you an overview of
 the data types. You can find more information about each data type in the corresponding subsections.
+
+
 
 ## Data Types Available in All Threads
 
