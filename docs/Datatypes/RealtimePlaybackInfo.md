@@ -20,7 +20,8 @@ permalink: /datatypes/RealtimePlaybackInfo
 
 ## Description
 
-The RealtimePlaybackInfo data type contains information about the current playback state of the DAW (e.g. play, pause, stop, etc.).
+The RealtimePlaybackInfo data type contains information about the current playback state of the DAW 
+(e.g. play, pause, stop, etc.).
 
 This information is available in all threads in a variable called `realtimePlaybackInfo`.
 
