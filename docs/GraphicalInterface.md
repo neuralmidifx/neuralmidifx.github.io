@@ -38,9 +38,7 @@ Once you have decided what sort of UI elements you would like to have in your pl
 
 ## Step 2. Define the UI Elements
 
-Go to `NeuralMidiFXPlugin/`
-
-In this file, you can define the UI elements that you would like to have in your plugin.
+In `Configs_GUI.h`, you can define the UI elements that you would like to have in your plugin.
 
 ```c++
     namespace Tabs {
