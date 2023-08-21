@@ -1,13 +1,13 @@
 ---
 layout: default
-title: ModelInput & ModelOutput
+title: CustomizableDataTypes
 nav_order: 5
 has_children: false
 parent: Data Types
-permalink: /datatypes/ModelInputMidiOutput
+permalink: /datatypes/CustomizableDataTypes
 ---
 
-# ModelInput & ModelOutput
+# Customizable Data Types
 {: .no_toc }
 
 ## Table of contents
@@ -29,9 +29,7 @@ permalink: /datatypes/ModelInputMidiOutput
 {: .note }
 > For this Stage of Deployment, You should modify the following files
 > 
-> [Model_Input.h](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/master/NeuralMidiFXPlugin/NeuralMidiFXPlugin/Model_Input.h){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
->
-> [Model_Output.h](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/master/NeuralMidiFXPlugin/NeuralMidiFXPlugin/Model_Output.h){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+> [CustomStructs.h](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/master/NeuralMidiFXPlugin/NeuralMidiFXPlugin/CustomStructs.h){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 >
 
 You can modify the structures as you wish by adding or removing fields. 
@@ -104,4 +102,12 @@ In `PPP` you can access the `model_output` as follows:
     // ... some code here
 ```
 
+
+## Customizable Data for use within `ITP`, `MDL`, and `PPP` Threads
+
+If you need any data to be reused within the deploy method of each thread, you can add them to any of the 
+`ITPData`, `MDLData`, or `PPPData` structs in the `CustomStructs.h` file.
+
+These structs are instantiated in each of the threads and will be made available to you in the deploy method of each thread
+as a variable called `user_data`.
 
