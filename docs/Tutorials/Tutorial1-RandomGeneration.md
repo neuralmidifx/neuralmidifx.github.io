@@ -90,7 +90,7 @@ juce_add_plugin("${BaseTargetName}"
 
 Once you re-build the cmake project, and re-build the plugin, you should see the name of the plugin change in the DAW:
 
-![img_2.png](img_2.png)
+<img src="{{ site.baseurl }}/assets/images/tutorial1/0.PNG">
 
 Now we are ready to move on to the next step.
 
@@ -146,12 +146,10 @@ namespace Tabs {
 > 2. We don't need any drag in features for this tutorial, so we will disable the `MidiInVisualizer` tab.
 > 3. We still want to visualize the generations and allow the user to drag them out as midi, so we will enable the `GeneratedContentVisualizer` tab.
 
-
-![img.png](img.png)
+<img src="{{ site.baseurl }}/assets/images/tutorial1/a.PNG">
 
 Once rendered, if we are happy with the position of the button, we can set the `show_grid` and `draw_borders_for_components` to false.
 
-![img_1.png](img_1.png)
 
 ### 2. Adding rotaries for per voice midi mappings
 As mentioned above, the model has 9 voices, each of which is mapped to a midi note. While we could hard-code these mappings,
@@ -191,12 +189,12 @@ tab_tuple
 
 Following the same steps as above, we can re-build the plugin and re-open it in the DAW to see the new tab:
 
-![img_3.png](img_3.png)
+<img src="{{ site.baseurl }}/assets/images/tutorial1/b.PNG">
 
 {: .note}
 > All of the parameters added to the GUI are automatically detected by the host and can be automated via the DAW
 >
-> ![img_4.png](img_4.png)
+> <img src="{{ site.baseurl }}/assets/images/tutorial1/c.PNG">
 > 
 
 ---
