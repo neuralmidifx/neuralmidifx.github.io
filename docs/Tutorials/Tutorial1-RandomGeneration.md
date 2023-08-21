@@ -48,6 +48,23 @@ This method decodes a given latent vector into an output tensor and returns a `h
 The input to this method requires a number of additional parameters, however, for the purposes of this tutorial, 
 we will not be discussing them.
 
+```python
+    def sample(self, latent_z, voice_thresholds, voice_max_count_allowed, sampling_mode: int = 0,
+               temperature: float = 1.0):
+        """Converts the latent vector into hit, vel, offset values
+
+        :param latent_z: (Tensor) [N x latent_dim]
+        :param voice_thresholds: [N x 9] (floatTensor) Thresholds for hit prediction 
+        :param voice_max_count_allowed: [N x 9] (floatTensor) Maximum number of hits to allow for each voice
+        :param sampling_mode: (int) 0 for top-k sampling,
+                                    1 for bernoulli sampling
+        :param temperature: (float) temperature for sampling
+
+        Returns:
+        h, v, o, _h
+        """
+```
+
 ### Midi Mappings
 The 9 voices of the model are as follows:
 
@@ -211,6 +228,13 @@ In this tutorial, given that we are not using any input midi, we will only need 
 
 ### ModelThread::deploy()
 
+What we want to do in this method is to:
+1. Load the model if it has not been loaded already
+2. Check if the random generation button has been pressed
+3. On button press, generate a random latent vector
+4. Call the `sample()` method of the model to generate a new sequence
+5. Wrap the generated pattern in `model_output` and pass it to the `PPP` thread
+
 #### Load the model
 
 The very first step in here is to load the model if it has not been loaded already.  
@@ -248,4 +272,109 @@ Here we will check if the button has been clicked and if so, we will print a mes
 ```
 
 <img src="{{ site.baseurl }}/assets/gifs/tut1/t1_randomizeClick.gif">
+
+#### Generating Random Latent Vector and Preparing other inputs
+
+We will be using a boolean variable called `newPatternGenerated` to keep track of whether a new pattern has been generated or not.
+Whenever a new pattern **is ready**  to be sent to next thread, we'll set this to true.
+
+```
+
+    // ... 
+    
+    bool newPatternGenerated = false;
+    
+    if (ButtonTrigger) {
+
+        if (isModelLoaded)
+        {
+            // Generate a random latent vector
+            auto latentVector = torch::randn({ 1, 128});
+            DisplayTensor(latentVector, "latentVector");
+        }
+    }
+    
+    return newPatternGenerated;
+```
+
+<img src="{{ site.baseurl }}/assets/gifs/tut1/randomLatent.gif">
+
+Once the latent vector is generated, we will need to prepare the other inputs to the model based on the interface of the
+scripted method, [`sample`](https://neuralmidifx.github.io/Tutorials/1_RandomGeneration#2-sample)
+
+```
+
+    // ... 
+    
+    bool newPatternGenerated = false;
+    if (ButtonTrigger) {
+
+        if (isModelLoaded)
+        {
+            // Generate a random latent vector
+            auto latentVector = torch::randn({ 1, 128});
+
+            // Prepare other inputs
+            auto voice_thresholds = torch::ones({9 }, torch::kFloat32) * 0.5f;
+            auto max_counts_allowed = torch::ones({9 }, torch::kFloat32) * 32;
+            int sampling_mode = 0;
+            float temperature = 1.0f;
+            
+        }
+
+    }
+
+    return newPatternGenerated;
+```
+
+#### Inference
+
+Now that all the inputs are ready, we need to add them one by one to a `std::vector<torch::jit::IValue>`. 
+Then, we need to get the scripted `sample` method, and subsequently, run inference. Once finished, we can 
+extract the relevant outputs returned from the method
+
+```c++
+bool newPatternGenerated = false;
+    if (ButtonTrigger) {
+
+        if (isModelLoaded)
+        {
+            // Generate a random latent vector
+            auto latentVector = torch::randn({ 1, 128});
+
+            // Prepare other inputs
+            auto voice_thresholds = torch::ones({9 }, torch::kFloat32) * 0.5f;
+            auto max_counts_allowed = torch::ones({9 }, torch::kFloat32) * 32;
+            int sampling_mode = 0;
+            float temperature = 1.0f;
+
+            // Prepare above for inference
+            std::vector<torch::jit::IValue> inputs;
+            inputs.emplace_back(latentVector);
+            inputs.emplace_back(voice_thresholds);
+            inputs.emplace_back(max_counts_allowed);
+            inputs.emplace_back(sampling_mode);
+            inputs.emplace_back(temperature);
+
+            // Get the scripted method
+            auto sample_method = model.get_method("sample");
+
+            // Run inference
+            auto output = sample_method(inputs);
+
+            // Extract the generated tensors from the output
+            auto hits = output.toTuple()->elements()[0].toTensor();
+            auto velocities = output.toTuple()->elements()[1].toTensor();
+            auto offsets = output.toTuple()->elements()[2].toTensor();
+
+            DisplayTensor(hits, "HITS");
+        }
+
+    }
+
+    return newPatternGenerated;
+```
+
+<img src="{{ site.baseurl }}/assets/gifs/tut1/inference.gif">
+
 
