@@ -628,3 +628,5 @@ Then, we need to extract the notes from the generated tensors.
 }
 
 ```
+
+<img src="{{ site.baseurl }}/assets/gifs/tut1/final.gif">
