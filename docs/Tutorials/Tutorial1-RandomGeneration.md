@@ -7,6 +7,12 @@ parent: Tutorials
 permalink: /Tutorials/1_RandomGeneration
 ---
 
+## Table of contents
+{: .no_toc .text-delta }
+
+1. TOC
+{:toc}
+
 # Tutorial 1 - Random Generation on Button Press
 {: .no_toc }
 
@@ -242,6 +248,8 @@ The very first step in here is to load the model if it has not been loaded alrea
 To do this, we will add the following code to the `ModelThread::deploy()` method:
 
 ```c++
+    // ModelThread::deploy() method in MDL_Deploy.cpp
+    
     // =================================================================================
     // ===         0. LOADING THE MODEL
     // =================================================================================
@@ -258,6 +266,11 @@ To check if the button is pressed, we will be using `gui_params` which is a memb
 Here we will check if the button has been clicked and if so, we will print a message to the console 
 
 ```c++
+
+    // ModelThread::deploy() method in MDL_Deploy.cpp
+    
+    // ...
+    
     // =================================================================================
     // ===         1. ACCESSING GUI PARAMETERS
     // Refer to:
@@ -279,7 +292,8 @@ We will be using a boolean variable called `newPatternGenerated` to keep track o
 Whenever a new pattern **is ready**  to be sent to next thread, we'll set this to true.
 
 ```
-
+    // ModelThread::deploy() method in MDL_Deploy.cpp
+    
     // ... 
     
     bool newPatternGenerated = false;
@@ -303,8 +317,9 @@ Once the latent vector is generated, we will need to prepare the other inputs to
 scripted method, [`sample`](https://neuralmidifx.github.io/Tutorials/1_RandomGeneration#2-sample)
 
 ```
-
-    // ... 
+    // ModelThread::deploy() method in MDL_Deploy.cpp
+    
+    // ...
     
     bool newPatternGenerated = false;
     if (ButtonTrigger) {
@@ -334,7 +349,12 @@ Then, we need to get the scripted `sample` method, and subsequently, run inferen
 extract the relevant outputs returned from the method
 
 ```c++
-bool newPatternGenerated = false;
+
+    // ModelThread::deploy() method in MDL_Deploy.cpp
+    
+    // ... 
+
+    bool newPatternGenerated = false;
     if (ButtonTrigger) {
 
         if (isModelLoaded)
@@ -378,3 +398,65 @@ bool newPatternGenerated = false;
 <img src="{{ site.baseurl }}/assets/gifs/tut1/inference.gif">
 
 
+#### Wrapping the generated pattern in `model_output`
+
+As mentioned in the documentation, the `model_output` is a structure that can be modified to pass
+any information from the `ModelThread` to the `PlaybackPreparatorThread`.
+
+We will start with adding three tensor fields for the generated outputs `hits`, `velocities`, `offsets` to the 
+`model_output` structure available in the [CustomStructs.h](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/tutorials/1_RandomGenOnButtonPress/NeuralMidiFXPlugin/NeuralMidiFXPlugin/CustomStructs.h)
+file.
+
+```c++
+// ModelOutput struct in CustomStructs.h    
+
+struct ModelOutput {
+    torch::Tensor hits;
+    torch::Tensor velocities;
+    torch::Tensor offsets;
+    
+    // ==============================================
+    // Don't Change Anything in the following section
+    // ==============================================
+    // used to measure the time it takes
+    // for a prepared instance to be
+    // sent to the next thread
+    chrono_timer timer{};
+};
+
+```
+
+Once updated, we go back to the `ModelThread::deploy()` method and place the generations in the local instance of
+the `ModelOutput` struct. Subsequently, we set the `newPatternGenerated` flag to true, so as to notify the
+wrapper that the data is ready to be sent to the next thread.
+
+
+```c++
+    // ModelThread::deploy() method in MDL_Deploy.cpp
+
+    // ... 
+
+    // flag to indicate if a new pattern has been generated and is ready for transmission
+    // to the PPP thread
+    bool newPatternGenerated = false;
+    
+    if (ButtonTrigger) {
+
+        if (isModelLoaded)
+        {
+            // ...
+
+            // wrap the generated tensors into a ModelOutput struct
+            model_output.hits = hits;
+            model_output.velocities = velocities;
+            model_output.offsets = offsets;
+
+            // Set the flag to true
+            newPatternGenerated = true;
+        }
+    }
+
+    return newPatternGenerated;
+}
+    
+```
