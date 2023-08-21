@@ -18,6 +18,7 @@ In this tutorial, we will learn how to unconditionaly generate a random drum loo
 > 
 > [Tutorial 1 Source Code](https://github.com/behzadhaki/NeuralMidiFXPlugin/tree/tutorials/1_RandomGenOnButtonPress){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
+---
 
 ## Model Description
 The model we will be using in this exercise is a `VariationalAutoEncoder` (VAE) trained on the [Groove Midi Dataset](https://magenta.tensorflow.org/datasets/groove).
@@ -41,11 +42,26 @@ definitions of these models are as follows:
 This method encodes a given input pattern into a latent vector. 
 The method returns a number of parameters, however the third parameter is the latent vector we are interested in. 
 
-### 2. sample
+#### 2. sample
 This method decodes a given latent vector into an output tensor and returns a `hits`, `velocities`, and `offsets` tensors describing the output pattern.
 
 The input to this method requires a number of additional parameters, however, for the purposes of this tutorial, 
 we will not be discussing them.
+
+### Midi Mappings
+The 9 voices of the model are as follows:
+
+| Index | Instrument   | Midi Note |
+|-------|--------------|-----------|
+| 0     | Kick         | 36        |
+| 1     | Snare        | 38        |
+| 2     | Closed HiHat | 42        |
+| 3     | Open HiHat   | 46        |
+| 4     | Low Tom      | 41        |
+| 5     | Mid Tom      | 47        |
+| 6     | High Tom     | 50        |
+| 7     | Crash Cymbal | 49        |
+| 8     | Ride Cymbal  | 51        |
 
 ---
 
@@ -80,9 +96,9 @@ Now we are ready to move on to the next step.
 
 ---
 
-## Plugin Development
+## GUI and Parameters
 
-### 1. Creating A Graphical User Interface (GUI)
+### 1. Placing a button for random generation
 
 As discussed in the [Graphical Interface]({{site.baseurl}}/docs/ParametersAndGUI) section of the documentation, 
 to prepare the interface we will need to figure out what UI elements we need as well as how we want to organize them!
@@ -136,3 +152,102 @@ namespace Tabs {
 Once rendered, if we are happy with the position of the button, we can set the `show_grid` and `draw_borders_for_components` to false.
 
 ![img_1.png](img_1.png)
+
+### 2. Adding rotaries for per voice midi mappings
+As mentioned above, the model has 9 voices, each of which is mapped to a midi note. While we could hard-code these mappings,
+it would be much more convenient to allow the user to change these mappings from the GUI.
+
+To do this, we will add 9 rotaries to the GUI, each of which will be responsible for changing the midi note of a given voice.
+
+As such, we will add a new tab containing the 9 rotaries to the [`Configs_GUI.h`](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/tutorials/1_RandomGenOnButtonPress/NeuralMidiFXPlugin/NeuralMidiFXPlugin/Configs_GUI.h) file as follows:
+
+```c++
+tab_tuple
+            {
+                "Midi Mappings",
+                slider_list
+                {
+                },
+                rotary_list
+                {
+                    rotary_tuple{"Kick", 0, 127, 36, "Cc", "Gi"},
+                    rotary_tuple{"Snare", 0, 127, 38, "Hc", "Li"},
+                    rotary_tuple{"ClosedHat", 0, 127, 42, "Pc", "Ti"},
+                    rotary_tuple{"OpenHat", 0, 127, 46, "Uc", "Yi"},
+
+                    rotary_tuple{"LowTom", 0, 127, 41, "Cm", "Gs"},
+                    rotary_tuple{"MidTom", 0, 127, 48, "Hm", "Ls"},
+                    rotary_tuple{"HighTom", 0, 127, 45, "Pm", "Ts"},
+                    rotary_tuple{"Crash", 0, 127, 49, "Um", "Ys"},
+
+                    rotary_tuple{"Ride", 0, 127, 51, "Lt", "Pz"},
+
+                },
+                button_list
+                {
+                }
+            }
+```
+
+Following the same steps as above, we can re-build the plugin and re-open it in the DAW to see the new tab:
+
+![img_3.png](img_3.png)
+
+{: .note}
+> All of the parameters added to the GUI are automatically detected by the host and can be automated via the DAW
+>
+> ![img_4.png](img_4.png)
+> 
+
+---
+
+## Deploy() methods
+
+Remember that there are three `Deploy()` methods that you need to implement:
+
+1. `InputTensorPreparatorThread::deploy()` in [ITP_Deploy.cpp](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/tutorials/1_RandomGenOnButtonPress/NeuralMidiFXPlugin/NeuralMidiFXPlugin/ITP_Deploy.cpp)
+2. `ModelThread::deploy()` in [Model_Deploy.cpp](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/tutorials/1_RandomGenOnButtonPress/NeuralMidiFXPlugin/NeuralMidiFXPlugin/MDL_Deploy.cpp)
+3. `PlaybackPreparatorThread::deploy(}` in [PPP_Deploy.cpp](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/tutorials/1_RandomGenOnButtonPress/NeuralMidiFXPlugin/NeuralMidiFXPlugin/PPP_Deploy.cpp)
+
+In this tutorial, given that we are not using any input midi, we will only need to implement the `ModelThread::deploy()` and `PlaybackPreparatorThread::deploy(}` methods.
+
+### ModelThread::deploy()
+
+#### Load the model
+
+The very first step in here is to load the model if it has not been loaded already.  
+
+To do this, we will add the following code to the `ModelThread::deploy()` method:
+
+```c++
+    // =================================================================================
+    // ===         0. LOADING THE MODEL
+    // =================================================================================
+    // Try loading the model if it hasn't been loaded yet
+    if (!isModelLoaded) {
+        load("drumLoopVAE.pt");
+    }
+```
+
+#### Check if random generation button is pressed
+
+To check if the button is pressed, we will be using `gui_params` which is a member of the `ModelThread` class.
+
+Here we will check if the button has been clicked and if so, we will print a message to the console 
+
+```c++
+    // =================================================================================
+    // ===         1. ACCESSING GUI PARAMETERS
+    // Refer to:
+    // https://neuralmidifx.github.io/datatypes/GuiParams#accessing-the-ui-parameters
+    // =================================================================================
+    auto ButtonTrigger = gui_params.wasButtonClicked("RandomGeneration");
+    if (ButtonTrigger) {
+        PrintMessage("ButtonTriggered");
+    }
+    // =================================================================================
+
+```
+
+<img src="{{ site.baseurl }}/assets/gifs/tut1/t1_randomizeClick.gif">
+
