@@ -194,7 +194,7 @@ Following the same steps as above, we can re-build the plugin and re-open it in 
 {: .note}
 > All of the parameters added to the GUI are automatically detected by the host and can be automated via the DAW
 >
-> <img src="{{ site.baseurl }}/assets/images/tutorial1/c.PNG">
+> <img src="{{ site.baseurl }}/assets/gifs/tut1/automation.gif">
 > 
 
 ---
