@@ -474,5 +474,57 @@ What we want to do in this method is to:
 
 #### Checking if a new pattern has been generated
 We can check if a new generation has been received from the `ModelThread` by checking the `new_model_output_received` variable
+passed to the `deploy()` method. 
 
+```c++
+
+    // PlaybackPreparatorThread::deploy() method in PPP_Deploy.cpp
+
+    // =================================================================================
+    // ===         1. Get the latest model generation (if available)
+    // =================================================================================
+    if (new_model_output_received)
+    {
+        PrintMessage("New Model Output Received");
+    }
+
+```
+
+<img src="{{ site.baseurl }}/assets/gifs/tut1/PPP_received.gif">
+
+#### Extracting the notes and preparing the pattern for playback
+
+First we will create a midi mapping based on the parameters in the second tab of the GUI.
+
+```c++
+    
+    // PlaybackPreparatorThread::deploy() method in PPP_Deploy.cpp
+        
+    if (new_model_output_received)
+    {
+        // =================================================================================
+        // ===         2. ACCESSING GUI PARAMETERS
+        // Refer to:
+        // https://neuralmidifx.github.io/datatypes/GuiParams#accessing-the-ui-parameters
+        // =================================================================================
+        std::map<int, int> voiceMap;
+        voiceMap[0] = int(gui_params.getValueFor("Kick"));
+        voiceMap[1] = int(gui_params.getValueFor("Snare"));
+        voiceMap[2] = int(gui_params.getValueFor("ClosedHat"));
+        voiceMap[3] = int(gui_params.getValueFor("OpenHat"));
+        voiceMap[4] = int(gui_params.getValueFor("LowTom"));
+        voiceMap[5] = int(gui_params.getValueFor("MidTom"));
+        voiceMap[6] = int(gui_params.getValueFor("HighTom"));
+        voiceMap[7] = int(gui_params.getValueFor("Crash"));
+        voiceMap[8] = int(gui_params.getValueFor("Ride"));
+    }
+
+```
+
+Then, we need to extract the notes from the generated tensors. 
+
+{: .note}
+> This model generates a pattern of 32 steps relative to a 16th note grid. 
+> Moreover, the offsets are relative to the gridlines ranging from -0.5 to 0.5. (-0.5 is a 32nd note before the gridline, 0.5 is a 32nd note after the gridline)
+> 
 
