@@ -49,6 +49,37 @@ we will not be discussing them.
 
 ---
 
+## Plugin Name and Description 
+
+As mentioned [here](https://neuralmidifx.github.io/docs/Installation#step-2-edit-plugin-name-and-description), we need
+to specify the name of the plugin as well as some descriptions for it. 
+
+To do this, we will modify the [NeuralMidiFXPlugin/NeuralMidiFXPlugin/CMakeLists.txt](https://neuralmidifx.github.io/docs/Installation#step-2-edit-plugin-name-and-description) file as follows:
+
+```cmake
+project(Tutorial1NMFx VERSION 0.0.1)
+
+set (BaseTargetName Tutorial1NMFx)
+
+....
+
+juce_add_plugin("${BaseTargetName}"
+        COMPANY_NAME "AIMCTutorials"                
+        ... 
+        PLUGIN_CODE AZCK                # a unique 4 character code for your plugin                          
+        ...
+        PRODUCT_NAME "Tutorial1NMFx")           # Replace with your plugin title
+
+```
+
+Once you re-build the cmake project, and re-build the plugin, you should see the name of the plugin change in the DAW:
+
+![img_2.png](img_2.png)
+
+Now we are ready to move on to the next step.
+
+---
+
 ## Plugin Development
 
 ### 1. Creating A Graphical User Interface (GUI)
@@ -99,4 +130,9 @@ namespace Tabs {
 > 2. We don't need any drag in features for this tutorial, so we will disable the `MidiInVisualizer` tab.
 > 3. We still want to visualize the generations and allow the user to drag them out as midi, so we will enable the `GeneratedContentVisualizer` tab.
 
-Once rendered, we can see that the button is positioned in the bottom right corner of the GUI. However, 
+
+![img.png](img.png)
+
+Once rendered, if we are happy with the position of the button, we can set the `show_grid` and `draw_borders_for_components` to false.
+
+![img_1.png](img_1.png)
