@@ -54,7 +54,7 @@ we will not be discussing them.
 As mentioned [here](https://neuralmidifx.github.io/docs/Installation#step-2-edit-plugin-name-and-description), we need
 to specify the name of the plugin as well as some descriptions for it. 
 
-To do this, we will modify the [NeuralMidiFXPlugin/NeuralMidiFXPlugin/CMakeLists.txt](https://neuralmidifx.github.io/docs/Installation#step-2-edit-plugin-name-and-description) file as follows:
+To do this, we will modify the [NeuralMidiFXPlugin/NeuralMidiFXPlugin/CMakeLists.txt](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/tutorials/1_RandomGenOnButtonPress/NeuralMidiFXPlugin/NeuralMidiFXPlugin/CMakeLists.txt) file as follows:
 
 ```cmake
 project(Tutorial1NMFx VERSION 0.0.1)
@@ -88,7 +88,7 @@ As discussed in the [Graphical Interface]({{site.baseurl}}/docs/ParametersAndGUI
 to prepare the interface we will need to figure out what UI elements we need as well as how we want to organize them!
 
 For this tutorial, all we need is a single button which will trigger the generation of a random pattern. As such, 
-we will modify the `Configs_GUI.h` file as follows:
+we will modify the [`Configs_GUI.h`](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/tutorials/1_RandomGenOnButtonPress/NeuralMidiFXPlugin/NeuralMidiFXPlugin/Configs_GUI.h) file as follows:
 
 ```c++
 namespace Tabs {
