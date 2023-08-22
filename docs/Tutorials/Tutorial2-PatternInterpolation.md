@@ -119,7 +119,10 @@ latent = (1 - slider_value) * latent_A + slider_value * latent_B
 We are familiar with process of generating a random latent vector and using it for inference. However, this is 
 the first time that we need to store a custom value that may be used in the future calls of `ModelThread::deploy()` method. As mentioned
 in the [`Data Types`]({{ site.baseurl }}/datatypes/CustomizableDataTypes#customizable-data-for-use-within-itp-mdl-and-ppp-threads), 
-section of the documentation, we can modify the `MDLData` struct to include our custom data. To do so, 
+section of the documentation, we can modify the `MDLData` struct to include our custom data. Additionally, we will store the
+slider value in the `MDLData` struct as well to check whether it has changed or since the last call to `ModelThread::deploy()`.
+
+To do so, 
 let's navigate to [`CustomStructs.h`](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/tutorials/2_PatternInterpolation/NeuralMidiFXPlugin/NeuralMidiFXPlugin/CustomStructs.h)
 and modify the `MDLData` struct as follows:
 
@@ -129,13 +132,106 @@ and modify the `MDLData` struct as follows:
 struct MDLData {
     torch::Tensor latent_A;
     torch::Tensor latent_B;
+    double interpolate_slider_value{0};
 };
 ```
 
 {: .reminder }
-> When building the plugin, the plugin will automatically instantiate the `MDLData` struct and pass it to the `ModelThread` class 
-> using a variable called `user_data`
+> When building the plugin, the plugin will automatically instantiate the `MDLData` struct and pass it to you as `mdl_data` in the `ModelThread::deploy()` method.
 
 
+Having done this, we can now modify the `ModelThread::deploy()` method to generate a random latent vector and store it in `mdl_data` whenever
+button A or B is pressed. 
+
+Before carrying on, let's print some messages to ensure everything is setup correctly
 
 
+```c++
+    // ModelThread::deploy() in ModelThread.cpp
+
+if (!isModelLoaded) {
+        load("drumLoopVAE.pt");
+    }
+
+    bool should_interpolate = false;   // flag to check if we should interpolate
+
+    // =================================================================================
+    // ===         1. ACCESSING GUI PARAMETERS
+    // Refer to:
+    // https://neuralmidifx.github.io/datatypes/GuiParams#accessing-the-ui-parameters
+    // =================================================================================
+    // check if the buttons have been clicked, if so, update the user_data
+    auto ButtonATriggered = gui_params.wasButtonClicked("Random A");
+    if (ButtonATriggered) {
+        should_interpolate = true;
+        PrintMessage("Button A Clicked");
+        user_data.latent_A = torch::randn({ 1, 128 });
+    }
+    auto ButtonBTriggered = gui_params.wasButtonClicked("Random B");
+    if (ButtonBTriggered) {
+        should_interpolate = true;
+        PrintMessage("Button B Clicked");
+        user_data.latent_B = torch::randn({ 1, 128 });
+    }
+
+    // check if the interpolate slider has changed, if so, update the user_data
+    auto sliderValue = gui_params.getValueFor("Interpolate");
+    bool sliderChanged = (sliderValue != user_data.interpolate_slider_value);
+    if (sliderChanged) {
+        should_interpolate = true;
+        PrintMessage("Slider Changed");
+        user_data.interpolate_slider_value = sliderValue;
+    }
+```
+
+<img src="{{ site.baseurl }}/assets/gifs/tut2/gui_test.gif">
+
+Seeing that the GUI is working as expected, we can now implement the interpolation process
+
+To interpolate we need both states to be randomized, as a result, to simplify the code, 
+we will ensure that on the first call to `ModelThread::deploy()` both `latent_A` and `latent_B` are randomized.
+
+
+```c++
+    // ModelThread::deploy() in ModelThread.cpp
+    
+    // ... previous code
+    
+    // =================================================================================
+    // ===         2. initialize latent vectors on the first call
+    // =================================================================================
+    if (user_data.latent_A.size(0) == 0) {
+        user_data.latent_A = torch::randn({ 1, 128 });
+    }
+    if (user_data.latent_B.size(0) == 0) {
+        user_data.latent_B = torch::randn({ 1, 128 });
+    }
+```
+
+Now, to finish this tutorial, we need to interpolate between `latent_A` and `latent_B` and store the result in `latent`.
+
+```c++
+    // ModelThread::deploy() in ModelThread.cpp
+    
+    // ... previous code
+    
+    // =================================================================================
+    // ===         Inference
+    // =================================================================================
+
+    bool newPatternGenerated = false;
+
+    if (should_interpolate) {
+
+        if (isModelLoaded)
+        {
+            // calculate interpolated latent vector
+            auto slider_value = user_data.interpolate_slider_value;
+            auto latent_A = user_data.latent_A;
+            auto latent_B = user_data.latent_B;
+            auto latentVector = (1 - slider_value) * latent_A + slider_value * latent_B;
+            
+            // ... previous code
+```
+
+<img src="{{ site.baseurl }}/assets/gifs/tut2/interpolate.gif">
