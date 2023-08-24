@@ -291,6 +291,50 @@ As a result, the `deploy()` method will look like this:
 <img src="{{ site.baseurl }}/assets/gifs/tut3/MidiEventsProcessed.gif">
 
 ## ModelThread::deploy()
+Now, let's move on to the Model Thread.
+
+For this part, we will need to modify the `deploy()` method in the [`MDL_Deploy.cpp`](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/tutorials/3_Groove2DrumUsingMidiFile/NeuralMidiFXPlugin/NeuralMidiFXPlugin/MDL_Deploy.cpp)
+
+### Accessing the Density Value
+As mentioned earlier, in addition to the groove, the model also accepts a density value. 
+We have already added a slider for this to the GUI. Now, we just need to access it
+
+```c++
+
+// MDL_Deploy.cpp
+
+bool ModelThread::deploy(bool new_model_input_received,
+                         bool did_any_gui_params_change) {
+
+    /*              IF YOU NEED TO PRINT TO CONSOLE FOR DEBUGGING,
+    *                  YOU CAN USE THE FOLLOWING METHOD:
+    *                      PrintMessage("YOUR MESSAGE HERE");
+    */
+
+    // flag to indicate if a new pattern has been generated and is ready for transmission
+    // to the PPP thread
+    bool newPatternGenerated = false;
+
+    // =================================================================================
+    // ===         0. LOADING THE MODEL
+    // =================================================================================
+    // Try loading the model if it hasn't been loaded yet
+    if (!isModelLoaded) {
+        load("drumLoopVAE.pt");
+    }
 
 
-### 
+    // =================================================================================
+    // ===              ACCESSING GUI PARAMETERS
+    // Refer to:
+    // https://neuralmidifx.github.io/datatypes/GuiParams#accessing-the-ui-parameters
+    // =================================================================================
+    auto density = gui_params.getValueFor("Density");
+    PrintMessage("Density: " + std::to_string(density));
+    
+    return newPatternGenerated;
+}
+
+```
+<img src="{{ site.baseurl }}/assets/gifs/tut3/DensityVal.gif">
+
