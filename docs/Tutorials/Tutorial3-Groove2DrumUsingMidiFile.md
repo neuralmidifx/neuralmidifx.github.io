@@ -222,6 +222,7 @@ bool InputTensorPreparatorThread::deploy(
 }
 
 ```
+<img src="{{ site.baseurl }}/assets/gifs/tut3/MidiEventsPrinted.gif">
 
 ### Preparing the Input Tensor (Groove)
 The groove in this context is basically a flattened version of a polyphonic pattern. Moreover, the groove
@@ -241,8 +242,55 @@ As a result, the `deploy()` method will look like this:
 
 ```c++
 
-// ITP_Deploy.cpp
+    // ITP_Deploy.cpp
 
+    // rest of the code ...
+    
+    if (new_midi_event_dragdrop.has_value()) {
+
+        if (new_midi_event_dragdrop->isFirstMessage()) {
+            // clear hits, velocities, offsets
+            ITPdata.hits = torch::zeros({1, 32, 1}, torch::kFloat32);
+            ITPdata.velocities = torch::zeros({1, 32, 1}, torch::kFloat32);
+            ITPdata.offsets = torch::zeros({1, 32, 1}, torch::kFloat32);
+        }
+
+        if (new_midi_event_dragdrop->isNoteOnEvent()) {
+            auto ppq  = new_midi_event_dragdrop->Time(); // time in ppq
+            auto velocity = new_midi_event_dragdrop->getVelocity(); // velocity
+            auto div = round(ppq / .25f);
+            auto offset = (ppq - (div * .25f)) / 0.125 * 0.5 ;
+            auto grid_index = (long long) fmod(div, 32);
+
+            // check if louder if overlapping
+            if (ITPdata.hits[0][grid_index][0].item<float>() > 0) {
+                if (ITPdata.velocities[0][grid_index][0].item<float>() < velocity) {
+                    ITPdata.velocities[0][grid_index][0] = velocity;
+                    ITPdata.offsets[0][grid_index][0] = offset;
+                }
+            } else {
+                ITPdata.hits[0][grid_index][0] = 1;
+                ITPdata.velocities[0][grid_index][0] = velocity;
+                ITPdata.offsets[0][grid_index][0] = offset;
+            }
+        }
+
+        // if all messages have been received, send to model for generation
+        if (new_midi_event_dragdrop->isLastMessage()) {
+            
+            model_input.hvo = torch::concat(
+                {ITPdata.hits, ITPdata.velocities, ITPdata.offsets}, 2);
+            DisplayTensor(model_input.hvo, "model_input.hvo");
+            
+            SHOULD_SEND_TO_MODEL_FOR_GENERATION_ = true;
+        }
+    }
+    
+    // rest of the code ...
 ```
+<img src="{{ site.baseurl }}/assets/gifs/tut3/MidiEventsProcessed.gif">
+
 ## ModelThread::deploy()
+
+
 ### 
