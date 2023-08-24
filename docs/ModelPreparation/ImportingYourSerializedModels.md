@@ -23,7 +23,7 @@ In this guide, we will show you the steps necessary for import your **serialized
 
 ## Step 1. Add your serialized model to the project
 
-Once you have your model serialized, you should add it to [`TorchScripts/MDL`](https://github.com/behzadhaki/NeuralMidiFXPlugin/tree/master/TorchScripts) 
+Once you have your model serialized, you should add it to [`TorchScripts/Models`](https://github.com/behzadhaki/NeuralMidiFXPlugin/tree/master/TorchScripts) 
 folder in the **project directory**.
 
 

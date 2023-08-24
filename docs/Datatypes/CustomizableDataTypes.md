@@ -109,5 +109,16 @@ If you need any data to be reused within the deploy method of each thread, you c
 `ITPData`, `MDLData`, or `PPPData` structs in the `CustomStructs.h` file.
 
 These structs are instantiated in each of the threads and will be made available to you in the deploy method of each thread
-as a variable called `user_data`.
+as variables called `ITPdata`, `MDLdata`, `PPPData`.
 
+{: .note }
+> If you need to use a custom torch script in the threads for any reason,
+> you can add the following variable to these structs:
+> ```c++
+>   // assuming that you have your script in a file called "my_script.pt" located 
+>   // in the `TorchScripts/ProcessingScripts` folder
+>   
+>   struct ITPData {
+>      // ... some code here
+>     torch::jit::script::Module my_script = load_processing_script("my_script.pt");
+> '''

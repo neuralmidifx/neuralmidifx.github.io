@@ -31,7 +31,7 @@ The model we will be using in this exercise is a `VariationalAutoEncoder` (VAE) 
 
 The model has been trained on 2-bar drum loops in 4/4 time signature. 
 
-The model has already been serialized and is available at `TorchScripts/MDL/drumLoopVAE.pt`
+The model has already been serialized and is available at `TorchScripts/Models/drumLoopVAE.pt`
 
 ### Input/Output Description
 The input and output of the model are both 3 stacked tensors of shape (32, 9) where 32 is the number of 16th notes in a 2-bar segment and 9 is the number of drum instruments. 
@@ -45,8 +45,12 @@ The model has multiple methods available, some of which we will be using in this
 definitions of these models are as follows:
 
 #### 1. encode 
-This method encodes a given input pattern into a latent vector. 
+This method encodes a given input pattern into a latent vector.
 The method returns a number of parameters, however the third parameter is the latent vector we are interested in. 
+
+{: .note }
+> We will not be using this method until Tutorial 3. A more detailed description of this method
+> will be provided in Tutorial 3. 
 
 #### 2. sample
 This method decodes a given latent vector into an output tensor and returns a `hits`, `velocities`, and `offsets` tensors describing the output pattern.
@@ -276,7 +280,7 @@ Here we will check if the button has been clicked and if so, we will print a mes
     // Refer to:
     // https://neuralmidifx.github.io/datatypes/GuiParams#accessing-the-ui-parameters
     // =================================================================================
-    auto ButtonTrigger = gui_params.wasButtonClicked("RandomGeneration");
+    auto ButtonTrigger = gui_params.wasButtonClicked("Randomize");
     if (ButtonTrigger) {
         PrintMessage("ButtonTriggered");
     }

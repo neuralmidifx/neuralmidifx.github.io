@@ -160,27 +160,27 @@ if (!isModelLoaded) {
     // Refer to:
     // https://neuralmidifx.github.io/datatypes/GuiParams#accessing-the-ui-parameters
     // =================================================================================
-    // check if the buttons have been clicked, if so, update the user_data
+    // check if the buttons have been clicked, if so, update the MDLdata
     auto ButtonATriggered = gui_params.wasButtonClicked("Random A");
     if (ButtonATriggered) {
         should_interpolate = true;
         PrintMessage("Button A Clicked");
-        user_data.latent_A = torch::randn({ 1, 128 });
+        MDLdata.latent_A = torch::randn({ 1, 128 });
     }
     auto ButtonBTriggered = gui_params.wasButtonClicked("Random B");
     if (ButtonBTriggered) {
         should_interpolate = true;
         PrintMessage("Button B Clicked");
-        user_data.latent_B = torch::randn({ 1, 128 });
+        MDLdata.latent_B = torch::randn({ 1, 128 });
     }
 
-    // check if the interpolate slider has changed, if so, update the user_data
+    // check if the interpolate slider has changed, if so, update the MDLdata
     auto sliderValue = gui_params.getValueFor("Interpolate");
-    bool sliderChanged = (sliderValue != user_data.interpolate_slider_value);
+    bool sliderChanged = (sliderValue != MDLdata.interpolate_slider_value);
     if (sliderChanged) {
         should_interpolate = true;
         PrintMessage("Slider Changed");
-        user_data.interpolate_slider_value = sliderValue;
+        MDLdata.interpolate_slider_value = sliderValue;
     }
 ```
 
@@ -200,11 +200,11 @@ we will ensure that on the first call to `ModelThread::deploy()` both `latent_A`
     // =================================================================================
     // ===         2. initialize latent vectors on the first call
     // =================================================================================
-    if (user_data.latent_A.size(0) == 0) {
-        user_data.latent_A = torch::randn({ 1, 128 });
+    if (MDLdata.latent_A.size(0) == 0) {
+        MDLdata.latent_A = torch::randn({ 1, 128 });
     }
-    if (user_data.latent_B.size(0) == 0) {
-        user_data.latent_B = torch::randn({ 1, 128 });
+    if (MDLdata.latent_B.size(0) == 0) {
+        MDLdata.latent_B = torch::randn({ 1, 128 });
     }
 ```
 
@@ -226,9 +226,9 @@ Now, to finish this tutorial, we need to interpolate between `latent_A` and `lat
         if (isModelLoaded)
         {
             // calculate interpolated latent vector
-            auto slider_value = user_data.interpolate_slider_value;
-            auto latent_A = user_data.latent_A;
-            auto latent_B = user_data.latent_B;
+            auto slider_value = MDLdata.interpolate_slider_value;
+            auto latent_A = MDLdata.latent_A;
+            auto latent_B = MDLdata.latent_B;
             auto latentVector = (1 - slider_value) * latent_A + slider_value * latent_B;
             
             // ... previous code
