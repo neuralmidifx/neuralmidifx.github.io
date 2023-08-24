@@ -50,7 +50,7 @@ The method returns a number of parameters, however the third parameter is the la
 
 {: .note }
 > We will not be using this method until Tutorial 3. A more detailed description of this method
-> will be provided in Tutorial 3. 
+> will be provided [here]({{ site.baseurl }}/Tutorials/3_Groove2DrumUsingMidiFile)
 
 #### 2. sample
 This method decodes a given latent vector into an output tensor and returns a `hits`, `velocities`, and `offsets` tensors describing the output pattern.
