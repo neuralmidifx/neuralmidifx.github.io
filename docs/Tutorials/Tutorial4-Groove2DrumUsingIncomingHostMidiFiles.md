@@ -104,7 +104,7 @@ Also, we can see that any incoming MIDI events from the DAW are now visualized i
 
 <img src="{{ site.baseurl }}/assets/gifs/tut4/MidiInRT.gif">
 
-## Specifying What Information We Need from DAW
+## Host Events
 
 {: .note }
 > If you are not familiar with the concepts of per buffer processing in plugins,
@@ -142,87 +142,48 @@ There are different types available in the `EventFromHost` data type.
 </video>
 
 
+### Specifying What Information We Need from DAW
 
+In this exercise, we will only be needing NoteOn events. To specify this we will modify
+the `Configs_HostEvents.h` as follows:
 
+```c++
 
+// Configs_HostEvents.h
+        
+namespace event_communication_settings {
+    // set to true, if you need to send the metadata for a new buffer to the ITP thread
+    constexpr bool SendEventAtBeginningOfNewBuffers_FLAG{false};
+    constexpr bool SendEventForNewBufferIfMetadataChanged_FLAG{false};     // only sends if metadata changes
+    
+    // set to true if you need to notify the beginning of a new bar
+    constexpr bool SendNewBarEvents_FLAG{false};
+    
+    // set to true EventFromHost for every time_shift_event ratio of quarter notes
+    constexpr bool SendTimeShiftEvents_FLAG{false};
+    constexpr double delta_TimeShiftEventRatioOfQuarterNote{0.5}; // sends a time shift event every 8th note
+    
+    // Filter Note On Events if you don't need them
+    constexpr bool FilterNoteOnEvents_FLAG{false};
+    
+    // Filter Note Off Events if you don't need them
+    constexpr bool FilterNoteOffEvents_FLAG{false};
+    
+    // Filter CC Events if you don't need them
+    constexpr bool FilterCCEvents_FLAG{false};
+}
 
+            
+```
 
-
-
-
+Now, we're ready to move on to the `ITP`'s `deploy()` method to specify how we want to handle the incoming events.
 
 ## InputTensorPreparatorThread::deploy()
-This is the first time we are using the `InputTensorPreparatorThread` class as until now
-none of the tasks required an input to be prepared before running inference.
 
-To prepare the input tensor, let's take a quick look at the python script which was serialized
-for encoding an input groove into a tensor:
+The processing in here is very similar to the previous tutorial with some slight modifications.
 
-```python
-
-    def encode(self, groove, density):
-        """ Encodes a given input sequence of shape (batch_size, seq_len, embedding_size_src) into a latent space
-        of shape (batch_size, latent_dim)
-
-        :param groove: the input sequence of shape (batch_size, 32, 3) where 32 is the number of steps
-        
-        :return: mu, log_var, latent_z (each of shape [batch_size, latent_dim])
-        """
-```
-
-What can be seen above is that we will create three tensors for `hits`, `velocities`, and `offsets`, each of shape `[1, 32, 1]`.
-The `groove` information will then be placed in the third voice (closed hihat channel) of the tensor. 
-
-{:. note}
-> Remember that the ITP Deploy() method is called every time a new MIDI event arrives or whenever the GUI parameters change.
-> Moreover, the method is called **one event at a time**.  
-
-### Declaring Required Local Variables in `ITPData`
-Given that we will repeatedly update `hits`, `velocities`, and `offsets` tensors upon arrival of new MIDI events, 
-we will need to create these tensors somewhere outside the `deploy()` function. 
-To this end, we will start with modifying the `ITPData` struct in [Configs_CustomStructs.h](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/tutorials/3_Groove2DrumUsingMidiFile/NeuralMidiFXPlugin/NeuralMidiFXPlugin/CustomStructs.h).
-
-```c++
-            // Configs_CustomStructs.h
-            
-            // rest of the code ...   
-            
-            struct ITPData
-            {                
-                torch::Tensor hits = torch::zeros({1, 32, 1}, torch::kFloat32);
-                torch::Tensor velocities = torch::zeros({1, 32, 1}, torch::kFloat32);
-                torch::Tensor offsets = torch::zeros({1, 32, 1}, torch::kFloat32);
-                
-                // rest of the code ...   
-            };
-            
-            // rest of the code ...   
-```
-
-### Declaring What Data to be Sent to Model Thread
-Once the input tensors are ready, we will need to send them to the model thread.
-That said, instead of sending the tensors themselves, we can send a concatenated version of them (see the python script above).
-
-To this end, we will modify the `ModelInput` struct in [Configs_CustomStructs.h](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/tutorials/3_Groove2DrumUsingMidiFile/NeuralMidiFXPlugin/NeuralMidiFXPlugin/CustomStructs.h).
-
-```c++
-            // Configs_CustomStructs.h
-            
-            // rest of the code ...   
-            
-            struct ModelInput {
-                torch::Tensor hvo = torch::zeros({1, 32, 3}, torch::kFloat32);
-                
-                // rest of the code ...
-            };
-```
-
-### Accessing the MIDI File
-Let's start with accessing a dropped MIDI file!
-
-As mentioned in the [documentation](https://neuralmidifx.github.io/docs/Plugin#midi-file-drag-and-drop), the plugin will
-provide the Midi data one event at a time. To access these, we will modify the [`ITP_Deploy.cpp`](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/tutorials/3_Groove2DrumUsingMidiFile/NeuralMidiFXPlugin/NeuralMidiFXPlugin/ITP_Deploy.cpp)
-accordingly:
+The `HostEvent` data are provided to the `deploy()` method as an optional object called `new_event_from_host`. Let's check 
+if we are receiving any events from the host:
 
 ```c++
 // ITP_Deploy.cpp
@@ -234,59 +195,47 @@ bool InputTensorPreparatorThread::deploy(
 
     bool SHOULD_SEND_TO_MODEL_FOR_GENERATION_ = false;
 
-    // =================================================================================
-    // ===         ACCESSING INFORMATION (EVENTS) RECEIVED FROM
-    //                Mannually Drag-Dropped Midi Files
-    // Refer to:
-    // https://neuralmidifx.github.io/datatypes/MidiFileEvent
-    // =================================================================================
-    
-    // check if there is a new midi file event
-    if (new_midi_event_dragdrop.has_value())
-    {
-        PrintMessage(new_midi_event_dragdrop->getDescription().str());
+    // check that the deploy() method was called because of a new midi event
+    if (new_event_from_host.has_value()) {
+        PrintMessage("new_event_from_host received");
+        PrintMessage(new_event_from_host->getDescription().str());
     }
 
     return SHOULD_SEND_TO_MODEL_FOR_GENERATION_;
 }
-
 ```
-<img src="{{ site.baseurl }}/assets/gifs/tut3/MidiEventsPrinted.gif">
 
-### Preparing the Input Tensor (Groove)
-The groove in this context is basically a flattened version of a polyphonic pattern. Moreover, the groove
-is only based on the onsets of the notes.
 
-What this means is that for each Midi event arrived, we will:
+<img src="{{ site.baseurl }}/assets/gifs/tut4/HostEventsReceivingCorrectly.gif">
 
-1. check if NoteOn
-2. Figure out the closest step to the onset of the note
-3. Calculate the offset of the note
-4. Set the corresponding step in the `hits` tensor to 1
-5. Set the corresponding step in the `velocities` tensor to the velocity of the note
-6. Set the corresponding step in the `offsets` tensor to the offset of the note
-7. For overlapping notes, use the loudest one
 
-As a result, the `deploy()` method will look like this:
+Now, we need to do  to decide whether we want to take any actions when `FirstBufferEvent` is received.
+In this case, let's clear the groove and start from scratch. That is, everytime the playback restarts, we assume that
+the session starts from scratch.
 
 ```c++
+// ITP_Deploy.cpp
 
-    // ITP_Deploy.cpp
-
-    // rest of the code ...
-    
-    if (new_midi_event_dragdrop.has_value()) {
-
-        if (new_midi_event_dragdrop->isFirstMessage()) {
+    // check that the deploy() method was called because of a new midi event
+    if (new_event_from_host.has_value()) {
+        if (new_event_from_host->isFirstBufferEvent()) {
             // clear hits, velocities, offsets
             ITPdata.hits = torch::zeros({1, 32, 1}, torch::kFloat32);
             ITPdata.velocities = torch::zeros({1, 32, 1}, torch::kFloat32);
             ITPdata.offsets = torch::zeros({1, 32, 1}, torch::kFloat32);
         }
+    }
+```
 
-        if (new_midi_event_dragdrop->isNoteOnEvent()) {
-            auto ppq  = new_midi_event_dragdrop->Time(); // time in ppq
-            auto velocity = new_midi_event_dragdrop->getVelocity(); // velocity
+Now, we are ready to handle the `NoteOnEvent`s to update the groove. A NoteOn event works similarly to a `MidiFileEvent`. 
+So, this part is very similar to the previous tutorial. 
+
+```c++
+// ITP_Deploy.cpp
+
+        if (new_event_from_host->isNoteOnEvent()) {
+            auto ppq  = new_event_from_host->Time().inQuarterNotes(); // time in ppq
+            auto velocity = new_event_from_host->getVelocity(); // velocity
             auto div = round(ppq / .25f);
             auto offset = (ppq - (div * .25f)) / 0.125 * 0.5 ;
             auto grid_index = (long long) fmod(div, 32);
@@ -303,179 +252,108 @@ As a result, the `deploy()` method will look like this:
                 ITPdata.offsets[0][grid_index][0] = offset;
             }
         }
+        
+```
 
-        // if all messages have been received, send to model for generation
-        if (new_midi_event_dragdrop->isLastMessage()) {
-            
-            model_input.hvo = torch::concat(
-                {ITPdata.hits, ITPdata.velocities, ITPdata.offsets}, 2);
-            DisplayTensor(model_input.hvo, "model_input.hvo");
-            
-            SHOULD_SEND_TO_MODEL_FOR_GENERATION_ = true;
+Last thing to do is to return `true` if we want to send the data to the model for generation. In this case, we need to 
+decide how often we want to send the data to the `MDL` thread. Let's send the everytime the groove changes. That is,
+everytime we receive a `HostEvent` we will send the data to the `MDL` thread.
+
+```c++
+// ITP_Deploy.cpp
+
+    bool InputTensorPreparatorThread::deploy(
+    std::optional<MidiFileEvent> & new_midi_event_dragdrop,
+    std::optional<EventFromHost> & new_event_from_host,
+    bool gui_params_changed_since_last_call) {
+
+    bool SHOULD_SEND_TO_MODEL_FOR_GENERATION_ = false;
+
+    // check that the deploy() method was called because of a new midi event
+    if (new_event_from_host.has_value()) {
+        SHOULD_SEND_TO_MODEL_FOR_GENERATION_ = true;        <--- send to model
+        
+        if (new_event_from_host->isFirstBufferEvent()) {
+            // clear hits, velocities, offsets
+            ITPdata.hits = torch::zeros({1, 32, 1}, torch::kFloat32);
+            ITPdata.velocities = torch::zeros({1, 32, 1}, torch::kFloat32);
+            ITPdata.offsets = torch::zeros({1, 32, 1}, torch::kFloat32);
+        }
+        
+        if (new_event_from_host->isNoteOnEvent()) {
+            auto ppq  = new_event_from_host->Time().inQuarterNotes(); // time in ppq
+            auto velocity = new_event_from_host->getVelocity(); // velocity
+            auto div = round(ppq / .25f);
+            auto offset = (ppq - (div * .25f)) / 0.125 * 0.5 ;
+            auto grid_index = (long long) fmod(div, 32);
+
+            // check if louder if overlapping
+            if (ITPdata.hits[0][grid_index][0].item<float>() > 0) {
+                if (ITPdata.velocities[0][grid_index][0].item<float>() < velocity) {
+                    ITPdata.velocities[0][grid_index][0] = velocity;
+                    ITPdata.offsets[0][grid_index][0] = offset;
+                }
+            } else {
+                ITPdata.hits[0][grid_index][0] = 1;
+                ITPdata.velocities[0][grid_index][0] = velocity;
+                ITPdata.offsets[0][grid_index][0] = offset;
+            }
         }
     }
-    
-    // rest of the code ...
-```
-<img src="{{ site.baseurl }}/assets/gifs/tut3/MidiEventsProcessed.gif">
 
-## ModelThread::deploy()
-Now, let's move on to the Model Thread.
-
-For this part, we will need to modify the `deploy()` method in the [`MDL_Deploy.cpp`](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/tutorials/3_Groove2DrumUsingMidiFile/NeuralMidiFXPlugin/NeuralMidiFXPlugin/MDL_Deploy.cpp)
-
-### Encoding the Groove with the Density Value
-
-#### Accessing the Density Value
-As mentioned earlier, in addition to the groove, the model also accepts a density value. 
-We have already added a slider for this to the GUI. Now, we just need to access it
-
-```c++
-
-// MDL_Deploy.cpp
-
-bool ModelThread::deploy(bool new_model_input_received,
-                         bool did_any_gui_params_change) {
-
-    /*              IF YOU NEED TO PRINT TO CONSOLE FOR DEBUGGING,
-    *                  YOU CAN USE THE FOLLOWING METHOD:
-    *                      PrintMessage("YOUR MESSAGE HERE");
-    */
-
-    // flag to indicate if a new pattern has been generated and is ready for transmission
-    // to the PPP thread
-    bool newPatternGenerated = false;
-
-    // =================================================================================
-    // ===         0. LOADING THE MODEL
-    // =================================================================================
-    // Try loading the model if it hasn't been loaded yet
-    if (!isModelLoaded) {
-        load("drumLoopVAE.pt");
-    }
-
-
-    // =================================================================================
-    // ===              ACCESSING GUI PARAMETERS
-    // Refer to:
-    // https://neuralmidifx.github.io/datatypes/GuiParams#accessing-the-ui-parameters
-    // =================================================================================
-    auto density = gui_params.getValueFor("Density");
-    PrintMessage("Density: " + std::to_string(density));
-    
-    return newPatternGenerated;
+    return SHOULD_SEND_TO_MODEL_FOR_GENERATION_;
 }
 
 ```
-<img src="{{ site.baseurl }}/assets/gifs/tut3/DensityVal.gif">
 
-#### encode()
-
-Now, we need to prepare the inputs to the encode method. Then, we can use the prepared inputs and encode the 
-groove and the density value into a latent vector.
-
-```c++
-// MDL_Deploy.cpp
-
-bool ModelThread::deploy(bool new_model_input_received,
-                         bool did_any_gui_params_change) {
-
-    /*              IF YOU NEED TO PRINT TO CONSOLE FOR DEBUGGING,
-    *                  YOU CAN USE THE FOLLOWING METHOD:
-    *                      PrintMessage("YOUR MESSAGE HERE");
-    */
-
-    // flag to indicate if a new pattern has been generated and is ready for transmission
-    // to the PPP thread
-    bool newPatternGenerated = false;
-
-    // =================================================================================
-    // ===         0. LOADING THE MODEL
-    // =================================================================================
-    // Try loading the model if it hasn't been loaded yet
-    if (!isModelLoaded) {
-        load("drumLoopVAE.pt");
-    }
-
-    // get the density value
-    auto density = gui_params.getValueFor("Density");
-
-    // get latest groove received from ITP
-    auto hvo = model_input.hvo;
-
-    // preparing the input to encode() method
-    std::vector<torch::jit::IValue> enc_inputs;
-    enc_inputs.emplace_back(hvo);
-    enc_inputs.emplace_back(torch::tensor(density, torch::kFloat32));
-
-    // get the encode method
-    auto encode = model.get_method("encode");
-
-    // encode the input
-    auto encoder_output = encode(enc_inputs);
-
-    // get latent vector from encoder output
-    auto latent_vector = encoder_output.toTuple()->elements()[2].toTensor();
-
-    // Display the latent vector
-    DisplayTensor(latent_vector, "Latent Vector");
-
-    return newPatternGenerated;
-}
-    
-```
-
-<img src="{{ site.baseurl }}/assets/gifs/tut3/Encoded.gif">
-
-
-#### Decoding the Latent Vector
-
-We have done the hard part. Now, we just need to reuse the decoding scripts from the previous tutorial.
-
-```c++
-
-// MDL_Deploy.cpp
-
-    // previous code ...
-
-    // Prepare other inputs
-    auto voice_thresholds = torch::ones({9 }, torch::kFloat32) * 0.5f;
-    auto max_counts_allowed = torch::ones({9 }, torch::kFloat32) * 32;
-    int sampling_mode = 0;
-    float temperature = 1.0f;
-
-    // Prepare above for inference
-    std::vector<torch::jit::IValue> inputs;
-    inputs.emplace_back(latentVector);
-    inputs.emplace_back(voice_thresholds);
-    inputs.emplace_back(max_counts_allowed);
-    inputs.emplace_back(sampling_mode);
-    inputs.emplace_back(temperature);
-
-    // Get the scripted method
-    auto sample_method = model.get_method("sample");
-
-    // Run inference
-    auto output = sample_method(inputs);
-
-    // Extract the generated tensors from the output
-    auto hits = output.toTuple()->elements()[0].toTensor();
-    auto velocities = output.toTuple()->elements()[1].toTensor();
-    auto offsets = output.toTuple()->elements()[2].toTensor();
-
-    // wrap the generated tensors into a ModelOutput struct
-    model_output.hits = hits;
-    model_output.velocities = velocities;
-    model_output.offsets = offsets;
-
-    // Set the flag to true
-    newPatternGenerated = true;
-
-    // Rest of the code ...
-
-```
-
-Assuming that the PPP thread is exactly the same as the previous tutorial, we can see that the plugin is
+Assuming that the `MDL` and `PPP` threads are the same as the previous tutorial, we can see that the plugin is
 now working as expected:
 
-<img src="{{ site.baseurl }}/assets/gifs/tut3/Final.gif">
+<img src="{{ site.baseurl }}/assets/gifs/tut4/FinalA.gif">
+
+
+----
+
+## Alternative: Generating At Specific Times Only
+
+In the previous part, what we did was that we generated a new pattern as soon as we received a new `HostEvent`.
+
+However, we might want to generate a new pattern only at specific times. For example, we might want to generate a new
+pattern Every Two Quarter Notes. 
+
+To do this, we need to first modify the `Configs_HostEvents.h` file to specify that we want a `HostEvent` to be sent every quarter note
+
+```c++
+// Configs_HostEvents.h
+        
+namespace event_communication_settings {
+    // same as before ...
+    
+    // set to true EventFromHost for every time_shift_event ratio of quarter notes
+    constexpr bool SendTimeShiftEvents_FLAG{true};                                  <-- set to true
+    constexpr double delta_TimeShiftEventRatioOfQuarterNote{0.5};                    <-- set to 2      
+    
+    // same as before ...
+}
+```
+
+Then, we add modify the `InputTensorPreparatorThread` as follows:
+
+```c++
+// ITP_Deploy.cpp
+
+    // rest of the code same as before ...
+
+    // check that the deploy() method was called because of a new midi event
+    if (new_event_from_host.has_value()) {
+        if (new_event_from_host->isNewTimeShiftEvent()) {
+            SHOULD_SEND_TO_MODEL_FOR_GENERATION_ = true;
+        }
+        
+        // rest of the code same as before ...
+        
+```
+
+Now, the plugin will generate a new pattern every two quarter notes:
+
+<img src="{{ site.baseurl }}/assets/gifs/tut4/FinalB.gif">
