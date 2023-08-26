@@ -74,6 +74,8 @@ Depending on what sort of timing a generative model requires, a developer should
 <video width="85%" preload="auto" muted controls>
     <source src="{{ site.baseurl }}/assets/videos/BufferDAWProcessBlock.mp4" type="video/mp4"/>
 </video>
+
+
 ### Editor
 The editor in a VST3 plugin represents the graphical user interface (UI). 
 It's what the user interacts with when adjusting parameters and settings. 

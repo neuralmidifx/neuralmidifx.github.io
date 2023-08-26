@@ -63,7 +63,7 @@ juce_add_plugin("${BaseTargetName}"
 
 Once you re-build the cmake project, and re-build the plugin, you should see the name of the plugin change in the DAW:
 
-<img src="{{ site.baseurl }}/assets/images/tutorial4/0.PNG">
+<img src="{{ site.baseurl }}/assets/images/tutorial 4/0.PNG">
 
 Now we are ready to move on to the next step.
 
@@ -74,7 +74,7 @@ We will be reusing the exact same GUI as the previous tutorial. That said, we wi
 - Disable drag/drop of MIDI files
 - Enable Visualization of Incoming MIDI Events
 
-To customize the GUI we will be modifying the [`Configs_GUI.h`](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/tutorials/3_Groove2DrumUsingMidiFile/NeuralMidiFXPlugin/NeuralMidiFXPlugin/Configs_GUI.h)
+To customize the GUI we will be modifying the [`Configs_GUI.h`](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/tutorials/4_Groove2DrumRealTime/NeuralMidiFXPlugin/NeuralMidiFXPlugin/Configs_GUI.h)
 file.
 
 
@@ -106,9 +106,24 @@ Also, we can see that any incoming MIDI events from the DAW are now visualized i
 
 ## Specifying What Information We Need from DAW
 
+{: .note }
+> If you are not familiar with the concepts of per buffer processing in plugins,
+> refer to [this guide]({{ site.baseurl }}/docs/PluginBasics/#processor) before continuing.
+> 
 
+For specifying what information we need from the DAW, we will be modifying the [`Configs_HostEvents.h`](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/tutorials/4_Groove2DrumRealTime/NeuralMidiFXPlugin/NeuralMidiFXPlugin/Configs_HostEvents.h)
 
+{: .note }
+> 1. The events received from host are wrapped in a `EventFromHost` struct (see Documentation [here]({{ site.baseurl }}/datatypes/EventFromHost))  
+> 
+> 2. The received information from the DAW are provided sequentially, that is, every time a new event is received,
+> the `ITP Deploy()` method is called with the new information. As an example, if the DAW sends 10 events, the `ITP Deploy()`
+> method will be called 10 times, each time with a new event.
+>
 
+### Available Information from DAW
+
+As a refresher, let's watch the following video to remind ourselves what information can be received from the DAW. 
 
 
 
