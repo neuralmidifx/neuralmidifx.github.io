@@ -62,14 +62,18 @@ Depending on what sort of timing a generative model requires, a developer should
 > <iframe width="560" height="315" src="https://www.youtube.com/embed/tgf6J8foCiw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 > 
 
-#### Animation of the Buffer Information
+#### `Animation of the Buffer Information`
 
-BufferDAW0.mp4
-<video width="50%" preload="auto" muted controls>
+<video width="85%" preload="auto" muted controls>
     <source src="{{ site.baseurl }}/assets/videos/BufferDAW0.mp4" type="video/mp4"/>
 </video>
 
+#### `Animation of Processing a Buffer In the Plugin`
 
+
+<video width="85%" preload="auto" muted controls>
+    <source src="{{ site.baseurl }}/assets/videos/BufferDAWProcessBlock.mp4" type="video/mp4"/>
+</video>
 ### Editor
 The editor in a VST3 plugin represents the graphical user interface (UI). 
 It's what the user interacts with when adjusting parameters and settings. 
