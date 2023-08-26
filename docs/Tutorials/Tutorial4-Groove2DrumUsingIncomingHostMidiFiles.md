@@ -104,6 +104,24 @@ Also, we can see that any incoming MIDI events from the DAW are now visualized i
 
 <img src="{{ site.baseurl }}/assets/gifs/tut4/MidiInRT.gif">
 
+## Specifying What Information We Need from DAW
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## InputTensorPreparatorThread::deploy()
 This is the first time we are using the `InputTensorPreparatorThread` class as until now
 none of the tasks required an input to be prepared before running inference.
