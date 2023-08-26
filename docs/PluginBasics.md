@@ -65,11 +65,10 @@ Depending on what sort of timing a generative model requires, a developer should
 #### Animation of the Buffer Information
 
 BufferDAW0.mp4
-
-
-<video muted autoplay controls>
-    <source src="{{ site.baseurl }}/assets/videos/BufferDAW0.mp4" type="video/mp4">
+<video width="50%" preload="auto" muted controls>
+    <source src="{{ site.baseurl }}/assets/videos/BufferDAW0.mp4" type="video/mp4"/>
 </video>
+
 
 ### Editor
 The editor in a VST3 plugin represents the graphical user interface (UI). 
