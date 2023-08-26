@@ -123,9 +123,23 @@ For specifying what information we need from the DAW, we will be modifying the [
 
 ### Available Information from DAW
 
-As a refresher, let's watch the following video to remind ourselves what information can be received from the DAW. 
 
+There are different types available in the `EventFromHost` data type. 
 
+| Event Type               | Check Method                        | Description                                                                 |
+|--------------------------|-------------------------------------|-----------------------------------------------------------------------------|
+| FirstBufferEvent         | `new_event_from_host->isFirstBufferEvent()`  | Sent at the beginning of the host start.                                    |
+| PlaybackStoppedEvent     | `new_event_from_host->isPlaybackStoppedEvent()` | Sent when the host stops the playback.                                      |
+| NewBufferEvent           | `new_event_from_host->isNewBufferEvent()` | Sent at the beginning of every new buffer or when qpm, meter, etc. changes. |
+| NewBarEvent              | `new_event_from_host->isNewBarEvent()` | Sent at the beginning of every new bar.                                     |
+| NewTimeShiftEvent        | `new_event_from_host->isNewTimeShiftEvent()` | Sent every N QuarterNotes (as specified in the configs file                 |
+| NoteOnEvent              | `new_event_from_host->isNoteOnEvent()` | Sent when a note is played.                                                 |
+| NoteOffEvent             | `new_event_from_host->isNoteOffEvent()` | Sent when a note is stopped.                                                |
+| CCEvent                  | `new_event_from_host->isCCEvent()` | Sent for Control Change events.                                             |
+
+<video width="85%" preload="auto" muted controls>
+    <source src="{{ site.baseurl }}/assets/videos/BufferHostEvents.mp4" type="video/mp4"/>
+</video>
 
 
 

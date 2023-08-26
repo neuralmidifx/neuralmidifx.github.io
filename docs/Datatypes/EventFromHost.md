@@ -64,6 +64,9 @@ There are different types available in the `EventFromHost` data type.
 | NoteOffEvent             | `new_event_from_host->isNoteOffEvent()` | Sent when a note is stopped.                                                |
 | CCEvent                  | `new_event_from_host->isCCEvent()` | Sent for Control Change events.                                             |
 
+<video width="85%" preload="auto" muted controls>
+    <source src="{{ site.baseurl }}/assets/videos/BufferHostEvents.mp4" type="video/mp4"/>
+</video>
 
 ## 3. Accessing the information
 
