@@ -1,10 +1,10 @@
 ---
 layout: default
 title: 5 - Single Thread Implementation
-nav_order: 4
+nav_order: 5
 has_children: false
 parent: Tutorials
-permalink: /Tutorials/3_Groove2DrumRealTime/
+permalink: /Tutorials/5_SingleThread
 ---
 
 ## Table of contents

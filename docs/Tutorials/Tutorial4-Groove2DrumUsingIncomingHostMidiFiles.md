@@ -4,7 +4,7 @@ title: 4 - Groove to Drum (Real-Time)
 nav_order: 4
 has_children: false
 parent: Tutorials
-permalink: /Tutorials/3_Groove2DrumRealTime/
+permalink: /Tutorials/4_RealTimeGroove2Drum
 ---
 
 ## Table of contents
