@@ -300,3 +300,4 @@ To use this model in the `PPP_Deploy.cpp` file, we can simply use the local inst
 
 ```
 
+<img src="{{ site.baseurl }}/assets/gifs/tut5/ModelFound.gif">
