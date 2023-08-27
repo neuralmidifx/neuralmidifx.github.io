@@ -126,6 +126,19 @@ namespace event_communication_settings {
 > This flag is used to specify whether the `NewBufferEvent` should always be sent or should be sent 
 > only when the metadata (tempo, meter, ... ) changes.
 
+Lastly, let's assuming that there is a click track with which the user is synchronizing. To this end, let's also 
+enabe `NewBarEvent` events
+    
+```cpp
+   
+   // ...
+   
+   constexpr bool SendNewBarEvents_FLAG{true};
+   
+   // ...
+
+```
+
 Now we are ready to move on to the next step.
 
 To check that the above settings are correct, let's print some information to the console. 
@@ -169,4 +182,133 @@ std::pair<bool, bool> PlaybackPreparatorThread::deploy(bool new_model_output_rec
 
 ```
 
+We can see that we can correctly access time even if no notes are played.
+
 <img src="{{ site.baseurl }}/assets/gifs/tut6/TimePrint.gif">
+
+## `PPPData`
+
+Before we carry on with the implementation of the `Deploy` function, let's take a step back and think about the implementation.
+
+**Question 1:** Do we need to process incoming notes as they arrive? 
+   - This is certainly a possibility, however, for the sake of simplicity, we will process the notes only when it's time to respond (i.e. 2 seconds after the last note is played)
+   - So, we will need to have a vector and fill it up with incoming notes so as to process them later
+
+**Question 2:** How do we segment the incoming notes into 2 bar chunks?
+   - We can use the `NewBarEvent` to keep track of the bar locations
+   - Then adjust the timings of notes with respect to these bar locations
+   
+As a result, let's update the `PPPData` struct in [Configs_CustomStructs.h](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/tutorials/6_CallResponse/NeuralMidiFXPlugin/NeuralMidiFXPlugin/CustomStructs.h) 
+to include the following
+
+```cpp
+// Configs_CustomStructs.h
+
+// Any Extra Variables You need in PPP can be defined here
+// An instance called 'PPPdata' will be provided to you in Deploy() method
+struct PPPData {
+    // the scripted model to be used for inference 
+    torch::jit::script::Module model = load_processing_script("drumLoopVAE.pt");
+   
+   // Hits, velocities and microtimings of the notes played by the user
+   torch::Tensor hvo = torch::zeros({1, 32, 3}, torch::kFloat32);
+   
+   // Bar Locations
+   std::vector<double> bar_locations;
+   
+   // Time of the last note played
+   double last_note_time = 0.0;
+   
+   // Note On Events Since Call Section Started
+   std::vector<EventFromHost> note_on_events_since_call_section_started;
+   
+   // Flag to check if in response section (assume user starts first)
+   bool UserPerformanceIsBeingRecorded_FLAG = true;
+};
+
+```
+
+Now we are ready to implement the `Deploy` function.
+
+## `PPP deploy()` Implementation
+
+For this part we'll be modifying the [`PPP_Deploy.cpp`](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/tutorials/6_CallResponse/NeuralMidiFXPlugin/NeuralMidiFXPlugin/CustomStructs.h) 
+
+Let's start with keeping track of the user performance
+
+```cpp
+
+// PPP_Deploy().cpp
+
+std::pair<bool, bool> PlaybackPreparatorThread::deploy(bool new_model_output_received, bool did_any_gui_params_change) {
+
+    bool newPlaybackPolicyShouldBeSent = false;
+    bool newPlaybackSequenceGeneratedAndShouldBeSent = false;
+
+    // ---------------------------------------------------------------------------
+    // Call Section (i.e. user is playing)
+    // ---------------------------------------------------------------------------
+    if (new_model_output_received)
+    {
+        // check if any host data is received from model thread via model_output
+        auto new_event_from_host = model_output.new_event_from_host;
+        if (new_event_from_host.has_value()) {
+
+            // store the bar locations
+            if (new_event_from_host->isNewBarEvent()) {
+                PPPdata.bar_locations.emplace_back(new_event_from_host->Time().inQuarterNotes());
+            }
+
+            // keep track of played notes
+            if (new_event_from_host->isNoteOnEvent()) {
+
+                // if user is playing. we are in Call section
+                PPPdata.UserPerformanceIsBeingRecorded_FLAG = true;
+
+                // store note
+                PPPdata.note_on_events_since_call_section_started.emplace_back(*new_event_from_host);
+
+                // store time of last note
+                PPPdata.last_note_time = new_event_from_host->Time().inSeconds();
+            }
+
+            // check if two seconds elapsed since last note
+            if (new_event_from_host->Time().inSeconds() - PPPdata.last_note_time > 2.0) {
+
+                // if user is not playing. we are in Response section
+                // however check if any notes were played, otherwise keep waiting
+                if (!PPPdata.note_on_events_since_call_section_started.empty()) {
+
+                    PPPdata.UserPerformanceIsBeingRecorded_FLAG = false;
+
+                }
+            }
+        }
+        
+        // -----------------------------------------------------------------------
+        // Response Section (i.e. user is not playing)
+        // -----------------------------------------------------------------------
+        
+        // check if we should respond to the user
+        if (!PPPdata.UserPerformanceIsBeingRecorded_FLAG) {
+            // Test Code
+            // -----------------------------------------------------
+            PrintMessage("Time to generate a new sequence");
+            PPPdata.note_on_events_since_call_section_started.clear();
+            PPPdata.UserPerformanceIsBeingRecorded_FLAG = true;
+            // -----------------------------------------------------
+        }
+        
+    }
+
+    return {newPlaybackPolicyShouldBeSent, newPlaybackSequenceGeneratedAndShouldBeSent};
+}
+
+```
+
+Looking at the input we can see that the detection of call response sections is working as expected.
+
+<img src="{{ site.baseurl }}/assets/images/tutorial6/StartDetectionA.PNG">
+<img src="{{ site.baseurl }}/assets/images/tutorial6/StartDetectionB.PNG">
+
+
