@@ -34,8 +34,8 @@ The objective here is to build a call and response plugin with the following ass
 1. The user starts playing a sequence of notes
 2. Once the user stops playing for 2 seconds, we move on to generate a response
 3. To generate the response:
-   1. we will chop up the performance into non-overlapping 2 bar chunks
-   2. Then, we will generate a drum pattern for each 2bar chunk
+   1. we will detect the call section
+   2. Then, we will generate a 4 bar drum pattern based on the call section
    3. Finally, we will concatenate the generated drum patterns to create the response
 
 4. If the user starts playing again, we will stop playback of generations immediately and wait for the user to stop playing again
@@ -194,7 +194,8 @@ Before we carry on with the implementation of the `Deploy` function, let's take 
    - This is certainly a possibility, however, for the sake of simplicity, we will process the notes only when it's time to respond (i.e. 2 seconds after the last note is played)
    - So, we will need to have a vector and fill it up with incoming notes so as to process them later
 
-**Question 2:** How do we segment the incoming notes into 2 bar chunks?
+**Question 2:** How do we detect the start of a call section?
+   - Because we assumed that the user uses a click track to synchronize with the plugin, we can assume that the call section starts at a bar location
    - We can use the `NewBarEvent` to keep track of the bar locations
    - Then adjust the timings of notes with respect to these bar locations
    
@@ -208,10 +209,7 @@ to include the following
 // An instance called 'PPPdata' will be provided to you in Deploy() method
 struct PPPData {
     // the scripted model to be used for inference 
-    torch::jit::script::Module model = load_processing_script("drumLoopVAE.pt");
-   
-   // Hits, velocities and microtimings of the notes played by the user
-   torch::Tensor hvo = torch::zeros({1, 32, 3}, torch::kFloat32);
+    torch::jit::script::Module model = load_processing_script("drumLoopVAE.pt");   
    
    // Bar Locations
    std::vector<double> bar_locations;
@@ -262,8 +260,12 @@ std::pair<bool, bool> PlaybackPreparatorThread::deploy(bool new_model_output_rec
             // keep track of played notes
             if (new_event_from_host->isNoteOnEvent()) {
 
-                // if user is playing. we are in Call section
+                 // if user is playing. we are in Call section
                 PPPdata.UserPerformanceIsBeingRecorded_FLAG = true;
+
+                // Clear playing generations if any
+                playbackSequence.clear();
+                newPlaybackSequenceGeneratedAndShouldBeSent = true;
 
                 // store note
                 PPPdata.note_on_events_since_call_section_started.emplace_back(*new_event_from_host);
@@ -307,8 +309,32 @@ std::pair<bool, bool> PlaybackPreparatorThread::deploy(bool new_model_output_rec
 ```
 
 Looking at the input we can see that the detection of call response sections is working as expected.
+(4 means 1 bar, 16 means 4 bars and 24 means 6 bars; these match the locations in DAW view)
 
 <img src="{{ site.baseurl }}/assets/images/tutorial6/StartDetectionA.PNG">
 <img src="{{ site.baseurl }}/assets/images/tutorial6/StartDetectionB.PNG">
 
+Now that we have the starting location of the call section, we can re-do the previous operations for inference (tutorials 1-4).
 
+I will skip the details here, however, I want to mention one note about the playback policy. 
+
+In the previous tutorials, we played the generations in a loop mode. However, here we want to play it once and starting at a bar location.
+As a result, I use [`RealtimePlaybackInfo`]({{ site.baseurl }}/datatypes/RealtimePlaybackInfo) to find the location of an upcoming bar and 
+then adjust the timing of the notes accordingly
+
+```cpp
+// PPP_Deploy().cpp
+            
+            // ....
+            
+            // get Upcoming bar location
+            // find closest higher multiple of 8 to time_now
+            auto time_now = realtimePlaybackInfo->get().time_in_ppq;
+            auto upcoming_bar_location = ceil(time_now / 4.0) * 4.0;
+
+            // ....
+            
+            auto time = (step_ix + offset) * 0.25f + upcoming_bar_location;
+```
+
+<img src="{{ site.baseurl }}/assets/gifs/tut6/Final.gif">
