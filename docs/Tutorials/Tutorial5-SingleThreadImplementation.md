@@ -269,7 +269,7 @@ std::pair<bool, bool> PlaybackPreparatorThread::deploy(bool new_model_output_rec
 ```
 
 
-<img src="{{ site.baseurl }}/assets/gifs/tut5/AllReceivedCorrectly.gif">
+<img src="{{ site.baseurl }}/assets/gifs/tut5/AllGood.gif">
 
 
 ## Loading the Model in `PPP` Thread
