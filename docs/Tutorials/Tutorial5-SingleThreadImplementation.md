@@ -272,4 +272,31 @@ std::pair<bool, bool> PlaybackPreparatorThread::deploy(bool new_model_output_rec
 <img src="{{ site.baseurl }}/assets/gifs/tut5/AllReceivedCorrectly.gif">
 
 
+## Loading the Model in `PPP` Thread
+
+Loading the model in `PPP` thread is slightly different from the previous tutorials. The reason is that, there is no
+dedicated loader nor a dedicated place holder for the model in `PPP` thread. That said, we have the ability to load
+the model using the `PPPData` struct in [`CustomStructs.h`](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/tutorials/5_SingleThread/NeuralMidiFXPlugin/NeuralMidiFXPlugin/CustomStructs.h).
+as follows:
+
+```c++
+// CustomStructs.h
+
+// assuming that the model is called 'drumLoopVAE.pt' and is available somewhere int the TorchScript folder
+struct PPPData {
+    torch::jit::script::Module model = load_processing_script("drumLoopVAE.pt");
+};
+```
+
+To use this model in the `PPP_Deploy.cpp` file, we can simply use the local instance of `PPPData` (called `PPPdata`) as follows:
+
+```c++
+
+// PPP_Deploy.cpp
+
+    // some code ...
+    
+    PPPdata.model.forward(....);
+
+```
 
