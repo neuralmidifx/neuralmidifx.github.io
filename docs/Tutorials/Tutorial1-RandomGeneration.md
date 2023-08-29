@@ -26,6 +26,8 @@ In this tutorial, we will learn how to unconditionaly generate a random drum loo
 
 ---
 
+<img src="{{ site.baseurl }}/assets/images/tut1.jpg">
+
 ## Model Description
 The model we will be using in this exercise is a `VariationalAutoEncoder` (VAE) trained on the [Groove Midi Dataset](https://magenta.tensorflow.org/datasets/groove).
 

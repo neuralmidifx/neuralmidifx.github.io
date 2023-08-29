@@ -25,7 +25,7 @@ permalink: /Tutorials/4_RealTimeGroove2Drum
 > 
 > [Tutorial 4 Source Code](https://github.com/behzadhaki/NeuralMidiFXPlugin/tree/tutorials/4_Groove2DrumRealTime){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
-
+<img src="{{ site.baseurl }}/assets/images/tut4.jpg">
 ## Description
 
 In this tutorial, we will be modifying the previous tutorial to allow for real-time groove to drum accompaniment.

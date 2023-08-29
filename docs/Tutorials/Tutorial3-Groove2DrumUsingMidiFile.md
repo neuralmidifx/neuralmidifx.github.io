@@ -24,6 +24,7 @@ permalink: /Tutorials/3_Groove2DrumUsingMidiFile
 > 
 > [Tutorial 3 Source Code](https://github.com/behzadhaki/NeuralMidiFXPlugin/tree/tutorials/3_Groove2DrumUsingMidiFile){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
+<img src="{{ site.baseurl }}/assets/images/tut3.jpg">
 
 ## Description
 The model provided in the previous tutorials converts a single voice groove into a drum pattern.

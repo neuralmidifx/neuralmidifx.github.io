@@ -31,6 +31,8 @@ In this tutorial, we will expand on the previous tutorial and add the ability to
 > Please refer to the previous tutorial if you have not completed it yet.
 > 
 
+<img src="{{ site.baseurl }}/assets/images/tut2.jpg">
+
 ## Description
 We will be using the same model as the previous tutorial. 
 However, instead of having a single button which generates a random pattern, 
