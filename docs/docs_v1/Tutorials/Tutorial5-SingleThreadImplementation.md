@@ -44,7 +44,7 @@ In this tutorial, we will show you how to do this by modifying the wrapper as fo
     
 
 ## Plugin Name and Description
-As mentioned [here](https://neuralmidifx.github.io/docs/Installation#step-2-edit-plugin-name-and-description), we need
+As mentioned [here](https://neuralmidifx.github.io/docs/v1_0_0/Installation#step-2-edit-plugin-name-and-description), we need
 to specify the name of the plugin as well as some descriptions for it. 
 
 To do this, we will modify the [NeuralMidiFXPlugin/NeuralMidiFXPlugin/CMakeLists.txt](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/tutorials/5_SingleThread/NeuralMidiFXPlugin/NeuralMidiFXPlugin/CMakeLists.txt) file as follows:

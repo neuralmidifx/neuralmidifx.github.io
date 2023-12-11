@@ -61,7 +61,7 @@ bool ModelThread::deploy(bool new_model_input_received,
     // =================================================================================
     // ===         1. ACCESSING GUI PARAMETERS
     // Refer to:
-    // https://neuralmidifx.github.io/datatypes/GuiParams#accessing-the-ui-parameters
+    // https://neuralmidifx.github.io/docs/v1_0_0/datatypes/GuiParams#accessing-the-ui-parameters
     // =================================================================================
 
 
@@ -71,7 +71,7 @@ bool ModelThread::deploy(bool new_model_input_received,
     // =================================================================================
     // ===         1.b. ACCESSING REALTIME PLAYBACK INFORMATION
     // Refer to:
-    // https://neuralmidifx.github.io/datatypes/RealtimePlaybackInfo#accessing-the-realtimeplaybackinfo
+    // https://neuralmidifx.github.io/docs/v1_0_0/datatypes/RealtimePlaybackInfo#accessing-the-realtimeplaybackinfo
     // =================================================================================
 
 

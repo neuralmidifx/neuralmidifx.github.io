@@ -19,7 +19,7 @@ permalink: /v1_0_0/docs/Tutorials/6_CallResponse
 
 {: .warning }
 > In this tutorial, we will be using the same model as the previous tutorials, so make sure you have completed the previous tutorials.
-> Also, in this excercise, we will focus on a single thread implementation (as explained in [Tutorial 5](https://neuralmidifx.github.io/docs/Tutorials/5_SingleThreadImplementation)),
+> Also, in this excercise, we will focus on a single thread implementation (as explained in [Tutorial 5](https://neuralmidifx.github.io/docs/v1_0_0/Tutorials/5_SingleThreadImplementation)),
 > 
 
 {: .note }
@@ -42,7 +42,7 @@ The objective here is to build a call and response plugin with the following ass
 4. If the user starts playing again, we will stop playback of generations immediately and wait for the user to stop playing again
 
 ## Plugin Name and Description
-As mentioned [here](https://neuralmidifx.github.io/docs/Installation#step-2-edit-plugin-name-and-description), we need
+As mentioned [here](https://neuralmidifx.github.io/docs/v1_0_0/Installation#step-2-edit-plugin-name-and-description), we need
 to specify the name of the plugin as well as some descriptions for it. 
 
 To do this, we will modify the [NeuralMidiFXPlugin/NeuralMidiFXPlugin/CMakeLists.txt](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/tutorials/6_CallResponse/NeuralMidiFXPlugin/NeuralMidiFXPlugin/CMakeLists.txt) file as follows:

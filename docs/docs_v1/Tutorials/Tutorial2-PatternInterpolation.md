@@ -159,7 +159,7 @@ if (!isModelLoaded) {
     // =================================================================================
     // ===         1. ACCESSING GUI PARAMETERS
     // Refer to:
-    // https://neuralmidifx.github.io/datatypes/GuiParams#accessing-the-ui-parameters
+    // https://neuralmidifx.github.io/docs/v1_0_0/datatypes/GuiParams#accessing-the-ui-parameters
     // =================================================================================
     // check if the buttons have been clicked, if so, update the MDLdata
     auto ButtonATriggered = gui_params.wasButtonClicked("Random A");

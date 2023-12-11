@@ -61,7 +61,7 @@ bool InputTensorPreparatorThread::deploy(
     // =================================================================================
     // ===         1.a. ACCESSING GUI PARAMETERS
     // Refer to:
-    // https://neuralmidifx.github.io/datatypes/GuiParams#accessing-the-ui-parameters
+    // https://neuralmidifx.github.io/docs/v1_0_0/datatypes/GuiParams#accessing-the-ui-parameters
     // =================================================================================
 
 
@@ -71,7 +71,7 @@ bool InputTensorPreparatorThread::deploy(
     // =================================================================================
     // ===         1.b. ACCESSING REALTIME PLAYBACK INFORMATION
     // Refer to:
-    // https://neuralmidifx.github.io/datatypes/RealtimePlaybackInfo#accessing-the-realtimeplaybackinfo
+    // https://neuralmidifx.github.io/docs/v1_0_0/datatypes/RealtimePlaybackInfo#accessing-the-realtimeplaybackinfo
     // =================================================================================
 
 
@@ -81,7 +81,7 @@ bool InputTensorPreparatorThread::deploy(
     // =================================================================================
     // ===         2. ACCESSING INFORMATION (EVENTS) RECEIVED FROM HOST
     // Refer to:
-    //  https://neuralmidifx.github.io/datatypes/EventFromHost
+    //  https://neuralmidifx.github.io/docs/v1_0_0/datatypes/EventFromHost
     // =================================================================================
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     /* Warning!
@@ -98,7 +98,7 @@ bool InputTensorPreparatorThread::deploy(
     // ===         3. ACCESSING INFORMATION (EVENTS) RECEIVED FROM
     //                Mannually Drag-Dropped Midi Files
     // Refer to:
-    // https://neuralmidifx.github.io/datatypes/MidiFileEvent
+    // https://neuralmidifx.github.io/docs/v1_0_0/datatypes/MidiFileEvent
     // =================================================================================
 
 

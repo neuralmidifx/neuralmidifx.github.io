@@ -40,7 +40,7 @@ In this case, the plugin will need to do the following:
 4. Extract the drum pattern from the inference result
 
 ## Plugin Name and Description
-As mentioned [here](https://neuralmidifx.github.io/docs/Installation#step-2-edit-plugin-name-and-description), we need
+As mentioned [here](https://neuralmidifx.github.io/docs/v1_0_0/Installation#step-2-edit-plugin-name-and-description), we need
 to specify the name of the plugin as well as some descriptions for it. 
 
 To do this, we will modify the [NeuralMidiFXPlugin/NeuralMidiFXPlugin/CMakeLists.txt](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/tutorials/3_Groove2DrumUsingMidiFile/NeuralMidiFXPlugin/NeuralMidiFXPlugin/CMakeLists.txt) file as follows:
@@ -192,7 +192,7 @@ To this end, we will modify the `ModelInput` struct in [Configs_CustomStructs.h]
 ### Accessing the MIDI File
 Let's start with accessing a dropped MIDI file!
 
-As mentioned in the [documentation](https://neuralmidifx.github.io/docs/Plugin#midi-file-drag-and-drop), the plugin will
+As mentioned in the [documentation](https://neuralmidifx.github.io/docs/v1_0_0/Plugin#midi-file-drag-and-drop), the plugin will
 provide the Midi data one event at a time. To access these, we will modify the [`ITP_Deploy.cpp`](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/tutorials/3_Groove2DrumUsingMidiFile/NeuralMidiFXPlugin/NeuralMidiFXPlugin/ITP_Deploy.cpp)
 accordingly:
 
@@ -210,7 +210,7 @@ bool InputTensorPreparatorThread::deploy(
     // ===         ACCESSING INFORMATION (EVENTS) RECEIVED FROM
     //                Mannually Drag-Dropped Midi Files
     // Refer to:
-    // https://neuralmidifx.github.io/datatypes/MidiFileEvent
+    // https://neuralmidifx.github.io/docs/v1_0_0/datatypes/MidiFileEvent
     // =================================================================================
     
     // check if there is a new midi file event
@@ -330,7 +330,7 @@ bool ModelThread::deploy(bool new_model_input_received,
     // =================================================================================
     // ===              ACCESSING GUI PARAMETERS
     // Refer to:
-    // https://neuralmidifx.github.io/datatypes/GuiParams#accessing-the-ui-parameters
+    // https://neuralmidifx.github.io/docs/v1_0_0/datatypes/GuiParams#accessing-the-ui-parameters
     // =================================================================================
     auto density = gui_params.getValueFor("Density");
     PrintMessage("Density: " + std::to_string(density));

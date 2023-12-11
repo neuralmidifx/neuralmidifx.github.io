@@ -16,7 +16,7 @@
 title: NeuralMidiFx
 description: A Wrapper/Template for Deploying Generative Neural Network Models of Symbolic Music As VST Plugins
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://Breadcrumbsneuralmidifx.github.io" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://neuralmidifx.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 repository: neuralmidifx/neuralmidifx.github.io # for github-metadata
 
 permalink: pretty
