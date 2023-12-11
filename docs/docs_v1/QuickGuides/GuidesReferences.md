@@ -2,7 +2,7 @@
 layout: default
 title: Guides & References
 has_children: true
-grand_parent: V1.0.0 Documentation
+parent: V1.0.0 Documentation
 permalink: /v1_0_0/docs/GuidesReferences
 nav_order: 100
 ---
