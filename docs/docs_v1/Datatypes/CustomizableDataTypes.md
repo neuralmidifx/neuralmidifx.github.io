@@ -30,7 +30,7 @@ permalink: /docs/v1_0_0/datatypes/CustomizableDataTypes
 {: .note }
 > For this Stage of Deployment, You should modify the following files
 > 
-> [CustomStructs.h](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/master/NeuralMidiFXPlugin/NeuralMidiFXPlugin/CustomStructs.h){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+> [CustomStructs.h](https://github.com/behzadhaki/NeuralMidiFXPlugin/tree/releases/v1.0.0/NeuralMidiFXPlugin/NeuralMidiFXPlugin/CustomStructs.h){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 >
 
 You can modify the structures as you wish by adding or removing fields. 

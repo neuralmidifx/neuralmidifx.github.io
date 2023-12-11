@@ -22,7 +22,7 @@ permalink: /docs/v1_0_0/DeploymentStages/MDL/Deploy
 {: .note }
 > For this Stage of Deployment, You should modify the following file
 > 
-> [MDL_Deploy.cpp](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/master/NeuralMidiFXPlugin/NeuralMidiFXPlugin/MDL_Deploy.cpp){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+> [MDL_Deploy.cpp](https://github.com/behzadhaki/NeuralMidiFXPlugin/tree/releases/v1.0.0/NeuralMidiFXPlugin/NeuralMidiFXPlugin/MDL_Deploy.cpp){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 ---
 

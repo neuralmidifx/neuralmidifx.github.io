@@ -49,7 +49,7 @@ In Clion, you can reload your cmake project as shown in the image below:
 > On Mac, the content will be cloned into `~/Library/{BaseTargetName}/TorchScripts`
 > 
 > !Remember! that `{BaseTargetName}` is the name of the target you have specified in the `CMakeLists.txt` file
-> in [NeuralMidiFXPlugin/NeuralMidiFXPlugin/CMakeLists.txt](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/master/NeuralMidiFXPlugin/NeuralMidiFXPlugin/CMakeLists.txt).
+> in [NeuralMidiFXPlugin/NeuralMidiFXPlugin/CMakeLists.txt](https://github.com/behzadhaki/NeuralMidiFXPlugin/tree/releases/v1.0.0/NeuralMidiFXPlugin/NeuralMidiFXPlugin/CMakeLists.txt).
 > 
 
 {: .warning }

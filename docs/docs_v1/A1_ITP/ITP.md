@@ -88,7 +88,7 @@ For every event, regardless of its type, the following information is available:
 - `lastBarPos` --> Position of last bar (in quarter notes, seconds and samples) since the beginning of the host at the time of the event 
 
 {: .note }
-> Refer to [here](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/master/NeuralMidiFXPlugin/NeuralMidiFXPlugin/ITP_Deploy.cpp#L70C1-L107) for learning how to use, extract and access the information from the events.
+> Refer to [here](https://github.com/behzadhaki/NeuralMidiFXPlugin/tree/releases/v1.0.0/NeuralMidiFXPlugin/NeuralMidiFXPlugin/ITP_Deploy.cpp#L70C1-L107) for learning how to use, extract and access the information from the events.
 
 ### Modifying `Config_HostEvents.h`
 ```c++

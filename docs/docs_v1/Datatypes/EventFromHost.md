@@ -37,7 +37,7 @@ These data received from the host are wrapped in the `EventFromHost` data type a
 {: .note}
 > As mentioned before, you can specify which of these events you want to receive in the `ITP` thread 
 > 
-> To do so, you need to specify the [`Configs_HostEvents.h`](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/master/NeuralMidiFXPlugin/NeuralMidiFXPlugin/Configs_HostEvents.h)
+> To do so, you need to specify the [`Configs_HostEvents.h`](https://github.com/behzadhaki/NeuralMidiFXPlugin/tree/releases/v1.0.0/NeuralMidiFXPlugin/NeuralMidiFXPlugin/Configs_HostEvents.h)
 > file. To learn more about this process, visit [this page](({{site.baseurl}}/docs/v1_0_0/DeploymentStages/ITP/HostEvents)
 
 

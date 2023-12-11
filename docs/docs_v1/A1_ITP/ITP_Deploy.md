@@ -22,7 +22,7 @@ permalink: /docs/v1_0_0/DeploymentStages/ITP/Deploy
 {: .note }
 > For this Stage of Deployment, You should modify the following file
 > 
-> [ITP_Deploy.cpp](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/master/NeuralMidiFXPlugin/NeuralMidiFXPlugin/ITP_Deploy.cpp){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+> [ITP_Deploy.cpp](https://github.com/behzadhaki/NeuralMidiFXPlugin/tree/releases/v1.0.0/NeuralMidiFXPlugin/NeuralMidiFXPlugin/ITP_Deploy.cpp){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 ---
 
