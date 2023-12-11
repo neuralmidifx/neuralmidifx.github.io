@@ -4,7 +4,7 @@ title: 3. Input Preparation
 parent: V1.0.0 Documentation
 has_children: true
 nav_order: 60
-permalink: /v1_0_0/docs/DeploymentStages/ITP/
+permalink: /docs/v1_0_0/DeploymentStages/ITP/
 ---
 
 # Input Preparation

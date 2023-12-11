@@ -5,7 +5,7 @@ parent: 4. Inference
 grand_parent: V1.0.0 Documentation
 has_children: false
 nav_order: 2
-permalink: /v1_0_0/docs/DeploymentStages/MDL/Deploy
+permalink: /docs/v1_0_0/DeploymentStages/MDL/Deploy
 ---
 
 # Deploy() Method

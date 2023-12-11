@@ -4,7 +4,7 @@ title: PlaybackPolicy
 nav_order: 7
 has_children: false
 parent: Data Types
-permalink: /v1_0_0/docs/datatypes/PlaybackPolicy
+permalink: /docs/v1_0_0/datatypes/PlaybackPolicy
 grand_parent: V1.0.0 Documentation
 ---
 

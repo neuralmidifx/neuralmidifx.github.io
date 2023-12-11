@@ -5,7 +5,7 @@ nav_order: 3
 has_children: false
 parent: Tutorials
 grand_parent: V1.0.0 Documentation
-permalink: /v1_0_0/docs/Tutorials/3_Groove2DrumUsingMidiFile
+permalink: /docs/v1_0_0/Tutorials/3_Groove2DrumUsingMidiFile
 ---
 
 ## Table of contents

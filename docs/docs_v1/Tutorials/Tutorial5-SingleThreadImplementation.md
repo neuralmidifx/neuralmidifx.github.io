@@ -5,7 +5,7 @@ nav_order: 5
 has_children: false
 parent: Tutorials
 grand_parent: V1.0.0 Documentation
-permalink: /v1_0_0/docs/Tutorials/5_SingleThread
+permalink: /docs/v1_0_0/Tutorials/5_SingleThread
 ---
 
 ## Table of contents

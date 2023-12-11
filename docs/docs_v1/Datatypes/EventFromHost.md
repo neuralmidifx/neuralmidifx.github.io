@@ -4,7 +4,7 @@ title: EventFromHost
 nav_order: 3
 has_children: false
 parent: Data Types
-permalink: /v1_0_0/docs/datatypes/EventFromHost
+permalink: /docs/v1_0_0/datatypes/EventFromHost
 grand_parent: V1.0.0 Documentation
 ---
 

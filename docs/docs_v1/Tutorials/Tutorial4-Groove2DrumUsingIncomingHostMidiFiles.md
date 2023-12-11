@@ -5,7 +5,7 @@ nav_order: 4
 has_children: false
 parent: Tutorials
 grand_parent: V1.0.0 Documentation
-permalink: /v1_0_0/docs/Tutorials/4_RealTimeGroove2Drum
+permalink: /docs/v1_0_0/Tutorials/4_RealTimeGroove2Drum
 ---
 
 ## Table of contents

@@ -5,7 +5,7 @@ nav_order: 6
 has_children: false
 parent: Tutorials
 grand_parent: V1.0.0 Documentation
-permalink: /v1_0_0/docs/Tutorials/6_CallResponse
+permalink: /docs/v1_0_0/Tutorials/6_CallResponse
 ---
 
 ## Table of contents

@@ -3,7 +3,7 @@ layout: default
 title: V1.0.0 Documentation
 has_children: true
 nav_order: 1000
-permalink: /v1_0_0/docs
+permalink: /docs/v1_0_0
 ---
 
 # Version 1 Documentation

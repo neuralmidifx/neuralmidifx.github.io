@@ -3,7 +3,7 @@ layout: default
 title: Data Types 
 nav_order: 90
 has_children: true
-permalink: /v1_0_0/docs/datatypes
+permalink: /docs/v1_0_0/datatypes
 parent: V1.0.0 Documentation
 
 ---
