@@ -3,7 +3,9 @@ layout: default
 title: 4. Inference
 has_children: true
 nav_order: 70
-permalink: /DeploymentStages/MDL
+permalink: /v1_0_0/docs/DeploymentStages/MDL'
+parent: V1.0.0 Documentation
+
 ---
 
 # Inference Using Your Model

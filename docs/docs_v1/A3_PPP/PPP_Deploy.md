@@ -2,9 +2,10 @@
 layout: default
 title: Deploy() Method
 parent: 5. Playback Preparation
+grand_parent: V1.0.0 Documentation
 has_children: true
 nav_order: 2
-permalink: /DeploymentStages/PPP/Deploy
+permalink: /v1_0_0/DeploymentStages/PPP/Deploy
 ---
 
 # Deploy() Method

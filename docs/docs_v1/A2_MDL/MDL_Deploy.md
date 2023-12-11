@@ -2,9 +2,10 @@
 layout: default
 title: Deploy() Method
 parent: 4. Inference
-has_children: true
+grand_parent: V1.0.0 Documentation
+has_children: false
 nav_order: 2
-permalink: /DeploymentStages/MDL/Deploy
+permalink: /v1_0_0/DeploymentStages/MDL/Deploy
 ---
 
 # Deploy() Method

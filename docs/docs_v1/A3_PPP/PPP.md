@@ -1,9 +1,10 @@
 ---
 layout: default
 title: 5. Playback Preparation
+parent: V1.0.0 Documentation
 has_children: true
 nav_order: 80
-permalink: /DeploymentStages/PPP
+permalink: /v1_0_0/DeploymentStages/PPP
 ---
 
 # Prepare Generated Data for Playback
