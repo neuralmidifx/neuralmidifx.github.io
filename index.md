@@ -70,7 +70,7 @@ NeuralMidiFx is &copy; 2022-{{ "now" | date: "%Y" }} by [Behzad Haki](http://beh
 
 ---
 
-[Next: Overview & Architecture]({{site.baseurl}}/docs/v1_0_02_Overview){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+[Next: Overview & Architecture]({{site.baseurl}}/docs/v1_0_0/2_Overview){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 ----
 
