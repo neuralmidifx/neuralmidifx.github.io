@@ -18,5 +18,5 @@ via the host  [`PlaybackPreparator` thread, a.k.a `PPP`]({{ site.baseurl }}/docs
 In these threads, the wrapper provides a set of utilities for easily receiving and sending information from/to the 
 threads via the previously implemented inter-thread communication pipelines.
 
-<object data="https://neuralmidifx.github.io/docs/v1_0_0/assets/quickguide.pdf" width="1000" height="1000" type='application/pdf'></object>
+<object data="https://neuralmidifx.github.io/assets/quickguide.pdf" width="1000" height="1000" type='application/pdf'></object>
 
