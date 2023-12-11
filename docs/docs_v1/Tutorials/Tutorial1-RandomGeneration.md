@@ -4,7 +4,8 @@ title: 1 - Random Generation
 nav_order: 1
 has_children: false
 parent: Tutorials
-permalink: /Tutorials/1_RandomGeneration
+grand_parent: V1.0.0 Documentation
+permalink: /v1_0_0/docs/Tutorials/1_RandomGeneration
 ---
 
 ## Table of contents

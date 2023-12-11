@@ -4,7 +4,8 @@ title: 3 - Groove to Drum (Using MIDI File)
 nav_order: 3
 has_children: false
 parent: Tutorials
-permalink: /Tutorials/3_Groove2DrumUsingMidiFile
+grand_parent: V1.0.0 Documentation
+permalink: /v1_0_0/docs/Tutorials/3_Groove2DrumUsingMidiFile
 ---
 
 ## Table of contents

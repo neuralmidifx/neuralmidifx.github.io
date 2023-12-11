@@ -1,9 +1,10 @@
 ---
 layout: default
 title: Tutorials
+parent: V1.0.0 Documentation
 nav_order: 110
 has_children: true
-permalink: /tutorials
+permalink: /v1_0_0/docs/tutorials
 ---
 
 # Tutorials 

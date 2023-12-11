@@ -3,7 +3,9 @@ layout: default
 title: Data Types 
 nav_order: 90
 has_children: true
-permalink: /datatypes
+permalink: /v1_0_0/docs/datatypes
+parent: V1.0.0 Documentation
+
 ---
 
 # Data Types

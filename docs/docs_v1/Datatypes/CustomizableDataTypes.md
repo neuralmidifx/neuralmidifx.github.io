@@ -4,7 +4,7 @@ title: CustomizableDataTypes
 nav_order: 5
 has_children: false
 parent: Data Types
-permalink: /datatypes/CustomizableDataTypes
+permalink: /v1_0_0/docs/datatypes/CustomizableDataTypes
 ---
 
 # Customizable Data Types

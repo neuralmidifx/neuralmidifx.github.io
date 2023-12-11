@@ -4,7 +4,8 @@ title: 2 - Pattern Interpolation
 nav_order: 2
 has_children: false
 parent: Tutorials
-permalink: /Tutorials/2_PatternInterpolation
+grand_parent: V1.0.0 Documentation
+permalink: /v1_0_0/docs/Tutorials/2_PatternInterpolation
 ---
 
 ## Table of contents

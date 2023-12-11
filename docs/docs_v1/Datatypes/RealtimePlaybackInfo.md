@@ -4,7 +4,8 @@ title: RealtimePlaybackInfo
 nav_order: 2
 has_children: false
 parent: Data Types
-permalink: /datatypes/RealtimePlaybackInfo
+permalink: /v1_0_0/docs/datatypes/RealtimePlaybackInfo
+grand_parent: V1.0.0 Documentation
 ---
 
 # RealtimePlaybackInfo

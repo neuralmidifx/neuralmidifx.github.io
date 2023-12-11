@@ -4,7 +4,8 @@ title: 6 - Call and Response
 nav_order: 6
 has_children: false
 parent: Tutorials
-permalink: /Tutorials/6_CallResponse
+grand_parent: V1.0.0 Documentation
+permalink: /v1_0_0/docs/Tutorials/6_CallResponse
 ---
 
 ## Table of contents

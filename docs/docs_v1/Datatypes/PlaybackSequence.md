@@ -4,7 +4,8 @@ title: PlaybackSequence
 nav_order: 6
 has_children: false
 parent: Data Types
-permalink: /datatypes/PlaybackSequence
+permalink: /v1_0_0/docs/datatypes/PlaybackSequence
+grand_parent: V1.0.0 Documentation
 ---
 
 # PlaybackSequence

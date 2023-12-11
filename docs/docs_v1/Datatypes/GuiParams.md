@@ -4,7 +4,8 @@ title: GuiParams
 nav_order: 1
 has_children: false
 parent: Data Types
-permalink: /datatypes/GuiParams
+permalink: /v1_0_0/docs/datatypes/GuiParams
+grand_parent: V1.0.0 Documentation
 ---
 
 # GuiParams

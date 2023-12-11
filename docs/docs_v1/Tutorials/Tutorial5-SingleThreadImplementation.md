@@ -4,7 +4,8 @@ title: 5 - Single Thread Implementation
 nav_order: 5
 has_children: false
 parent: Tutorials
-permalink: /Tutorials/5_SingleThread
+grand_parent: V1.0.0 Documentation
+permalink: /v1_0_0/docs/Tutorials/5_SingleThread
 ---
 
 ## Table of contents
