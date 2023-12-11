@@ -1,5 +1,7 @@
 ---
 layout: default
+parent: V1.0.0 Documentation
+permalink: /v1_0_0/Overview
 title: Overview and Architecture
 nav_order: 20
 ---

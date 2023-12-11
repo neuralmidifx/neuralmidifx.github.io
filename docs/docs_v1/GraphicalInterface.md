@@ -2,7 +2,8 @@
 layout: default
 title: 2. Parameters and GUI
 nav_order: 50
-permalink: /docs/ParametersAndGUI
+parent: V1.0.0 Documentation
+permalink: /v1_0_0/docs/ParametersAndGUI
 ---
 
 # Plugin Parameters and Graphical Interface Rendering
