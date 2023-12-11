@@ -4,6 +4,7 @@ title: CustomizableDataTypes
 nav_order: 5
 has_children: false
 parent: Data Types
+grand_parent: V1.0.0 Documentation
 permalink: /docs/v1_0_0/datatypes/CustomizableDataTypes
 ---
 
