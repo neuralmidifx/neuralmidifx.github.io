@@ -115,4 +115,4 @@ how to safely exchange information between threads but rather focus on what info
 [Return to main website]({{site.baseurl}}/).
 ---
 
-[repo]: https://github.com/behzadhaki/NeuralMidiFXPlugin
+[repo]: https://github.com/behzadhaki/NeuralMidiFXPlugin/releases/tag/v1.0.0

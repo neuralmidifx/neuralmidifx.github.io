@@ -28,7 +28,7 @@ In the `PPP` thread, this data is already instantiated and can be accessed via t
 
 {: .note }
 > The timing of the events added to the sequence can be any unit you want.
-> That said, you should make sure that the [PlaybackPolicy]({{site.baseurl}}/datatypes/PlaybackPolicy) is set to the same unit.
+> That said, you should make sure that the [PlaybackPolicy]({{site.baseurl}}/docs/v1_0_0/datatypes/PlaybackPolicy) is set to the same unit.
 >
 
 ## Usage
