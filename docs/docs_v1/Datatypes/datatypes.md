@@ -32,10 +32,10 @@ the data types. You can find more information about each data type in the corres
 | Data Type           | Description                                                      | Usage/Availability | API                                             |
 |---------------------|------------------------------------------------------------------|--------------------|-------------------------------------------------|
 | ModelInput          | A structure holding any required data to be sent from ITP to MDL | ITP and MDL        | [Here]({{site.baseurl}}/docs/v1_0_0/datatypes/CustomizableDataTypes#modelinput--modeloutput)                        |
-| ModelOutput         | A structure holding any required data to be sent from MDL to PPP | MDL and PPP        | [Here]({{site.baseurl}}/docs/v1_0_0/datatypes/CustomizableDataTypes)                        |
-| ITPData             | A structure holding any required data to be used in ITP Thread   | ITP Only           | [Here]({{site.baseurl}}/docs/v1_0_0/datatypes/CustomizableDataTypes)                        |
-|MDLData             | A structure holding any required data to be used in MDL Thread   | MDL Only           | [Here]({{site.baseurl}}/docs/v1_0_0/datatypes/CustomizableDataTypes)                        |
-|PPPData             | A structure holding any required data to be used in PPP Thread   | PPP Only           | [Here]({{site.baseurl}}/docs/v1_0_0/datatypes/CustomizableDataTypes)                        |
+| ModelOutput         | A structure holding any required data to be sent from MDL to PPP | MDL and PPP        | [Here]({{site.baseurl}}/docs/v1_0_0/datatypes/CustomizableDataTypes#modelinput--modeloutput)                        |
+| ITPData             | A structure holding any required data to be used in ITP Thread   | ITP Only           | [Here]({{site.baseurl}}/docs/v1_0_0/datatypes/CustomizableDataTypes#customizable-data-for-use-within-itp-mdl-and-ppp-threads)                        |
+|MDLData             | A structure holding any required data to be used in MDL Thread   | MDL Only           | [Here]({{site.baseurl}}/docs/v1_0_0/datatypes/CustomizableDataTypes#customizable-data-for-use-within-itp-mdl-and-ppp-threads)                        |
+|PPPData             | A structure holding any required data to be used in PPP Thread   | PPP Only           | [Here]({{site.baseurl}}/docs/v1_0_0/datatypes/CustomizableDataTypes#customizable-data-for-use-within-itp-mdl-and-ppp-threads)                        |
 
 ## Non-Customizable Data Types
 ### Data Types Available in All Threads
