@@ -1,9 +1,10 @@
 ---
 layout: default
 title: 3. Input Preparation
+parent: V1.0.0 Documentation
 has_children: true
 nav_order: 60
-permalink: /DeploymentStages/ITP/
+permalink: /v1_0_0/docs/DeploymentStages/ITP/
 ---
 
 # Input Preparation
@@ -43,9 +44,6 @@ graph TD
 
     DAW1 -.->|Playhead, Tempo, Meter, MIDI ... | ITPThread
 ```
-
-
-
 
 ## Specification of the Information Required from the Host
 
