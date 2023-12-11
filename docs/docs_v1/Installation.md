@@ -2,7 +2,7 @@
 layout: default
 title: Installation
 parent: V1.0.0 Documentation
-permalink: /v1_0_0/Installation
+permalink: /docs/v1_0_0/Installation
 nav_order: 30
 ---
 

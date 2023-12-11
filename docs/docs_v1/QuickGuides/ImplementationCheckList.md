@@ -23,10 +23,10 @@ Use this checklist to make sure that you have implemented all the necessary step
 ---
 
 ## Step 1 - Model Preparation
-- [ ] [Model Preparation]({{ site.baseurl }}/docs/ModelPreparation)
-  - [ ] [Serialize your PyTorch model]({{ site.baseurl }}/docs/ModelPreparation/Serialization)
-  - [ ] [Place the model in "TorchScripts/Models/" folder (within the project)]({{ site.baseurl }}/docs/ModelPreparation/ImportingYourSerializedModels/#step-1-add-your-serialized-model-to-the-project) 
-  - [ ] [Reload Cmake Project (see note below)]({{ site.baseurl }}/docs/ModelPreparation/ImportingYourSerializedModels/#step-2-reload-the-cmake-project) 
+- [ ] [Model Preparation]({{ site.baseurl }}/docs/v1_0_0ModelPreparation)
+  - [ ] [Serialize your PyTorch model]({{ site.baseurl }}/docs/v1_0_0ModelPreparation/Serialization)
+  - [ ] [Place the model in "TorchScripts/Models/" folder (within the project)]({{ site.baseurl }}/docs/v1_0_0ModelPreparation/ImportingYourSerializedModels/#step-1-add-your-serialized-model-to-the-project) 
+  - [ ] [Reload Cmake Project (see note below)]({{ site.baseurl }}/docs/v1_0_0ModelPreparation/ImportingYourSerializedModels/#step-2-reload-the-cmake-project) 
 
 ```mermaid
 graph TD
@@ -40,10 +40,10 @@ graph TD
 
 ## Step 2 - Parameters
 
-- [ ] [Parameters]({{ site.baseurl }}/docs/GraphicalInterface)
-  - [ ] [Identify the parameters]({{ site.baseurl }}/docs/GraphicalInterface/#step-1-available-user-interface-elements)
-  - [ ] [Specify the GUI layout]({{ site.baseurl }}/docs/GraphicalInterface/#step-2-define-the-ui-elements)
-  - [ ] Specify [MIDI In]({{ site.baseurl }}/docs/GraphicalInterface/#step-4-midi-in-widget) or [MIDI Out]({{ site.baseurl }}/docs/GraphicalInterface/#step-5-midi-out-widget) Visualizers (if any)
+- [ ] [Parameters]({{ site.baseurl }}/docs/v1_0_0GraphicalInterface)
+  - [ ] [Identify the parameters]({{ site.baseurl }}/docs/v1_0_0GraphicalInterface/#step-1-available-user-interface-elements)
+  - [ ] [Specify the GUI layout]({{ site.baseurl }}/docs/v1_0_0GraphicalInterface/#step-2-define-the-ui-elements)
+  - [ ] Specify [MIDI In]({{ site.baseurl }}/docs/v1_0_0GraphicalInterface/#step-4-midi-in-widget) or [MIDI Out]({{ site.baseurl }}/docs/v1_0_0GraphicalInterface/#step-5-midi-out-widget) Visualizers (if any)
 
 ```mermaid
 graph TD

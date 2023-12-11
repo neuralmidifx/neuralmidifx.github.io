@@ -128,7 +128,7 @@ Now we are ready to move on to the next step.
 
 ### 1. Placing a button for random generation
 
-As discussed in the [Graphical Interface]({{site.baseurl}}/docs/ParametersAndGUI) section of the documentation, 
+As discussed in the [Graphical Interface]({{site.baseurl}}/docs/v1_0_0ParametersAndGUI) section of the documentation, 
 to prepare the interface we will need to figure out what UI elements we need as well as how we want to organize them!
 
 For this tutorial, all we need is a single button which will trigger the generation of a random pattern. As such, 

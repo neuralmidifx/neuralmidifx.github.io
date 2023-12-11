@@ -2,6 +2,7 @@
 layout: default
 title: VST Plugin Basics
 nav_order: 10
+permalink: /pluginbasics
 ---
 
 # Plugin Basics

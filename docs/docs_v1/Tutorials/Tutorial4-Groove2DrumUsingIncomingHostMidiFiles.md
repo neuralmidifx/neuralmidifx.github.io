@@ -109,7 +109,7 @@ Also, we can see that any incoming MIDI events from the DAW are now visualized i
 
 {: .note }
 > If you are not familiar with the concepts of per buffer processing in plugins,
-> refer to [this guide]({{ site.baseurl }}/docs/PluginBasics/#processor) before continuing.
+> refer to [this guide]({{ site.baseurl }}/docs/v1_0_0PluginBasics/#processor) before continuing.
 > 
 
 For specifying what information we need from the DAW, we will be modifying the [`Configs_HostEvents.h`](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/tutorials/4_Groove2DrumRealTime/NeuralMidiFXPlugin/NeuralMidiFXPlugin/Configs_HostEvents.h)

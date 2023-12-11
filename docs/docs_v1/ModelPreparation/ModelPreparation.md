@@ -16,11 +16,11 @@ In this section we will discuss the steps required to prepare a model for deploy
 
 ## Serialization of Trained PyTorch Models
 
-We have prepared a guide on how to serialize trained PyTorch models [here]({{site.baseurl}}/docs/ModelPreparation/Serialization/).
+We have prepared a guide on how to serialize trained PyTorch models [here]({{site.baseurl}}/docs/v1_0_0ModelPreparation/Serialization/).
 
 {: .warning }
 > At the moment, we only support PyTorch models. We are working on adding support for [ONNX](https://github.com/onnx/tutorials) models as well.
 
 ## Add a Serialized Model to the Plugin Project
 
-Once you have serialized your model, you can add it to the plugin project using the guide [here]({{site.baseurl}}/docs/ModelPreparation/ImportingYourSerializedModels/).
+Once you have serialized your model, you can add it to the plugin project using the guide [here]({{site.baseurl}}/docs/v1_0_0ModelPreparation/ImportingYourSerializedModels/).

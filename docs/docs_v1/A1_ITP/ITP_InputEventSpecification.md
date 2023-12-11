@@ -61,7 +61,7 @@ the bar/beat information). NeuralMidiFx allows you to easily specify the subset 
 the information you need from the host.
 
 {: .note }
-> Edit the [`Config_HostEvents.h` file]({{ site.baseurl }}/docs/DeploymentThreads/Config_HostEvents) to specify the information required from the host.
+> Edit the [`Config_HostEvents.h` file]({{ site.baseurl }}/docs/v1_0_0DeploymentThreads/Config_HostEvents) to specify the information required from the host.
 
 
 ### Available Events
@@ -76,7 +76,7 @@ This event is useful to figure out when the host starts playing.
 This event is useful to figure out when the host stops playing.
 - `NewBufferEvent` --> The event sent by the host at the beginning of every new buffer (if playhead is running).
 In case you have a specific model that requires to know the position of the playhead at any given time, 
-use this event. (See [Plugin Basics]({{ site.baseurl }}/docs/PluginBasics/#processor) chapter if you are not familiar with the concept of buffer)
+use this event. (See [Plugin Basics]({{ site.baseurl }}/docs/v1_0_0PluginBasics/#processor) chapter if you are not familiar with the concept of buffer)
 - `NewBarEvent` --> The event sent by the host at the beginning of every new bar (if playhead is running).
 In case you use bar locations in your tokenization process, use this event.
 - `NewTimeShiftEvent` --> The event sent by the host every N quarter notes (if playhead is running).
