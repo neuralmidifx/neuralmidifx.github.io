@@ -68,10 +68,6 @@ NeuralMidiFx is &copy; 2022-{{ "now" | date: "%Y" }} by [Behzad Haki](http://beh
 
 ### Contributing
 
----
-
-[Next: Overview & Architecture]({{site.baseurl}}/docs/v1_0_0/2_Overview){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
-
 ----
 
 [1^]: Haki B, Lenz J, Jorda S. NeuralMidiFx: A Wrapper Template for Deploying Neural Networks as VST3 Plugins. AIMC 2023 . Available from: https://aimc2023.pubpub.org/pub/givwzz98

@@ -106,11 +106,6 @@ how to safely exchange information between threads but rather focus on what info
 [See DeploymentThreads/MDL/PPP Output Structure]({{site.baseurl}}/docs/v1_0_0/6_DeploymentThreads/6B_MDL/#model-output-structure){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 
----
-
-[Previous: Home]({{site.baseurl}}/){: .btn .fs-5 .mb-4 .mb-md-0 }
-[Next: Installation]({{site.baseurl}}/docs/v1_0_0/3_Installation){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
-
 --- 
 [Return to main website]({{site.baseurl}}/).
 ---
