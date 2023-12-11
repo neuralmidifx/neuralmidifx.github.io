@@ -2,9 +2,10 @@
 layout: default
 title: B. Deploy() Method
 parent: 3. Input Preparation
+grand_parent: V1.0.0 Documentation
 has_children: true
 nav_order: 2
-permalink: /DeploymentStages/ITP/Deploy
+permalink: /v1_0_0/docs/DeploymentStages/ITP/Deploy
 ---
 
 # Deploy() Method

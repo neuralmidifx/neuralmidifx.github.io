@@ -2,9 +2,10 @@
 layout: default
 title: A. Specify Host Events
 parent: 3. Input Preparation
+grand_parent: V1.0.0 Documentation
 has_children: true
 nav_order: 1
-permalink: /DeploymentStages/ITP/HostEvents
+permalink: /v1_0_0/docs/DeploymentStages/ITP/HostEvents
 ---
 
 # Input Tensor Preparator Thread (ITP)
