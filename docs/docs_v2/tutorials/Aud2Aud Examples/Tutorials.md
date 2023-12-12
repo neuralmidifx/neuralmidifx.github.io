@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Aud2Aud Tutorials
-
+title: Aud2Aud
+parent: Demos
 nav_order: 112
 has_children: true
-permalink: /docs/v2_0_0/tutorials
+permalink: /docs/v2_0_0/Demos/Aud2Aud
 ---
 
 # Tutorials 

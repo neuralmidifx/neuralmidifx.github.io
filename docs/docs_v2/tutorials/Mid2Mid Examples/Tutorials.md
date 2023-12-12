@@ -2,8 +2,9 @@
 layout: default
 title: Mid2Mid Tutorials
 nav_order: 110
+parent: Demos
 has_children: true
-permalink: /docs/v2_0_0/tutorials
+permalink: /docs/v2_0_0/Demos/Mid2Mid
 ---
 
 # Tutorials 
