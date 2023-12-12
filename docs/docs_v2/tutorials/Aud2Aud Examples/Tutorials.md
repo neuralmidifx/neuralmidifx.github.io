@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Tutorials
+title: Aud2Aud Tutorials
 
-nav_order: 110
+nav_order: 112
 has_children: true
 permalink: /docs/v2_0_0/tutorials
 ---
