@@ -27,7 +27,8 @@ The deployment will be done in the `deploy` method of the `DPL` class, which is 
 This method does not run all the time, but rather, it is only triggered whenever any status of the plugin that may
 impact the generation process changes. To be more specific, the `deploy` method is triggered whenever any of the following
 changes:
-- An [EventFromHost]({{ site.baseurl }}/docs/v2_0_0/datatypes/EventFromHost) is received from the host
+- An [EventFromHost]({{ site.baseurl }}/docs/v2_0_0/datatypes/EventFromHost) is received from the host. You need to
+specify what events are required from the host (see [here]({{ site.baseurl }}/docs/v2_0_0/DeploymentThread_DPL/SpecifyHostEvents)
 - A [GUI Parameter]({{ site.baseurl }}/docs/v2_0_0/datatypes/GuiParams) is changed
 - An [Audio file]({{ site.baseurl }}/docs/v2_0_0/datatypes/AudioVisualizersData) or 
 [MIDI file]({{ site.baseurl/docs/v2_0_0/datatypes/MidiVisualizersData }}) is dropped on any of the plugin's 
@@ -40,5 +41,6 @@ and specify what sequence and how it should be played back. This is done by wrap
 respectively.
 
 <object data="https://neuralmidifx.github.io/assets/quickGuide - v2.pdf" width="1000" height="1000" type='application/pdf'></object>
+
 
 An overview of the "deploy" method is available [here]({{ site.baseurl }}/docs/v2_0_0/DeploymentThread_DPL/deploy_method).
