@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Guides & References
+title: Guides&References
 has_children: true
 
 permalink: /docs/v2_0_0/GuidesReferences
