@@ -36,7 +36,9 @@ following methods:
 > Rotary/Sliders: gui_params.getValueFor([slider/rotary name])
 > Toggle Buttons: gui_params.isToggleButtonOn([button name])
 > Trigger Buttons: gui_params.wasButtonClicked([button name])
+> Comboboxes : gui_params.getComboBoxSelectionText([combo box name])
 > ```
+
 
 For example, if you have a slider named "Slider 1", a toggle button named "ToggleButton 1", and a trigger button named "TriggerButton 1", you can access them like this:
 ```c++
@@ -55,6 +57,7 @@ provided `gui_params_changed_since_last_call` flag
         auto ButtonTrigger = gui_params.wasButtonClicked("TriggerButton 1");
     }
 ```
+
 
 {: .warning }
 > You should be careful about the following:
