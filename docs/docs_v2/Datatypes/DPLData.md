@@ -31,10 +31,15 @@ The content of this struct can be accessed from within the `deploy` method of ea
 > If you need to use a custom torch script in the threads for any reason,
 > you can add the following variable to these structs:
 > ```c++
+> 
 >   // assuming that you have your script in a file called "my_script.pt" located 
 >   // in the `TorchScripts/ProcessingScripts` folder
 >   
 >   struct DPLData {
+> 
 >      // ... some code here
+> 
 >     torch::jit::script::Module my_script = load_processing_script("my_script.pt");
+> 
+>   };
 > '''
