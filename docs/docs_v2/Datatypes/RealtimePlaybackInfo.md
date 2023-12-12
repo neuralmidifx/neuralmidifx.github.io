@@ -5,7 +5,7 @@ nav_order: 7
 has_children: false
 parent: Data Types
 permalink: /docs/v2_0_0/datatypes/RealtimePlaybackInfo
-grand_parent: V2.0.0 Documentation
+
 ---
 
 # RealtimePlaybackInfo

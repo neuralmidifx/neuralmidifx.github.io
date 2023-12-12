@@ -2,7 +2,7 @@
 layout: default
 title: Implementation Checklist
 parent: Guides & References
-grand_parent: V2.0.0 Documentation
+
 permalink: /docs/v2_0_0/GuidesReferences/ImplementationChecklist
 nav_order: 1
 ---

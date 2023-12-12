@@ -5,7 +5,7 @@ nav_order: 8
 has_children: false
 parent: Data Types
 permalink: /docs/v2_0_0/datatypes/EventFromHost
-grand_parent: V2.0.0 Documentation
+
 ---
 
 # EventFromHost

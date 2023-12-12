@@ -5,7 +5,7 @@ nav_order: 10
 has_children: false
 parent: Data Types
 permalink: /docs/v2_0_0/datatypes/PlaybackSequence
-grand_parent: V2.0.0 Documentation
+
 ---
 
 # PlaybackSequence
