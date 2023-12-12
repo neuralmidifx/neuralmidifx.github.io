@@ -1,7 +1,7 @@
 ---
 layout: default
 title: VST Plugin Basics
-nav_order: 10
+nav_order: 2
 permalink: /pluginbasics
 ---
 

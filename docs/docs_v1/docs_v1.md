@@ -2,7 +2,7 @@
 layout: default
 title: V1.0.0 Documentation
 has_children: true
-nav_order: 1000
+nav_order: 4
 permalink: /docs/v1_0_0
 ---
 
