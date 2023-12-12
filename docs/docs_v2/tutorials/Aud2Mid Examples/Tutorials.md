@@ -2,7 +2,7 @@
 layout: default
 title: Aud2Mid
 parent: Demos
-nav_order: 111
+nav_order: 3
 has_children: true
 permalink: /docs/v2_0_0/Demos/Aud2Mid
 ---

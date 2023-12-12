@@ -1,8 +1,8 @@
 ---
 layout: default
-title: Mid2Aud Tutorials
+title: Mid2Aud
 parent: Demos
-nav_order: 113
+nav_order: 2
 has_children: true
 permalink: /docs/v2_0_0/Demos/Mid2Aud
 ---

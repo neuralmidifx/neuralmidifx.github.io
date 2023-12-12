@@ -1,7 +1,7 @@
 ---
 layout: default
-title: Mid2Mid Tutorials
-nav_order: 110
+title: Mid2Mid
+nav_order: 1
 parent: Demos
 has_children: true
 permalink: /docs/v2_0_0/Demos/Mid2Mid
