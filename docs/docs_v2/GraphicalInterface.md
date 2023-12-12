@@ -18,16 +18,23 @@ permalink: /docs/v2_0_0/ParametersAndGUI
 {: .note }
 > For this Stage of Deployment, You should modify the following file
 > 
-> [Configs_GUI.h](https://github.com/behzadhaki/NeuralMidiFXPlugin/tree/releases/V2.0.0/NeuralMidiFXPlugin/NeuralMidiFXPlugin/Configs_GUI.h){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+> [Deployment/settings.json](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/releases/v2.0.0/Deployment/settings.json){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 ---
+
 
 ## Step 1: Available User Interface Elements
 The wrapper allows for automatic rendering of the plugin's graphical interface. All you need to do, is to
 decide what sort of UI elements you would like to have in your plugin.
 
 {: .note }
-> At this moment, only vertical sliders, rotary knobs and buttons are supported. More UI elements will be added in the future.
+> Available UI elements are:
+> 1. Sliders (horizontal and vertical)
+> 2. Rotary Knobs
+> 3. Toggle/Trigger Buttons
+> 4. Combo Boxes
+> 5. Midi Visualizer
+> 6. Audio Visualizer
 
 Once you have decided what sort of UI elements you would like to have in your plugin, continue with the following steps.
 
@@ -36,40 +43,66 @@ Once you have decided what sort of UI elements you would like to have in your pl
 {: .note }
 > The UI elements can be organized in tabs. Each tab can have any number of sliders, rotary knobs and buttons.
 
+{: .important }
+> All UI elements must have a unique label. This label is used to access the value of UI elements in the code.
+> In the case of Midi/Audio Visualizers, this label is also used to update the content of the visualizer.
 
 ## Step 2. Define the UI Elements
 
-In `Configs_GUI.h`, you can define the UI elements that you would like to have in your plugin.
+In `Settings.json`, you can define the UI elements that you would like to have in your plugin.
 
-```c++
-    namespace Tabs {
-        const bool show_grid = true;
-        const bool draw_borders_for_components = true;
-        const std::vector<tab_tuple> tabList{
-            tab_tuple
-            {
-                "Tab 1", // use any name you want for the tab
-                slider_list
+```json
+    {
+    "UI": {
+        "Tabs": {
+            "show_grid": true,
+            "draw_borders_for_components": true,
+            "tabList": [
                 {
-                    slider_tuple{"Slider 1", 0.0, 1.0, 0.0, "Cc", "Ek"} 
+                    "name": "Tab 1",
+                    "sliders": [
+                        { ... }, { ... }
+                    ],
+                    "rotaries": [
+                         { ... }, { ... }
+                    ],
+                    "buttons": [
+                         { ... }, { ... }
+                    ],
+                    "MidiDisplays": [
+                         { ... }, { ... }
+                    ]
                 },
-                rotary_list
+              
                 {
-                    rotary_tuple{"Rotary 1", 0.0, 1.0, 0.5, "Vc", "Xk"},
-                    rotary_tuple{"Rotary 2", 0.0, 4.0, 1.5, "Ij", "Qr"}
-                },
-                button_list
-                {
-                    button_tuple{"TriggerButton 1", false, "Wv", "Zz"}
+                    "name": "Tab 1",
+                    "sliders": [
+                        { ... }, { ... }
+                    ],
+                    "rotaries": [
+                         { ... }, { ... }
+                    ],
+                    "buttons": [
+                         { ... }, { ... }
+                    ],
+                    "MidiDisplays": [
+                         { ... }, { ... }
+                    ]
                 }
-            },
-            
-            ...
-    }
-```
+            ]
+        },
 
-### Adding a Tab
-To add a tab, add a new `tab_tuple` to the `tabList` vector.
+        "MidiInVisualizer": { .... },
+        "GeneratedContentVisualizer": { ... }
+
+    },
+
+    "StandaloneTransportPanel": { ... },
+
+    "VirtualMidiOut": { ... }
+
+}
+```
 
 ### Showing a Grid (For Design Stage)
 To show a grid, set `show_grid` to `true`. To hide the grid, set `show_grid` to `false`.
@@ -80,99 +113,189 @@ Each point in the grid is a capital letter (column) and a lowercase letter (row)
 To draw borders for the UI elements, set `draw_borders_for_components` to `true`. 
 To hide the borders, set `draw_borders_for_components` to `false`.
 
-### Adding a Slider
-To add a slider, add a new `slider_tuple` to the `slider_list` vector. Each slider tuple has the following format:
+### Adding Tabs
+To add a tab, add a new entry to the `tabList` array. Each tab has a `name` and a list of UI elements.
+The UI elements can be sliders, rotary knobs, buttons, comboboxes or MIDI displays.
 
-```c++
-Syntax: 
-    slider_tuple{label, min_val, max_val, default, top_left_corner, bottom_right_corner}
-
-Example:
-    slider_tuple{"Slider 1", 0.0, 1.0, 0.0, "Cc", "Ek"} 
+```json
+            "tabList": 
+            [
+                {
+                    "name": "Tab 1",
+                    "sliders": [ ],
+                    "rotaries": [ ],
+                    "buttons": [ ],
+                    "MidiDisplays": [ ]
+                },
+              
+                {
+                    "name": "Tab 2",
+                    "sliders": [ ],
+                    "rotaries": [ ],
+                    "buttons": [ ],
+                    "MidiDisplays": [ ]
+                }
+            ]
 ```
 
-### Adding a Rotary Knob
-To add a rotary knob, add a new `rotary_tuple` to the `rotary_list` vector. Each rotary tuple has the following format:
 
-```c++
-Syntax: 
-    rotary_tuple{label, min_val, max_val, default, top_left_corner, bottom_right_corner}
-    
-Example:
-    rotary_tuple{"Rotary 1", 0.0, 1.0, 0.5, "Vc", "Xk"}
+### Adding Sliders
+To add a slider, add a new entry to the `sliders` array. 
+
+To access the values of these elements, refer to [GuiParams]({{site.baseurl}}/docs/v2_0_0/datatypes/GuiParams)
+
+```json
+        {
+            "label": "Slider 1",       --> The label of the slider 
+            "min": 0.0,                 --> The minimum value of the slider
+            "max": 1.0,                 --> The maximum value of the slider
+            "default": 0.5,             --> The default value of the slider
+            "topLeftCorner": "Ll",      --> The top left corner of the slider
+            "bottomRightCorner": "Pp"   --> The bottom right corner of the slider
+        },
+        {
+            "label": "Slider 2",           
+            "min": 0.0,
+            "max": 4.0,
+            "default": 1.5,
+            "topLeftCorner": "Pp",
+            "bottomRightCorner": "Tt",
+            "horizontal": true          --> If true, the slider will be horizontal. 
+                                            If false or unspecified, the slider will be vertical.
+
+        }
+```
+### Adding Rotary Knobs
+To add a rotary knob, add a new entry to the `rotaries` array. 
+
+To access the values of these elements, refer to [GuiParams]({{site.baseurl}}/docs/v2_0_0/datatypes/GuiParams)
+
+```json
+        {
+            "label": "Rotary 1",        --> The label of the rotary knob
+            "min": 0.0,                 --> The minimum value of the rotary knob
+            "max": 1.0,                 --> The maximum value of the rotary knob
+            "default": 0.5,             --> The default value of the rotary knob
+            "topLeftCorner": "Ll",      --> The top left corner of the rotary knob
+            "bottomRightCorner": "Pp"   --> The bottom right corner of the rotary knob
+        }
 ```
 
-### Adding a Click Button
-To add a click button, add a new `button_tuple` to the `button_list` vector. Each button tuple has the following format:
+### Adding Click/Trigger Buttons
+To add a click button, add a new entry to the `buttons` array. 
 
-```c++
-Syntax: 
-    button_tuple{label, false, top_left_corner, bottom_right_corner}
+To access the values of these elements, refer to [GuiParams]({{site.baseurl}}/docs/v2_0_0/datatypes/GuiParams)
 
-Example:
-    button_tuple{"TriggerButton 1", false, "Wv", "Zz"}
+```json
+        {
+            "label": "TriggerButton 1",
+            "isToggle": false,              
+            "topLeftCorner": "Wv",
+            "bottomRightCorner": "Zz"
+        }
 ```
 
-### Adding a Toggle Switch Button
-To add a toggle switch button, add a new `button_tuple` to the `button_list` vector. Each button tuple has the following format:
+### Adding Toggle Switch Buttons
+To add a toggle button, add a new entry to the `buttons` array. 
 
-```c++
-Syntax: 
-    button_tuple{label, true, top_left_corner, bottom_right_corner}
+To access the values of these elements, refer to [GuiParams]({{site.baseurl}}/docs/v2_0_0/datatypes/GuiParams)
 
-Example:
-    button_tuple{"ToggleSwitchButton 1", true, "Wv", "Zz"}
+```json
+        {
+            "label": "ToggleButton 2",
+            "isToggle": true,              
+            "topLeftCorner": "Wv",
+            "bottomRightCorner": "Zz"
+        }
 ```
 
-## Step 3. MIDI In Widget
+### Adding Combo Boxes
+To add a combo box, add a new entry to the `comboBoxes` array. 
+
+To access the values of these elements, refer to [GuiParams]({{site.baseurl}}/docs/v2_0_0/datatypes/GuiParams)
+
+```json
+        {
+            "label": "ComboBox 1",
+            "topLeftCorner": "Wv",
+            "bottomRightCorner": "Zz",
+            "items": [ "Item 1", "Item 2", "Item 3" ] --> The items shown in the combo box
+        }
+```
+
+### Midi Visualizer
+To add a MIDI visualizer, add a new entry to the `MidiDisplays` array. 
+
+To access/set the values of these elements, refer to [MidiVisualizersData]({{site.baseurl}}/docs/v2_0_0/datatypes/MidiVisualizersData)
+
+```json
+        {
+            "label": "MidiDisplay 1",
+            "topLeftCorner": "Bb",
+            "bottomRightCorner": "Jh",
+            "allowToDragOutAsMidi": true,   --> If true, the user can drag out the MIDI data as a MIDI file
+            "allowToDragInMidi": true,      --> If true, the user can drag in a MIDI file
+            "needsPlayhead": true           --> If true, the playhead will be shown
+        }
+```
+
+In case, you want to show that the content is looped, specify 'PlayheadLoopDurationQuarterNotes', otherwise, 
+the playhead will not be looped.
+
+
+```json
+        {
+            "label": "MidiDisplay 2",
+            "topLeftCorner": "Jh",
+            "bottomRightCorner": "Ro",
+            "allowToDragOutAsMidi": true,
+            "allowToDragInMidi": true,
+            "needsPlayhead": true,
+            "PlayheadLoopDurationQuarterNotes": 4.0 --> The duration of the loop in quarter notes
+        }
+
+```
+
+### Audio Visualizer
+To add an audio visualizer, add a new entry to the `AudioDisplays` array. 
+
+If you want to show that the content is looped, specify 'PlayheadLoopDurationSamples', otherwise,
+the playhead will not be looped.
+
+To access/set the values of these elements, refer to [AudioVisualizersData]({{site.baseurl}}/docs/v2_0_0/datatypes/AudioVisualizersData)
+
+
+```json
+        {
+            "label": "AudioDisplay 2",
+            "topLeftCorner": "Jh",
+            "bottomRightCorner": "Ro",
+            "allowToDragOutAsAudio": true,
+            "allowToDragInAudio": true,
+            "needsPlayhead": true,                --> If true, the playhead will be shown 
+            "PlayheadLoopDurationSamples": 44100  --> The duration of the loop in samples
+        }
+```
+
+## MIDI In/Out Widgets 
+These widgets behave differently than the above widgets. These should be only used to visualize incoming or 
+outgoing MIDI messages from the plugin
+
 A MIDI In widget can be added to the bottom of the plugin to allow for the user to drop a MIDI file into the plugin.
 Moreover, the widget can be used to visualize incoming MIDI messages. To enable this widget, modify the following line in 
-`NeuralMidiFXPlugin/NeuralMidiFXPlugin/Source/DeploymentSettings/GuiAndParams.h`:
-```c++
-    namespace MidiInVisualizer {
-        // if you need the widget used for visualizing midi notes coming from host
-        // set following to true
-        const bool enable = true;
 
-        // if you want to allow user to drag/drop midi files into the plugin
-        // set following to true
-        // If active, the content of the midi file will be visualized in the
-        // MidiInVisualizer and also be provided to you in the InputTensorPreparatorThread
-        const bool allowToDragInMidi = true;
-
-        // if you want to visualize notes received in real-time from host
-        // set following to true
-        const bool visualizeIncomingMidiFromHost = true;
-        // if playhead is manually moved backward, do you want to delete all the
-        // previously visualized notes received from host?
-        const bool deletePreviousIncomingMidiMessagesOnBackwardPlayhead = true;
-        // if playback is stopped, do you want to delete all the previously
-        // visualized notes received from host?
-        const bool deletePreviousIncomingMidiMessagesOnRestart = true;
-    }
+```json
+        "MidiInVisualizer": {
+            "enable": true,
+            "allowToDragInMidi": true,
+            "visualizeIncomingMidiFromHost": true,
+            "deletePreviousIncomingMidiMessagesOnBackwardPlayhead": true,
+            "deletePreviousIncomingMidiMessagesOnRestart": true
+        },
+        "GeneratedContentVisualizer": {
+            "enable": true,
+            "allowToDragOutAsMidi": true
+        }
 ```
 
-{: .note}
-> The content of a dragged in MIDI file will be provided to you in the `DPL` thread.
-> More on this in the DPL section.
-
-## Step 4. MIDI Out Widget
-A MIDI Out widget can be added to the bottom of the plugin to allow for visualization of the generations.
-To enable this widget, modify the following line in `NeuralMidiFXPlugin/NeuralMidiFXPlugin/Source/DeploymentSettings/GuiAndParams.h`:
-
-```c++
-    namespace GeneratedContentVisualizer
-    {
-        // if you need the widget used for visualizing generated midi notes
-        // set following to true
-        // The content here visualizes the playbackSequence as it is at any given time
-        // (remember that playbackSequence can be changed by the user within the
-        // PlaybackPreparatorThread)
-        const bool enable = true;
-
-        // if you want to allow the user to drag out the visualized content,
-        // set following to true
-        const bool allowToDragOutAsMidi = true;
-    }
-
-```
+To access the content of a dragged in MIDI file, refer to [MidiFileEvent]({{site.baseurl}}/docs/v2_0_0/datatypes/MidiFileEvent)
