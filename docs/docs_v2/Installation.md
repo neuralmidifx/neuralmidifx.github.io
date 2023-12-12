@@ -1,7 +1,7 @@
 ---
 layout: default
 title: Installation
-parent: V2.0.0 Documentation
+
 permalink: /docs/v2_0_0/Installation
 nav_order: 30
 ---

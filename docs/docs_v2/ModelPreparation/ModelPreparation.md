@@ -4,7 +4,7 @@ title: 1. Model Preparation
 nav_order: 40
 has_children: true
 permalink: /docs/v2_0_0/ModelPreparation
-parent: V2.0.0 Documentation
+
 ---
 
 # Model Preparation

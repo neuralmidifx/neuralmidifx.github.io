@@ -1,7 +1,7 @@
 ---
 layout: default
 title: V2.0.0 Documentation
-has_children: true
+has_children: false
 nav_order: 3
 permalink: /docs/v2_0_0
 ---

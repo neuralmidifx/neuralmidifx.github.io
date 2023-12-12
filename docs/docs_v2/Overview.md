@@ -1,6 +1,6 @@
 ---
 layout: default
-parent: V2.0.0 Documentation
+
 permalink: /docs/v2_0_0/Overview
 title: Overview and Architecture
 nav_order: 20

@@ -4,7 +4,7 @@ title: Data Types
 nav_order: 90
 has_children: true
 permalink: /docs/v2_0_0/datatypes
-parent: V2.0.0 Documentation
+
 
 ---
 

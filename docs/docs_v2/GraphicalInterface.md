@@ -2,7 +2,7 @@
 layout: default
 title: 2. Parameters and GUI
 nav_order: 50
-parent: V2.0.0 Documentation
+
 permalink: /docs/v2_0_0/ParametersAndGUI
 ---
 
