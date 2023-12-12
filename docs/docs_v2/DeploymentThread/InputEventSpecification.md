@@ -35,19 +35,6 @@ In this thread, all necessary information is sequentially provided to carry out 
 (or representation) of the 
 relevant symbolic information into a tensor-like format. 
 
-```mermaid
-graph TD
-    %% DAW
-    DAW1["From DAW"]
-    
-    %% ITP Thread
-    subgraph ITPThread["ITP Thread"]
-        C1["Specify the information required from the host"] --> C2[Update ModelInput structure]
-        C2 --> C3[Implement the deployment process]
-    end
-
-    DAW1 -.->|Playhead, Tempo, Meter, MIDI ... | ITPThread
-```
 
 ## Specification of the Information Required from the Host
 
