@@ -21,7 +21,7 @@ permalink: /docs/v2_0_0/datatypes/MidiFileEvent
 
 ## Description
 
-In case, you have enabled the dragging of MIDI files into the plugin (in `Configs_GUI.h`), whenever a MIDI 
+In case, you have enabled the dragging of MIDI files into the plugin (in `settings.json`), whenever a MIDI 
 file is dragged into the plugin, it is converted into a `MidiFileEvent` and is provided to you in the `ITP` thread.
 
 These data received from the MIDI file are wrapped in the `MidiFileEvent` data type and are provided to you in the `ITP` thread.

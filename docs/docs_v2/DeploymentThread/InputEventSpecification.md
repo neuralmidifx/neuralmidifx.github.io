@@ -21,7 +21,7 @@ permalink: /docs/v2_0_0/DeploymentThread_DPL/SpecifyHostEvents
 {: .note }
 > For this Stage of Deployment, You should modify the following file
 > 
-> [Configs_HostEvents.h](https://github.com/behzadhaki/NeuralMidiFXPlugin/tree/releases/v2.0.0/NeuralMidiFXPlugin/NeuralMidiFXPlugin/Configs_HostEvents.h){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+> [settings.json](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/releases/v2.0.0/Deployment/settings.json){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 ---
 
@@ -47,7 +47,7 @@ the bar/beat information). NeuralMidiFx allows you to easily specify the subset 
 the information you need from the host.
 
 {: .note }
-> Edit the [`Config_HostEvents.h` file]({{ site.baseurl }}/docs/v2_0_0/DeploymentThreads/Config_HostEvents) to specify the information required from the host.
+> Edit the `event_communication_settings` in the [`settings.json` file](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/releases/v2.0.0/Deployment/settings.json) to specify the information required from the host.
 
 
 ### Available Events
@@ -72,7 +72,7 @@ use this event.
 - `NoteOffEvent` --> The event sent by the host when a note is released.
 - `CCEvent` --> The event sent by the host when a CC message is received.
 
-### Modifying `Config_HostEvents.h`
+### Modifying `event_communication_settings` int `settings.json`
 
 To modify the 
 

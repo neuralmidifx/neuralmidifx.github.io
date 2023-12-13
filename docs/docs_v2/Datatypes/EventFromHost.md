@@ -37,7 +37,7 @@ These data received from the host are wrapped in the `EventFromHost` data type a
 {: .note}
 > As mentioned before, you can specify which of these events you want to receive in the `ITP` thread 
 > 
-> To do so, you need to specify the [`Configs_HostEvents.h`](https://github.com/behzadhaki/NeuralMidiFXPlugin/tree/releases/V2.0.0/NeuralMidiFXPlugin/NeuralMidiFXPlugin/Configs_HostEvents.h)
+> To do so, you need to specify the event_communication_settings in the `settings.json`
 > file. To learn more about this process, visit [this page](({{site.baseurl}}/docs/v2_0_0/DeploymentStages/ITP/HostEvents)
 
 
@@ -60,7 +60,7 @@ There are different types available in the `EventFromHost` data type.
 | PlaybackStoppedEvent     | `new_event_from_host->isPlaybackStoppedEvent()` | Sent when the host stops the playback.                                      |
 | NewBufferEvent           | `new_event_from_host->isNewBufferEvent()` | Sent at the beginning of every new buffer or when qpm, meter, etc. changes. |
 | NewBarEvent              | `new_event_from_host->isNewBarEvent()` | Sent at the beginning of every new bar.                                     |
-| NewTimeShiftEvent        | `new_event_from_host->isNewTimeShiftEvent()` | Sent every N QuarterNotes (as specified in the configs file                 |
+| NewTimeShiftEvent        | `new_event_from_host->isNewTimeShiftEvent()` | Sent every N QuarterNotes (as specified in the settings.json file           |
 | NoteOnEvent              | `new_event_from_host->isNoteOnEvent()` | Sent when a note is played.                                                 |
 | NoteOffEvent             | `new_event_from_host->isNoteOffEvent()` | Sent when a note is stopped.                                                |
 | CCEvent                  | `new_event_from_host->isCCEvent()` | Sent for Control Change events.                                             |
