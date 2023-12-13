@@ -24,7 +24,10 @@ permalink: /docs/v2_0_0/ParametersAndGUI
 {: .note }
 > Use the following pdf to draw out and figure out the coordinates of the UI elements
 > 
-> <object data="https://neuralmidifx.github.io/assets/LayoutPlanner.pdf" width="100" height="100" type='application/pdf'></object>
+> <object data="https://neuralmidifx.github.io/assets/LayoutPlanner.pdf" width="400" height="300" type='application/pdf'></object>
+> 
+> [LayoutPlanner.pdf](https://neuralmidifx.github.io/assets/LayoutPlanner.pdf){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+
 
 ---
 
