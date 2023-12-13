@@ -20,6 +20,12 @@ permalink: /docs/v2_0_0/ParametersAndGUI
 > 
 > [Deployment/settings.json](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/releases/v2.0.0/Deployment/settings.json){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
+
+{: .note }
+> Use the following pdf to draw out and figure out the coordinates of the UI elements
+> 
+> <object data="https://neuralmidifx.github.io/assets/LayoutPlanner.pdf" width="100" height="100" type='application/pdf'></object>
+
 ---
 
 
