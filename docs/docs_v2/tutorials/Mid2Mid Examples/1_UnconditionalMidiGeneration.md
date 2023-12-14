@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Unconditional Random Generation
+title: Uncond. Rand. Generation
 nav_order: 1
 has_children: false
 parent: MidToMid
