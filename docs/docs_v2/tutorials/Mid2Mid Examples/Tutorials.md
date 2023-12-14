@@ -14,9 +14,5 @@ In this section, we will go through a number of demos to help you get some hands
 These demos are specifically designed for symbolic (MIDI) tasks. As a result, no audio data is involved in the 
 process.
 
-## Available Demos:
-
-1. [Unconditional Midi Generation]({{ site.baseurl }}/docs_v2/Demos/Mid2Mid/UnconditionalMidiGeneration.md)
-
 {: .fs-6 .fw-300 }
 
