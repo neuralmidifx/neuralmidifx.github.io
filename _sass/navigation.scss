@@ -8,13 +8,13 @@
   list-style: none;
 
   .nav-list-item {
-    @include fs-4;
+    @include fs-3;
 
     position: relative;
     margin: 0;
 
     @include mq(md) {
-      @include fs-3;
+      @include fs-2;
     }
 
     .nav-list-link {
@@ -137,7 +137,7 @@
   text-align: start;
   text-transform: uppercase;
   border-bottom: $border $border-color;
-  @include fs-2;
+  @include fs-1;
 
   @include mq(md) {
     padding: $sp-2 $gutter-spacing;
@@ -175,7 +175,7 @@
 .aux-nav {
   height: 100%;
   overflow-x: auto;
-  @include fs-2;
+  @include fs-1;
 
   .aux-nav-list {
     display: flex;
@@ -213,7 +213,7 @@
 
 .breadcrumb-nav-list-item {
   display: table-cell;
-  @include fs-2;
+  @include fs-1;
 
   &::before {
     display: none;
