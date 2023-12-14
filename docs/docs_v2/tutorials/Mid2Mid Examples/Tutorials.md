@@ -16,7 +16,7 @@ process.
 
 ## Available Demos:
 
-1. [Unconditional Midi Generation]({{ site.baseurl }}{% link docs/docs_v2/Demos/Mid2Mid/UnconditionalMidiGeneration.md %})
+1. [Unconditional Midi Generation]({{ site.baseurl }}/docs_v2/Demos/Mid2Mid/UnconditionalMidiGeneration.md)
 
 {: .fs-6 .fw-300 }
 

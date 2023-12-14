@@ -31,7 +31,7 @@ changes:
 specify what events are required from the host (see [here]({{ site.baseurl }}/docs/v2_0_0/DeploymentThread_DPL/SpecifyHostEvents)
 - A [GUI Parameter]({{ site.baseurl }}/docs/v2_0_0/datatypes/GuiParams) is changed
 - An [Audio file]({{ site.baseurl }}/docs/v2_0_0/datatypes/AudioVisualizersData) or 
-[MIDI file]({{ site.baseurl/docs/v2_0_0/datatypes/MidiVisualizersData }}) is dropped on any of the plugin's 
+[MIDI file]({{ site.baseurl }}/docs/v2_0_0/datatypes/MidiVisualizersData ) is dropped on any of the plugin's 
 [AudiVisualizers]({{ site.baseurl }}/docs/v2_0_0/ParametersAndGUI#audio-visualizer) or 
 [MidiVisualizers]({{ site.baseurl }}/docs/v2_0_0/ParametersAndGUI#midi-visualizer) respectively.
 
