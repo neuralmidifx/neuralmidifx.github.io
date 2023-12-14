@@ -2,7 +2,7 @@
 layout: default
 title: MidToMid
 nav_order: 1
-parent: DemosA
+parent: Demos
 has_children: true
 permalink: /docs/v2_0_0/Demos/MidToMid
 ---
