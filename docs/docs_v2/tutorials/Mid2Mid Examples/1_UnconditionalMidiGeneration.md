@@ -168,6 +168,7 @@ we will modify `"UI"` field of the [`settings.json`](https://github.com/behzadha
         }
 }
 ```
+
 {: .note}
 > 1. To be able to easily re-position the button on the Gui, Initially we will setting the `show_grid` and `draw_borders_for_components` to true.
 > once we have positioned the button, we can set these to false to remove the grid and borders.
@@ -177,7 +178,6 @@ we will modify `"UI"` field of the [`settings.json`](https://github.com/behzadha
 <img src="{{ site.baseurl }}/assets/images/demo1/a.PNG">
 
 Once rendered, if we are happy with the position of the button, we can set the `show_grid` and `draw_borders_for_components` to false.
-
 
 ### 2. Adding rotaries for per voice midi mappings
 As mentioned above, the model has 9 voices, each of which is mapped to a midi note. While we could hard-code these mappings,
