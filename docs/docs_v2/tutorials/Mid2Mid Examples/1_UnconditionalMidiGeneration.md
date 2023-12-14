@@ -22,9 +22,9 @@ In this demo, we will learn how to unconditionaly generate a random drum loop on
 {: .fs-6 .fw-300 }
 
 {: .note }
-> the source code for this demo is available in the demos branch of the repository.
+> the source code for this demo is available in the `Demos/MidToMid` branch of the repository.
 > 
-> [demo 1 Source Code](???){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+> [demo 1 Source Code](https://github.com/behzadhaki/NeuralMidiFXPlugin/tree/master/Demos/UnconditionalMidiGeneration){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 ---
 
@@ -142,7 +142,7 @@ As discussed in the [Graphical Interface]({{site.baseurl}}/docs/v2_0_0/Parameter
 to prepare the interface we will need to figure out what UI elements we need as well as how we want to organize them!
 
 For this demo, all we need is a single button which will trigger the generation of a random pattern. As such, 
-we will modify `"UI"` field of the [`settings.json`](???) file as follows:
+we will modify `"UI"` field of the [`settings.json`](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/master/Demos/UnconditionalMidiGeneration/settings.json) file as follows:
 
 ```json lines
 {
@@ -284,7 +284,7 @@ Following the same steps as above, we can re-build the plugin and re-open it in 
 
 ## Deploy() method
 
-Remember that all your implementation will take place in the [`Deploy.cpp`](???) file. 
+Remember that all your implementation will take place in the [`Deploy.cpp`](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/master/Demos/UnconditionalMidiGeneration/Deploy.cpp) file. 
 
 In here we will ensure that the model is loaded, then generate a random latent vector and pass it to the model to generate a new sequence.
 
@@ -366,7 +366,7 @@ Whenever a new pattern **is ready**  to be sent to next thread, we'll set this t
 <img src="{{ site.baseurl }}/assets/gifs/tut1/randomLatent.gif">
 
 Once the latent vector is generated, we will need to prepare the other inputs to the model based on the interface of the
-scripted method, [`sample`](???)
+scripted method, [`sample`]({{ site.baseurl }}/docs/v2_0_0/Demos/MidToMid/Unconditional_Random_Generation#2-sample).
 
 ```    
     // ...
@@ -449,7 +449,9 @@ Once the pattern is ready, we will wrap it in a `PlaybackSequence` and `Playback
 notify the wrapper to send the sequence to the main thread for playback and visualization.
 
 {: .note}
-> To learn more about the `PlaybackPreparatorThread`, please refer to the [documentation](???{{ site.baseurl }}/DeploymentStages/PPP/Deploy)
+> To learn more about the `PlaybackSequence` and `PlaybackPolicy` classes, 
+> refer to the [Data Types/PlaybackSequence]({{ site.baseurl }}/docs/v2_0_0/datatypes/PlaybackSequence) and 
+> [Data Types/PlaybackPolicy]({{ site.baseurl }}/docs/v2_0_0/datatypes/PlaybackPolicy) pages respectively.
 > 
 
 
