@@ -144,29 +144,29 @@ to prepare the interface we will need to figure out what UI elements we need as 
 For this demo, all we need is a single button which will trigger the generation of a random pattern. As such, 
 we will modify `"UI"` field of the [`settings.json`](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/master/Demos/UnconditionalMidiGeneration/settings.json) file as follows:
 
-```json lines
-{
-    "UI": {
-        "Tabs": {
-            "show_grid": false,
-            "draw_borders_for_components": false,
-            "tabList": [
-                {
-                    "name": "RandomGeneration",
-                    "sliders": [],
-                    "rotaries": [],
-                    "buttons": [{
-                        "label": "Randomize",
-                        "isToggle": false,
-                        "topLeftCorner": "Kh",
-                        "bottomRightCorner": "Pm"
-                    }],
-                    "MidiDisplays": []
-                }
-              ]
-          }
-        }
-}
+```json
+    {
+        "UI": {
+            "Tabs": {
+                "show_grid": false,
+                "draw_borders_for_components": false,
+                "tabList": [
+                    {
+                        "name": "RandomGeneration",
+                        "sliders": [],
+                        "rotaries": [],
+                        "buttons": [{
+                            "label": "Randomize",
+                            "isToggle": false,
+                            "topLeftCorner": "Kh",
+                            "bottomRightCorner": "Pm"
+                        }],
+                        "MidiDisplays": []
+                    }
+                  ]
+              }
+            }
+    }
 ```
 
 {: .note}
@@ -187,7 +187,7 @@ To do this, we will add 9 rotaries to the GUI, each of which will be responsible
 
 As such, we will add a new tab containing the 9 rotaries to the [`Configs_GUI.h`](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/demos/1_RandomGenOnButtonPress/NeuralMidiFXPlugin/NeuralMidiFXPlugin/Configs_GUI.h) file as follows:
 
-```json lines
+```json
  {
                     "name": "Midi Mappings",
                     "sliders": [],
