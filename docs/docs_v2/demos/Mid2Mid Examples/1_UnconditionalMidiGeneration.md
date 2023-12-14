@@ -24,7 +24,7 @@ In this demo, we will learn how to unconditionaly generate a random drum loop on
 {: .note }
 > the source code for this demo is available in the `Demos/MidToMid` branch of the repository.
 > 
-> [demo 1 Source Code](https://github.com/behzadhaki/NeuralMidiFXPlugin/tree/master/Demos/UnconditionalMidiGeneration){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
+> [demo 1 Source Code](https://github.com/neuralmidifx/Mid2Mid_UnconRandoGen){: .btn .btn-primary .fs-5 .mb-4 .mb-md-0 .mr-2 }
 
 ---
 
@@ -99,7 +99,7 @@ The 9 voices of the model are as follows:
 As mentioned [here](https://neuralmidifx.github.io/docs/v2_0_0/Installation#step-2-edit-plugin-name-and-description), we need
 to specify the name of the plugin as well as some descriptions for it. 
 
-To do this, we will modify the [NeuralMidiFXPlugin/NeuralMidiFXPlugin/CMakeLists.txt](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/demos/1_RandomGenOnButtonPress/NeuralMidiFXPlugin/NeuralMidiFXPlugin/CMakeLists.txt) file as follows:
+To do this, we will modify the [PluginCode/CMakeLists.txt](https://github.com/neuralmidifx/Mid2Mid_UnconRandoGen/blob/master/PluginCode/CMakeLists.txt) file as follows:
 
 ```cmake
 project(Demo1 VERSION 0.0.1)
@@ -142,7 +142,7 @@ As discussed in the [Graphical Interface]({{site.baseurl}}/docs/v2_0_0/Parameter
 to prepare the interface we will need to figure out what UI elements we need as well as how we want to organize them!
 
 For this demo, all we need is a single button which will trigger the generation of a random pattern. As such, 
-we will modify `"UI"` field of the [`settings.json`](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/master/Demos/UnconditionalMidiGeneration/settings.json) file as follows:
+we will modify `"UI"` field of the [`settings.json`](https://github.com/neuralmidifx/Mid2Mid_UnconRandoGen/blob/master/PluginCode/settings.json) file as follows:
 
 ```json
     {
@@ -185,7 +185,7 @@ it would be much more convenient to allow the user to change these mappings from
 
 To do this, we will add 9 rotaries to the GUI, each of which will be responsible for changing the midi note of a given voice.
 
-As such, we will add a new tab containing the 9 rotaries to the [`Configs_GUI.h`](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/demos/1_RandomGenOnButtonPress/NeuralMidiFXPlugin/NeuralMidiFXPlugin/Configs_GUI.h) file as follows:
+As such, we will add a new tab containing the 9 rotaries to the [`settings.json`](https://github.com/neuralmidifx/Mid2Mid_UnconRandoGen/blob/master/PluginCode/settings.json) file as follows:
 
 ```json
  {
@@ -284,7 +284,7 @@ Following the same steps as above, we can re-build the plugin and re-open it in 
 
 ## Deploy() method
 
-Remember that all your implementation will take place in the [`Deploy.cpp`](https://github.com/behzadhaki/NeuralMidiFXPlugin/blob/master/Demos/UnconditionalMidiGeneration/Deploy.cpp) file. 
+Remember that all your implementation will take place in the [`Deploy.cpp`](https://github.com/neuralmidifx/Mid2Mid_UnconRandoGen/blob/master/PluginCode/Deploy.cpp) file. 
 
 In here we will ensure that the model is loaded, then generate a random latent vector and pass it to the model to generate a new sequence.
 
