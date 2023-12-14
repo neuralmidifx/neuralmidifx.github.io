@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Demos
+title: DemosA
 nav_order: 110
 has_children: true
 permalink: /docs/v2_0_0/Demos

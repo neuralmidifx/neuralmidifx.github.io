@@ -4,9 +4,8 @@ title: Unconditional Random Generation
 nav_order: 1
 has_children: false
 parent: Mid2Mid
-grand_parent: Demos
+grand_parent: DemosA
 permalink: /docs/v2_0_0/Demos/Mid2Mid/Unconditional_Random_Generation
 ---
 
 # Unconditional Random Generation
-{
