@@ -3,6 +3,7 @@ layout: default
 title: Unconditional Midi Generation
 nav_order: 2
 parent: Mid2Mid
+grand_parent: Demos
 has_children: false
 permalink: /docs/v2_0_0/Demos/Mid2Mid/UnconditionalMidiGeneration
 ---
