@@ -119,7 +119,7 @@ file and modify it as follows:
 <img src="{{ site.baseurl }}/assets/images/demo2/a.PNG">
 
 
-## ModelThread::deploy()
+## DeploymentThread::deploy()
 
 Before modifying the code, let's think about what we want to do.
 
