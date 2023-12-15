@@ -290,7 +290,6 @@ As soon as a preset is loaded, the `new_preset_loaded_since_last_call` flag will
 check for this flag and subsequently, load your saved tensors
 
 ```c++
-
     // check if the preset has changed, if so, update the MDLdata
     if (new_preset_loaded_since_last_call) {
         should_interpolate = true;
@@ -304,5 +303,4 @@ check for this flag and subsequently, load your saved tensors
         }
         
     }
-
 ```
