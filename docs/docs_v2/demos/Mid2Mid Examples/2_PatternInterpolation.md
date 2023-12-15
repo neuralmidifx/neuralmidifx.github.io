@@ -305,4 +305,4 @@ check for this flag and subsequently, load your saved tensors
     }
 ```
 
-<img src="{{ site.baseurl }}/assets/gifs/demo2/Video.gif">
+<img src="{{ site.baseurl }}/assets/gifs/demo2/final.gif">
