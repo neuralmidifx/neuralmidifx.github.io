@@ -155,6 +155,28 @@ To access the values of these elements, refer to [GuiParams]({{site.baseurl}}/do
 
 ```json
         {
+            "label": "Slider 1",       
+            "min": 0.0,                  
+            "max": 1.0,                 
+            "default": 0.5,             
+            "topLeftCorner": "Ll",      
+            "bottomRightCorner": "Pp"   
+        },
+        {
+            "label": "Slider 2",           
+            "min": 0.0,
+            "max": 4.0,
+            "default": 1.5,
+            "topLeftCorner": "Pp",
+            "bottomRightCorner": "Tt",
+            "horizontal": true        
+
+        }
+```
+The above can be read as follows:
+
+```text
+        {
             "label": "Slider 1",       --> The label of the slider 
             "min": 0.0,                 --> The minimum value of the slider
             "max": 1.0,                 --> The maximum value of the slider
@@ -174,12 +196,26 @@ To access the values of these elements, refer to [GuiParams]({{site.baseurl}}/do
 
         }
 ```
+
 ### Adding Rotary Knobs
 To add a rotary knob, add a new entry to the `rotaries` array. 
 
 To access the values of these elements, refer to [GuiParams]({{site.baseurl}}/docs/v2_0_0/datatypes/GuiParams)
 
 ```json
+        {
+            "label": "Rotary 1",        
+            "min": 0.0,                 
+            "max": 1.0,                 
+            "default": 0.5,             
+            "topLeftCorner": "Ll",      
+            "bottomRightCorner": "Pp"   
+        }
+```
+
+The above can be read as follows:
+
+```text
         {
             "label": "Rotary 1",        --> The label of the rotary knob
             "min": 0.0,                 --> The minimum value of the rotary knob
@@ -228,6 +264,17 @@ To access the values of these elements, refer to [GuiParams]({{site.baseurl}}/do
             "label": "ComboBox 1",
             "topLeftCorner": "Wv",
             "bottomRightCorner": "Zz",
+            "items": [ "Item 1", "Item 2", "Item 3" ]
+        }
+```
+
+The above can be read as follows:
+
+```text
+        {
+            "label": "ComboBox 1",      --> The label of the combo box
+            "topLeftCorner": "Wv",      --> The top left corner of the combo box
+            "bottomRightCorner": "Zz",  --> The bottom right corner of the combo box
             "items": [ "Item 1", "Item 2", "Item 3" ] --> The items shown in the combo box
         }
 ```
@@ -242,11 +289,12 @@ To access/set the values of these elements, refer to [MidiVisualizersData]({{sit
             "label": "MidiDisplay 1",
             "topLeftCorner": "Bb",
             "bottomRightCorner": "Jh",
-            "allowToDragOutAsMidi": true,   --> If true, the user can drag out the MIDI data as a MIDI file
-            "allowToDragInMidi": true,      --> If true, the user can drag in a MIDI file
-            "needsPlayhead": true           --> If true, the playhead will be shown
+            "allowToDragOutAsMidi": true,   
+            "allowToDragInMidi": true,     
+            "needsPlayhead": true          
         }
 ```
+ 
 
 In case, you want to show that the content is looped, specify 'PlayheadLoopDurationQuarterNotes', otherwise, 
 the playhead will not be looped.
@@ -260,9 +308,23 @@ the playhead will not be looped.
             "allowToDragOutAsMidi": true,
             "allowToDragInMidi": true,
             "needsPlayhead": true,
-            "PlayheadLoopDurationQuarterNotes": 4.0 --> The duration of the loop in quarter notes
+            "PlayheadLoopDurationQuarterNotes": 4.0 
         }
 
+```
+
+The above can be read as follows:
+
+```text
+        {
+            "label": "MidiDisplay 1",       --> The label of the MIDI visualizer
+            "topLeftCorner": "Bb",          --> The top left corner of the MIDI visualizer
+            "bottomRightCorner": "Jh",      --> The bottom right corner of the MIDI visualizer
+            "allowToDragOutAsMidi": true,   --> If true, the user can drag out the MIDI data as a MIDI file
+            "allowToDragInMidi": true,      --> If true, the user can drag in a MIDI file
+            "needsPlayhead": true           --> If true, the playhead will be shown
+            "PlayheadLoopDurationQuarterNotes": 4.0 --> The duration of the loop in quarter notes (if specified)
+        }
 ```
 
 ### Audio Visualizer
@@ -281,8 +343,22 @@ To access/set the values of these elements, refer to [AudioVisualizersData]({{si
             "bottomRightCorner": "Ro",
             "allowToDragOutAsAudio": true,
             "allowToDragInAudio": true,
-            "needsPlayhead": true,                --> If true, the playhead will be shown 
-            "PlayheadLoopDurationSamples": 44100  --> The duration of the loop in samples
+            "needsPlayhead": true,               
+            "PlayheadLoopDurationSamples": 44100  
+        }
+```
+
+The above can be read as follows:
+
+```text
+        {
+            "label": "AudioDisplay 1",      --> The label of the audio visualizer
+            "topLeftCorner": "Bb",          --> The top left corner of the audio visualizer
+            "bottomRightCorner": "Jh",      --> The bottom right corner of the audio visualizer
+            "allowToDragOutAsAudio": true,  --> If true, the user can drag out the audio data as a WAV file
+            "allowToDragInAudio": true,     --> If true, the user can drag in a WAV file
+            "needsPlayhead": true           --> If true, the playhead will be shown
+            "PlayheadLoopDurationSamples": 44100 --> The duration of the loop in samples (if specified)
         }
 ```
 
