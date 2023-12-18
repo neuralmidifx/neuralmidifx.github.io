@@ -11,7 +11,7 @@ permalink: /
 
 ---
 ## About
-Welcome to the documentation for NeuralMidiFx [^1], a wrapper/template designed to simplify the deployment of AI-based generative music systems as VST3 plugins and/or Standalone Applications. 
+Welcome to the documentation for `NeuralMidiFx`, a wrapper/template designed to simplify the deployment of AI-based generative music systems as VST3 plugins and/or Standalone Applications. 
 
 Our goal with NeuralMidiFx is to bridge the gap between AI research and end-users who wish to harness them for performance or composition.
 
@@ -73,7 +73,5 @@ NeuralMidiFx is &copy; 2022-{{ "now" | date: "%Y" }} by [Behzad Haki](http://beh
 ### Contributing
 
 ----
-
-[1^]: Haki B, Lenz J, Jorda S. NeuralMidiFx: A Wrapper Template for Deploying Neural Networks as VST3 Plugins. AIMC 2023 . Available from: https://aimc2023.pubpub.org/pub/givwzz98
 
 [repo]: https://github.com/behzadhaki/NeuralMidiFXPlugin
