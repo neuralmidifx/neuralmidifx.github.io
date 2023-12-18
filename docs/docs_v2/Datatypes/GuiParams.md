@@ -68,3 +68,13 @@ provided `gui_params_changed_since_last_call` flag
 > 
 > 3. You should use the right method for the right type of parameter (slider, toggle button, trigger button). 
 > That is, you should use `getValueFor` for sliders/rotaries and `isToggleButtonOn` for toggle buttons, and `wasButtonClicked` for trigger buttons.
+
+## Setting the UI Parameters
+
+The UI parameters for sliders/rotaries, toggle buttons and combo boxes can be set using the following methods:
+
+```c++
+
+gui_params.setValueFor([slider/rotary name], [value])
+
+```
