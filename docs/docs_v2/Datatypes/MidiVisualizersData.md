@@ -4,7 +4,7 @@ title: MidiVisualizersData
 nav_order: 4
 has_children: false
 parent: Data Types
-permalink: /docs/v2_0_0/datatypes/MidiVisualizersData
+permalink: /docs/V2_0_1/datatypes/MidiVisualizersData
 ---
 
 # MidiVisualizersData
@@ -27,7 +27,7 @@ You can update the content whenever the midi sequence changes. Moreover, when th
 widget, the content of the midi visualizers will be provided to you in the `deploy()` method.
 
 ### Accessing the content of a dropped midi file
-The content of the dropped midi file, will be parsed into a vector of [`MidiFileEvent`]({{site.baseurl}}/docs/v2_0_0/datatypes/MidiFileEvent)s.
+The content of the dropped midi file, will be parsed into a vector of [`MidiFileEvent`]({{site.baseurl}}/docs/V2_0_1/datatypes/MidiFileEvent)s.
 
 As soon as a midi file is dropped on **ANY** of the visualizers, the `deploy()` method will be called with the
 `new_midi_file_dropped_on_visualizers` flag set to `true`. As such, check for this flag to be `true`, and then

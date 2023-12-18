@@ -5,7 +5,7 @@ nav_order: 3
 has_children: false
 parent: MidToMid
 grand_parent: Demos
-permalink: /docs/v2_0_0/Demos/MidToMid/Groove_to_Drum_(Using_MIDI_File)
+permalink: /docs/V2_0_1/Demos/MidToMid/Groove_to_Drum_(Using_MIDI_File)
 ---
 
 ## Table of contents
@@ -40,7 +40,7 @@ In this case, the plugin will need to do the following:
 4. Extract the drum pattern from the inference result
 
 ## Plugin Name and Description
-As mentioned [here](https://neuralmidifx.github.io/docs/v2_0_0/Installation#step-2-edit-plugin-name-and-description), we need
+As mentioned [here](https://neuralmidifx.github.io/docs/V2_0_1/Installation#step-2-edit-plugin-name-and-description), we need
 to specify the name of the plugin as well as some descriptions for it. 
 
 To do this, we will modify the [PluginCode/CMakeLists.txt](https://github.com/neuralmidifx/Mid2Mid_Grv2DrmMidi/blob/master/PluginCode/CMakeLists.txt) file as follows:
@@ -177,7 +177,7 @@ Moreover, the `groove_hvo` tensor is a concatenation of `groove_hits`, `groove_v
 ### deploy()
 Let's start with accessing a dropped MIDI file!
 
-As mentioned in the [documentation](https://neuralmidifx.github.io/docs/v2_0_0/datatypes/MidiVisualizersData#accessing-the-content-of-a-dropped-midi-file), the plugin will
+As mentioned in the [documentation](https://neuralmidifx.github.io/docs/V2_0_1/datatypes/MidiVisualizersData#accessing-the-content-of-a-dropped-midi-file), the plugin will
 provide the Midi data in the form of a vector of MidiFileEvents.
 
 To get the events, we will first check for the `new_midi_file_dropped_on_visualizers` variable in the `deploy()` method, 

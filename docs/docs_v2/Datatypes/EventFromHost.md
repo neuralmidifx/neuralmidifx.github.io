@@ -4,7 +4,7 @@ title: EventFromHost
 nav_order: 8
 has_children: false
 parent: Data Types
-permalink: /docs/v2_0_0/datatypes/EventFromHost
+permalink: /docs/V2_0_1/datatypes/EventFromHost
 
 ---
 
@@ -38,7 +38,7 @@ These data received from the host are wrapped in the `EventFromHost` data type a
 > As mentioned before, you can specify which of these events you want to receive in the `ITP` thread 
 > 
 > To do so, you need to specify the event_communication_settings in the `settings.json`
-> file. To learn more about this process, visit [this page](({{site.baseurl}}/docs/v2_0_0/DeploymentStages/ITP/HostEvents)
+> file. To learn more about this process, visit [this page](({{site.baseurl}}/docs/V2_0_1/DeploymentStages/ITP/HostEvents)
 
 
 ## 1. Checking if available

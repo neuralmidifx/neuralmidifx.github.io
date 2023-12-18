@@ -4,7 +4,7 @@ title: Importing Your Serialized Models
 has_children: false
 parent: 1. Model Preparation
 
-permalink: /docs/v2_0_0/docs/ModelPreparation/ImportingYourModel/
+permalink: /docs/V2_0_1/docs/ModelPreparation/ImportingYourModel/
 nav_order: 2
 ---
 

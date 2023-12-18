@@ -5,7 +5,7 @@ nav_order: 4
 has_children: false
 parent: MidToMid
 grand_parent: Demos
-permalink: /docs/v2_0_0/Demos/MidToMid/Groove_to_Drum_(Real-Time)
+permalink: /docs/V2_0_1/Demos/MidToMid/Groove_to_Drum_(Real-Time)
 ---
 
 
@@ -26,7 +26,7 @@ to play the groove in real-time using a midi keyboard.
 The code here is very similar to the code in the previous tutorial, so we will only highlight the differences.
 
 ## Plugin Name and Description
-As mentioned [here](https://neuralmidifx.github.io/docs/v2_0_0/Installation#step-2-edit-plugin-name-and-description), 
+As mentioned [here](https://neuralmidifx.github.io/docs/V2_0_1/Installation#step-2-edit-plugin-name-and-description), 
 we need to specify the name of the plugin as well as some descriptions for it.
 
 To do this, we will modify the [PluginCode/CMakeLists.txt](https://github.com/neuralmidifx/Mid2Mid_Grv2DrmRT/blob/master/PluginCode/CMakeLists.txt) file as follows:
@@ -99,7 +99,7 @@ in the same settings file.
 
 ## Specifying Host Events
 
-As mentioned in the [documentation](https://neuralmidifx.github.io/docs/v2_0_0/DeploymentThread_DPL/SpecifyHostEvents),
+As mentioned in the [documentation](https://neuralmidifx.github.io/docs/V2_0_1/DeploymentThread_DPL/SpecifyHostEvents),
 we will modify the [PluginCode/settings.json](https://github.com/neuralmidifx/Mid2Mid_Grv2DrmRT/blob/master/PluginCode/settings.json)
 to specify what events are required from the host.
 
@@ -144,7 +144,7 @@ function is as follows:
         // ===         1. Check (and Process)
         //              incoming events from host
         // = Refer to:
-        // https://neuralmidifx.github.io/docs/v2_0_0/datatypes/EventFromHost
+        // https://neuralmidifx.github.io/docs/V2_0_1/datatypes/EventFromHost
         // =================================================================================
         if (new_event_from_host->isFirstBufferEvent()) {
             // clear hits, velocities, offsets

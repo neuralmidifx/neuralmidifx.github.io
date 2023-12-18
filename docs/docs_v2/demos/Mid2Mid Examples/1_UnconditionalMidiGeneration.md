@@ -5,7 +5,7 @@ nav_order: 1
 has_children: false
 parent: MidToMid
 grand_parent: Demos
-permalink: /docs/v2_0_0/Demos/MidToMid/Unconditional_Random_Generation
+permalink: /docs/V2_0_1/Demos/MidToMid/Unconditional_Random_Generation
 ---
 
 
@@ -96,7 +96,7 @@ The 9 voices of the model are as follows:
 
 ## Plugin Name and Description 
 
-As mentioned [here](https://neuralmidifx.github.io/docs/v2_0_0/Installation#step-2-edit-plugin-name-and-description), we need
+As mentioned [here](https://neuralmidifx.github.io/docs/V2_0_1/Installation#step-2-edit-plugin-name-and-description), we need
 to specify the name of the plugin as well as some descriptions for it. 
 
 To do this, we will modify the [PluginCode/CMakeLists.txt](https://github.com/neuralmidifx/Mid2Mid_UnconRandoGen/blob/master/PluginCode/CMakeLists.txt) file as follows:
@@ -138,7 +138,7 @@ Now we are ready to move on to the next step.
 
 ### 1. Placing a button for random generation
 
-As discussed in the [Graphical Interface]({{site.baseurl}}/docs/v2_0_0/ParametersAndGUI) section of the documentation, 
+As discussed in the [Graphical Interface]({{site.baseurl}}/docs/V2_0_1/ParametersAndGUI) section of the documentation, 
 to prepare the interface we will need to figure out what UI elements we need as well as how we want to organize them!
 
 For this demo, all we need is a single button which will trigger the generation of a random pattern. As such, 
@@ -330,7 +330,7 @@ Here we will check if the button has been clicked and if so, we will print a mes
     // =================================================================================
     // ===         ACCESSING GUI PARAMETERS
     // Refer to:
-    // https://neuralmidifx.github.io/docs/v2_0_0/datatypes/GuiParams#accessing-the-ui-parameters
+    // https://neuralmidifx.github.io/docs/V2_0_1/datatypes/GuiParams#accessing-the-ui-parameters
     // =================================================================================
     auto ButtonTrigger = gui_params.wasButtonClicked("Randomize");
     if (ButtonTrigger) {
@@ -366,7 +366,7 @@ Whenever a new pattern **is ready**  to be sent to next thread, we'll set this t
 <img src="{{ site.baseurl }}/assets/gifs/tut1/randomLatent.gif">
 
 Once the latent vector is generated, we will need to prepare the other inputs to the model based on the interface of the
-scripted method, [`sample`]({{ site.baseurl }}/docs/v2_0_0/Demos/MidToMid/Unconditional_Random_Generation#2-sample).
+scripted method, [`sample`]({{ site.baseurl }}/docs/V2_0_1/Demos/MidToMid/Unconditional_Random_Generation#2-sample).
 
 ```    
     // ...
@@ -450,8 +450,8 @@ notify the wrapper to send the sequence to the main thread for playback and visu
 
 {: .note}
 > To learn more about the `PlaybackSequence` and `PlaybackPolicy` classes, 
-> refer to the [Data Types/PlaybackSequence]({{ site.baseurl }}/docs/v2_0_0/datatypes/PlaybackSequence) and 
-> [Data Types/PlaybackPolicy]({{ site.baseurl }}/docs/v2_0_0/datatypes/PlaybackPolicy) pages respectively.
+> refer to the [Data Types/PlaybackSequence]({{ site.baseurl }}/docs/V2_0_1/datatypes/PlaybackSequence) and 
+> [Data Types/PlaybackPolicy]({{ site.baseurl }}/docs/V2_0_1/datatypes/PlaybackPolicy) pages respectively.
 > 
 
 
@@ -468,7 +468,7 @@ First we will create a midi mapping based on the parameters in the second tab of
         // =================================================================================
         // ===         ACCESSING GUI PARAMETERS FOR MIDI MAPPINGS
         // Refer to:
-        // https://neuralmidifx.github.io/docs/v2_0_0/datatypes/GuiParams#accessing-the-ui-parameters
+        // https://neuralmidifx.github.io/docs/V2_0_1/datatypes/GuiParams#accessing-the-ui-parameters
         // =================================================================================
         std::map<int, int> voiceMap;
         voiceMap[0] = int(gui_params.getValueFor("Kick"));
@@ -500,7 +500,7 @@ Then, we need to extract the notes from the generated tensors.
     // =================================================================================
             // ===         2. ACCESSING GUI PARAMETERS
             // Refer to:
-            // https://neuralmidifx.github.io/docs/v2_0_0/datatypes/GuiParams
+            // https://neuralmidifx.github.io/docs/V2_0_1/datatypes/GuiParams
             // =================================================================================
             std::map<int, int> voiceMap;
             voiceMap[0] = int(gui_params.getValueFor("Kick"));
@@ -517,8 +517,8 @@ Then, we need to extract the notes from the generated tensors.
             // =================================================================================
             // ===         3. Extract Generations into a PlaybackPolicy and PlaybackSequence
             // Refer to:
-            // https://neuralmidifx.github.io/docs/v2_0_0/datatypes/PlaybackPolicy
-            // https://neuralmidifx.github.io/docs/v2_0_0/datatypes/PlaybackSequence
+            // https://neuralmidifx.github.io/docs/V2_0_1/datatypes/PlaybackPolicy
+            // https://neuralmidifx.github.io/docs/V2_0_1/datatypes/PlaybackSequence
             // =================================================================================
             if (!hits.sizes().empty()) // check if any hits are available
             {

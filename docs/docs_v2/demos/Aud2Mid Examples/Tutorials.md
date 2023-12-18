@@ -4,7 +4,7 @@ title: Aud2Mid
 parent: Demos
 nav_order: 3
 has_children: true
-permalink: /docs/v2_0_0/Demos/Aud2Mid
+permalink: /docs/V2_0_1/Demos/Aud2Mid
 ---
 
 # Tutorials 
