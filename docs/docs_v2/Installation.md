@@ -2,7 +2,7 @@
 layout: default
 title: Installation
 
-permalink: /docs/V2_0_1/Installation
+permalink: /docs/V2_1_0/Installation
 nav_order: 30
 ---
 

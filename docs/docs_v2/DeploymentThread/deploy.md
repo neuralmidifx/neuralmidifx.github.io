@@ -4,7 +4,7 @@ title: deploy() Method
 parent: 3. Deployment Thread (DPL)
 has_children: false
 nav_order: 60
-permalink: /docs/V2_0_1/DeploymentThread_DPL/deploy_method/
+permalink: /docs/V2_1_0/DeploymentThread_DPL/deploy_method/
 ---
 
 # deploy() Method
@@ -42,7 +42,7 @@ std::pair<bool, bool> DeploymentThread::deploy(
     // =================================================================================
     // ===         1.a. ACCESSING GUI PARAMETERS
     // Refer to:
-    // https://neuralmidifx.github.io/docs/V2_0_1/datatypes/GuiParams#accessing-the-ui-parameters
+    // https://neuralmidifx.github.io/docs/V2_1_0/datatypes/GuiParams#accessing-the-ui-parameters
     // =================================================================================
 
 
@@ -50,7 +50,7 @@ std::pair<bool, bool> DeploymentThread::deploy(
     // =================================================================================
     // ===         1.b. ACCESSING REALTIME PLAYBACK INFORMATION
     // Refer to:
-    // https://neuralmidifx.github.io/docs/V2_0_1/datatypes/RealtimePlaybackInfo
+    // https://neuralmidifx.github.io/docs/V2_1_0/datatypes/RealtimePlaybackInfo
     // =================================================================================
 
 
@@ -59,11 +59,11 @@ std::pair<bool, bool> DeploymentThread::deploy(
     // ===         2. ACCESSING INFORMATION (EVENTS) RECEIVED FROM HOST
     // Only events specified in `Configs_HostEvents.h` are received here
     // Refer to:
-    //      https://neuralmidifx.github.io/docs/V2_0_1/DeploymentThread_DPL/SpecifyHostEvents
+    //      https://neuralmidifx.github.io/docs/V2_1_0/DeploymentThread_DPL/SpecifyHostEvents
     // 
     // The events are received one by one wrapped in an `EventFromHost` object
     // Refer to:
-    //  https://neuralmidifx.github.io/docs/V2_0_1/datatypes/EventFromHost
+    //  https://neuralmidifx.github.io/docs/V2_1_0/datatypes/EventFromHost
     // =================================================================================
     // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
     /* Warning!
@@ -77,14 +77,14 @@ std::pair<bool, bool> DeploymentThread::deploy(
     // =================================================================================
     // ===         3. ACCESSING MIDI FILES MANUALLY DROPPED ON VISUALIZERS
     // Refer to:
-    // https://neuralmidifx.github.io/docs/V2_0_1/datatypes/MidiVisualizersData
+    // https://neuralmidifx.github.io/docs/V2_1_0/datatypes/MidiVisualizersData
     // =================================================================================
 
     
     // =================================================================================
     // ===         4. ACCESSING AUDIO FILES MANUALLY DROPPED ON VISUALIZERS
     // Refer to:
-    // https://neuralmidifx.github.io/docs/V2_0_1/datatypes/AudioVisualizersData
+    // https://neuralmidifx.github.io/docs/V2_1_0/datatypes/AudioVisualizersData
     // =================================================================================
         
     
@@ -105,7 +105,7 @@ std::pair<bool, bool> DeploymentThread::deploy(
     // =================================================================================
     // ===         7. LOADING THE MODEL
     // Refer to:
-    // https://neuralmidifx.github.io/docs/V2_0_1/DeploymentThread_DPL/LoadModel
+    // https://neuralmidifx.github.io/docs/V2_1_0/DeploymentThread_DPL/LoadModel
     // =================================================================================
     // Try loading the model if it hasn't been loaded yet
     if (!isModelLoaded) {
@@ -169,14 +169,14 @@ std::pair<bool, bool> DeploymentThread::deploy(
     // =================================================================================
     // ===         9. Add Extracted Generations to Playback Sequence
     // Refer to:
-    // https://neuralmidifx.github.io/docs/V2_0_1/datatypes/PlaybackSequence
+    // https://neuralmidifx.github.io/docs/V2_1_0/datatypes/PlaybackSequence
     // =================================================================================
 
     // =================================================================================
     // ===         10. At least once, before sending generations,
     //                  Specify the PlaybackPolicy, Time_unit, OverwritePolicy
     // Refer to:
-    // https://neuralmidifx.github.io/docs/V2_0_1/datatypes/PlaybackPolicy
+    // https://neuralmidifx.github.io/docs/V2_1_0/datatypes/PlaybackPolicy
     // =================================================================================
 
     // -----------------------------------------------------------------------------------------

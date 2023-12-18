@@ -3,7 +3,7 @@ layout: default
 title: Demos
 nav_order: 110
 has_children: true
-permalink: /docs/V2_0_1/Demos
+permalink: /docs/V2_1_0/Demos
 ---
 
 # Demos 

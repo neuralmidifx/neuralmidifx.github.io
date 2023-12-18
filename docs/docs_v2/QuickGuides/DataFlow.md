@@ -3,7 +3,7 @@ layout: default
 title: Data Flow
 parent: Guides & References
 
-permalink: /docs/V2_0_1/GuidesReferences/DataFlow
+permalink: /docs/V2_1_0/GuidesReferences/DataFlow
 nav_order: 2
 ---
 

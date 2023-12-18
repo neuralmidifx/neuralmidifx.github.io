@@ -4,7 +4,7 @@ title: MidiFileEvent
 nav_order: 9
 has_children: false
 parent: Data Types
-permalink: /docs/V2_0_1/datatypes/MidiFileEvent
+permalink: /docs/V2_1_0/datatypes/MidiFileEvent
 
 ---
 

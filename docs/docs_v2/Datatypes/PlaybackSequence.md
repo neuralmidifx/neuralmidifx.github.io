@@ -4,7 +4,7 @@ title: PlaybackSequence
 nav_order: 10
 has_children: false
 parent: Data Types
-permalink: /docs/V2_0_1/datatypes/PlaybackSequence
+permalink: /docs/V2_1_0/datatypes/PlaybackSequence
 
 ---
 
@@ -28,7 +28,7 @@ In the `PPP` thread, this data is already instantiated and can be accessed via t
 
 {: .note }
 > The timing of the events added to the sequence can be any unit you want.
-> That said, you should make sure that the [PlaybackPolicy]({{site.baseurl}}/docs/V2_0_1/datatypes/PlaybackPolicy) is set to the same unit.
+> That said, you should make sure that the [PlaybackPolicy]({{site.baseurl}}/docs/V2_1_0/datatypes/PlaybackPolicy) is set to the same unit.
 >
 
 ## Usage

@@ -3,7 +3,7 @@ layout: default
 title: 2. Parameters and GUI
 nav_order: 50
 
-permalink: /docs/V2_0_1/ParametersAndGUI
+permalink: /docs/V2_1_0/ParametersAndGUI
 ---
 
 # Plugin Parameters and Graphical Interface Rendering
@@ -151,7 +151,7 @@ The UI elements can be sliders, rotary knobs, buttons, comboboxes or MIDI displa
 ### Adding Sliders
 To add a slider, add a new entry to the `sliders` array. 
 
-To access the values of these elements, refer to [GuiParams]({{site.baseurl}}/docs/V2_0_1/datatypes/GuiParams)
+To access the values of these elements, refer to [GuiParams]({{site.baseurl}}/docs/V2_1_0/datatypes/GuiParams)
 
 ```json
         {
@@ -200,7 +200,7 @@ The above can be read as follows:
 ### Adding Rotary Knobs
 To add a rotary knob, add a new entry to the `rotaries` array. 
 
-To access the values of these elements, refer to [GuiParams]({{site.baseurl}}/docs/V2_0_1/datatypes/GuiParams)
+To access the values of these elements, refer to [GuiParams]({{site.baseurl}}/docs/V2_1_0/datatypes/GuiParams)
 
 ```json
         {
@@ -229,7 +229,7 @@ The above can be read as follows:
 ### Adding Click/Trigger Buttons
 To add a click button, add a new entry to the `buttons` array. 
 
-To access the values of these elements, refer to [GuiParams]({{site.baseurl}}/docs/V2_0_1/datatypes/GuiParams)
+To access the values of these elements, refer to [GuiParams]({{site.baseurl}}/docs/V2_1_0/datatypes/GuiParams)
 
 ```json
         {
@@ -243,7 +243,7 @@ To access the values of these elements, refer to [GuiParams]({{site.baseurl}}/do
 ### Adding Toggle Switch Buttons
 To add a toggle button, add a new entry to the `buttons` array. 
 
-To access the values of these elements, refer to [GuiParams]({{site.baseurl}}/docs/V2_0_1/datatypes/GuiParams)
+To access the values of these elements, refer to [GuiParams]({{site.baseurl}}/docs/V2_1_0/datatypes/GuiParams)
 
 ```json
         {
@@ -257,7 +257,7 @@ To access the values of these elements, refer to [GuiParams]({{site.baseurl}}/do
 ### Adding Combo Boxes
 To add a combo box, add a new entry to the `comboBoxes` array. 
 
-To access the values of these elements, refer to [GuiParams]({{site.baseurl}}/docs/V2_0_1/datatypes/GuiParams)
+To access the values of these elements, refer to [GuiParams]({{site.baseurl}}/docs/V2_1_0/datatypes/GuiParams)
 
 ```json
         {
@@ -282,7 +282,7 @@ The above can be read as follows:
 ### Midi Visualizer
 To add a MIDI visualizer, add a new entry to the `MidiDisplays` array. 
 
-To access/set the values of these elements, refer to [MidiVisualizersData]({{site.baseurl}}/docs/V2_0_1/datatypes/MidiVisualizersData)
+To access/set the values of these elements, refer to [MidiVisualizersData]({{site.baseurl}}/docs/V2_1_0/datatypes/MidiVisualizersData)
 
 ```json
         {
@@ -333,7 +333,7 @@ To add an audio visualizer, add a new entry to the `AudioDisplays` array.
 If you want to show that the content is looped, specify 'PlayheadLoopDurationSamples', otherwise,
 the playhead will not be looped.
 
-To access/set the values of these elements, refer to [AudioVisualizersData]({{site.baseurl}}/docs/V2_0_1/datatypes/AudioVisualizersData)
+To access/set the values of these elements, refer to [AudioVisualizersData]({{site.baseurl}}/docs/V2_1_0/datatypes/AudioVisualizersData)
 
 
 ```json
@@ -383,4 +383,4 @@ Moreover, the widget can be used to visualize incoming MIDI messages. To enable 
         }
 ```
 
-To access the content of a dragged in MIDI file, refer to [MidiFileEvent]({{site.baseurl}}/docs/V2_0_1/datatypes/MidiFileEvent)
+To access the content of a dragged in MIDI file, refer to [MidiFileEvent]({{site.baseurl}}/docs/V2_1_0/datatypes/MidiFileEvent)

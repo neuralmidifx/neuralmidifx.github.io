@@ -5,7 +5,7 @@ nav_order: 2
 has_children: false
 parent: MidToMid
 grand_parent: Demos
-permalink: /docs/V2_0_1/Demos/MidToMid/Pattern_Interpolation
+permalink: /docs/V2_1_0/Demos/MidToMid/Pattern_Interpolation
 ---
 
 
@@ -135,7 +135,7 @@ latent = (1 - slider_value) * latent_A + slider_value * latent_B
 
 We are familiar with process of generating a random latent vector and using it for inference. However, this is 
 the first time that we need to store a custom value that may be used in the future calls of `deploy()` method. As mentioned
-in the [`DPLData`]({{ site.baseurl }}/docs/V2_0_1/datatypes/DPLData#customizable-data-for-use-within-dpl-thread), 
+in the [`DPLData`]({{ site.baseurl }}/docs/V2_1_0/datatypes/DPLData#customizable-data-for-use-within-dpl-thread), 
 section of the documentation, we can modify the `DPLData` struct to include our custom data. Additionally, we will store the
 slider value in the `DPLdata` struct as well to check whether it has changed or since the last call to `deploy()`.
 
@@ -180,7 +180,7 @@ if (!isModelLoaded) {
     // =================================================================================
     // ===         1. ACCESSING GUI PARAMETERS
     // Refer to:
-    // https://neuralmidifx.github.io/docs/V2_0_1/datatypes/GuiParams#accessing-the-ui-parameters
+    // https://neuralmidifx.github.io/docs/V2_1_0/datatypes/GuiParams#accessing-the-ui-parameters
     // =================================================================================
     // check if the buttons have been clicked, if so, update the DPLdata
     auto ButtonATriggered = gui_params.wasButtonClicked("Random A");
@@ -263,7 +263,7 @@ Starting in V2.0.0, we have added the ability to save and load presets. This is 
 and recalling it later. In the case of plugins, this was already possible via the host. However, in that case, only
 the UI parameters were saved. As such, all tensor data were lost and needed to be recalculated. 
 
-With the new preset management system, you have access to a structure called [`CustomPresetData`](https://neuralmidifx.github.io/docs/V2_0_1/datatypes/CustomPresetDataDictionary) which you can use to store 
+With the new preset management system, you have access to a structure called [`CustomPresetData`](https://neuralmidifx.github.io/docs/V2_1_0/datatypes/CustomPresetDataDictionary) which you can use to store 
 any custom data that should be tracked/reloaded whenever a preset is saved/loaded. 
 
 In this demo, we will use this feature to save the `A` and `B` latent vectors. To do so, I will simply add the following

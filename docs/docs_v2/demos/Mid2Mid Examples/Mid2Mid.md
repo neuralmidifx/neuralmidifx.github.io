@@ -4,7 +4,7 @@ title: MidToMid
 nav_order: 1
 parent: Demos
 has_children: true
-permalink: /docs/V2_0_1/Demos/MidToMid
+permalink: /docs/V2_1_0/Demos/MidToMid
 ---
 
 # MIDI-to-MIDI Tutorials 

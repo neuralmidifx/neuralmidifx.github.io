@@ -4,7 +4,7 @@ title: A Guide on Serialization of PyTorch Models
 has_children: false
 parent: 1. Model Preparation
 
-permalink: /docs/V2_0_1/GettingStarted/SerializationGuide
+permalink: /docs/V2_1_0/GettingStarted/SerializationGuide
 nav_order: 1
 ---
 

@@ -5,7 +5,7 @@ nav_order: 2
 has_children: false
 parent: Data Types
 
-permalink: /docs/V2_0_1/datatypes/DPLData
+permalink: /docs/V2_1_0/datatypes/DPLData
 ---
 
 # Customizable Data Types

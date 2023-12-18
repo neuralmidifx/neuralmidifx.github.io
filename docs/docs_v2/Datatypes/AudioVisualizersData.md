@@ -5,7 +5,7 @@ nav_order: 5
 has_children: false
 parent: Data Types
 
-permalink: /docs/V2_0_1/datatypes/AudioVisualizersData
+permalink: /docs/V2_1_0/datatypes/AudioVisualizersData
 ---
 
 # AudioVisualizersData

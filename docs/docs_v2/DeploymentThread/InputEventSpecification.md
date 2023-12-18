@@ -4,7 +4,7 @@ title: Specify Host Events
 parent: 3. Deployment Thread (DPL)
 has_children: false
 nav_order: 20
-permalink: /docs/V2_0_1/DeploymentThread_DPL/SpecifyHostEvents
+permalink: /docs/V2_1_0/DeploymentThread_DPL/SpecifyHostEvents
 ---
 
 # Host Events Specification
