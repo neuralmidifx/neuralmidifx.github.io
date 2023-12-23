@@ -34,6 +34,7 @@ specify what events are required from the host (see [here]({{ site.baseurl }}/do
 [MIDI file]({{ site.baseurl }}/docs/V2_1_0/datatypes/MidiVisualizersData ) is dropped on any of the plugin's 
 [AudiVisualizers]({{ site.baseurl }}/docs/V2_1_0/ParametersAndGUI#audio-visualizer) or 
 [MidiVisualizers]({{ site.baseurl }}/docs/V2_1_0/ParametersAndGUI#midi-visualizer) respectively.
+- A new preset is loaded
 
 Once you process the above information, and subsequently, run inference, you will need to extract the outputs from the model
 and specify what sequence and how it should be played back. This is done by wrapping these information in 

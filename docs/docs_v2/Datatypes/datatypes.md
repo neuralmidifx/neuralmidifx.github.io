@@ -31,7 +31,6 @@ the data types. You can find more information about each data type in the corres
 
 | Data Type | Description                                                                       | API                                                                       |
 |-----------|-----------------------------------------------------------------------------------|---------------------------------------------------------------------------|
-| DPLData   | A structure holding any required data to be used in DPL Thread                    | [Here]({{site.baseurl}}/docs/V2_1_0/datatypes/DPLData)                    |
 | CustomPresetDataDictionary   | A structure holding any required torch tensor to be stored alongside a preset | [Here]({{site.baseurl}}/docs/V2_1_0/datatypes/CustomPresetDataDictionary) |
 
 ### Data Types for Interacting with the GUI Midi and Audio Visualizers

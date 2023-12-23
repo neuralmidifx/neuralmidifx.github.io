@@ -403,7 +403,6 @@ To access/set the values of these elements, refer to [MidiVisualizersData]({{sit
     ]
 }
 ```
- 
 
 In case, you want to show that the content is looped, specify 'PlayheadLoopDurationQuarterNotes', otherwise, 
 the playhead will not be looped.
@@ -508,17 +507,19 @@ A MIDI In widget can be added to the bottom of the plugin to allow for the user 
 Moreover, the widget can be used to visualize incoming MIDI messages. To enable this widget, modify the following line in 
 
 ```json
-        "MidiInVisualizer": {
-            "enable": true,
-            "allowToDragInMidi": true,
-            "visualizeIncomingMidiFromHost": true,
-            "deletePreviousIncomingMidiMessagesOnBackwardPlayhead": true,
-            "deletePreviousIncomingMidiMessagesOnRestart": true
-        },
-        "GeneratedContentVisualizer": {
-            "enable": true,
-            "allowToDragOutAsMidi": true
-        }
+{
+      "MidiInVisualizer": {
+        "enable": true,
+        "allowToDragInMidi": true,
+        "visualizeIncomingMidiFromHost": true,
+        "deletePreviousIncomingMidiMessagesOnBackwardPlayhead": true,
+        "deletePreviousIncomingMidiMessagesOnRestart": true
+      },
+      "GeneratedContentVisualizer": {
+        "enable": true,
+        "allowToDragOutAsMidi": true
+      }
+}
 ```
 
 To access the content of a dragged in MIDI file, refer to [MidiFileEvent]({{site.baseurl}}/docs/V2_1_0/datatypes/MidiFileEvent)
