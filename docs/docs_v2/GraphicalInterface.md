@@ -382,7 +382,7 @@ The above can be read as follows:
             "exclude_from_presets" --> if true, this value will not change when loading a preset
 ```
 
-### Midi Visualizer
+### Adding in-tab Midi Visualizers
 To add a MIDI visualizer, add a new entry to the `MidiDisplays` array. 
 
 To access/set the values of these elements, refer to [MidiVisualizersData]({{site.baseurl}}/docs/V2_1_0/datatypes/MidiVisualizersData)
@@ -422,7 +422,7 @@ The above can be read as follows:
 ```
 
 
-### Audio Visualizer
+### Adding in-tab Audio Visualizers
 To add an audio visualizer, add a new entry to the `AudioDisplays` array. 
 
 If you want to show that the content is looped, specify 'PlayheadLoopDurationSamples', otherwise,
@@ -459,32 +459,7 @@ The above can be read as follows:
             "needsPlayhead" --> If true, the playhead will be shown
             "info" --> The info of the audio visualizer (will be shown when hovering over the audio visualizer)
 ```
-
-
-## MIDI In/Out Widgets 
-These widgets behave differently than the above widgets. These should be only used to visualize incoming or 
-outgoing MIDI messages from the plugin
-
-A MIDI In widget can be added to the bottom of the plugin to allow for the user to drop a MIDI file into the plugin.
-Moreover, the widget can be used to visualize incoming MIDI messages. To enable this widget, modify the following line in 
-
-```json
-        "MidiInVisualizer": {
-            "enable": true,
-            "allowToDragInMidi": true,
-            "visualizeIncomingMidiFromHost": true,
-            "deletePreviousIncomingMidiMessagesOnBackwardPlayhead": true,
-            "deletePreviousIncomingMidiMessagesOnRestart": true
-        },
-        "GeneratedContentVisualizer": {
-            "enable": true,
-            "allowToDragOutAsMidi": true
-        }
-```
-
-To access the content of a dragged in MIDI file, refer to [MidiFileEvent]({{site.baseurl}}/docs/V2_1_0/datatypes/MidiFileEvent)
-
-## Triangle Slider Widget
+## Adding Triangle Slider Widgets
 
 This is a triangular area where you can drag a point around. The position of the point is then used to set two sliders.
 This component can be used for a bilinear interpolation between three values.
@@ -524,4 +499,29 @@ The above can be read as follows:
 
 To get/set the values of the triangle slider, use the "DistanceFromBottomLeftCornerSlider" and "HeightSlider" labels, 
 respectively, and use the typical slider accessors.
+
+## MIDI In/Out Widgets 
+These widgets behave differently than the above widgets. These should be only used to visualize incoming or 
+outgoing MIDI messages from the plugin
+
+A MIDI In widget can be added to the bottom of the plugin to allow for the user to drop a MIDI file into the plugin.
+Moreover, the widget can be used to visualize incoming MIDI messages. To enable this widget, modify the following line in 
+
+```json
+        "MidiInVisualizer": {
+            "enable": true,
+            "allowToDragInMidi": true,
+            "visualizeIncomingMidiFromHost": true,
+            "deletePreviousIncomingMidiMessagesOnBackwardPlayhead": true,
+            "deletePreviousIncomingMidiMessagesOnRestart": true
+        },
+        "GeneratedContentVisualizer": {
+            "enable": true,
+            "allowToDragOutAsMidi": true
+        }
+```
+
+To access the content of a dragged in MIDI file, refer to [MidiFileEvent]({{site.baseurl}}/docs/V2_1_0/datatypes/MidiFileEvent)
+
+
 
