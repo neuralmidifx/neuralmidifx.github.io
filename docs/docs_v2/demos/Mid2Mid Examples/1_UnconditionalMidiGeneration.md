@@ -662,7 +662,7 @@ private:
 
 ```
 
-#### 2. 'generateRandomPattern()'
+#### 2. `generateRandomPattern()`
 
 ```c++
 private:
@@ -743,7 +743,7 @@ private:
 ```
 
 
-#### 4. preparePlaybackPolicy()
+#### 4. `preparePlaybackPolicy()`
 
 ```c++
 private:
