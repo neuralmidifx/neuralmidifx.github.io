@@ -121,138 +121,189 @@ file and modify it as follows:
 
 ## DeploymentThread::deploy()
 
-Before modifying the code, let's think about what we want to do.
+### Adding Variables
 
-We want to have two patterns, A and B, and a slider which interpolates between these two patterns. To do this, 
-whenever button A is pressed, we will generate a random latent vector and store it somewhere (`latent_A`). Similarly, whenever
-button B is pressed, we will generate another random latent vector and store it somewhere  (`latent_B`). 
+The very first thing we need to do is to add the variables used between different iterations of the deploy() function.
 
-Subsequently, we will calculate the actual latent vector to be used for inference by interpolating between these two:
+As such, we will add the following variables to the `deploy.h` file.
 
 ```c++
-latent = (1 - slider_value) * latent_A + slider_value * latent_B
-```
-
-We are familiar with process of generating a random latent vector and using it for inference. However, this is 
-the first time that we need to store a custom value that may be used in the future calls of `deploy()` method. As mentioned
-in the [`DPLData`]({{ site.baseurl }}/docs/V2_1_0/datatypes/DPLData#customizable-data-for-use-within-dpl-thread), 
-section of the documentation, we can modify the `DPLData` struct to include our custom data. Additionally, we will store the
-slider value in the `DPLdata` struct as well to check whether it has changed or since the last call to `deploy()`.
-
-{: .note }
-> The deploy method is called on an event-driven basis. That is, it is called whenever there is new information available.
-> Moreover, any variable that is declared inside the `deploy()` method will be re-initialized to its default value every time
-> the method is called. Therefore, we need to store the values that we want to use in the future calls of the `deploy()` method
-> in a struct that is declared outside the `deploy()` method.
-
-To do so, 
-let's navigate to [`DeploymentData.h`](https://github.com/neuralmidifx/Mid2Mid_PatternInterp/blob/master/PluginCode/DeploymentData.h)
-and modify the `DPLData` struct as follows:
-
-```c++
-// DPLData struct in DeploymentData.h
-
-struct DPLData {
-    torch::Tensor latent_A;
-    torch::Tensor latent_B;
-    double interpolate_slider_value{0};
-};
-```
-
-{: .reminder }
-> When building the plugin, the plugin will automatically instantiate the `DPLData` struct and pass it to you as `DPLdata` in the `deploy()` method.
-
-
-Having done this, we can now modify the `deploy()` method to generate a random latent vector and store it in `DPLdata` whenever
-button A or B is pressed. 
-
-Before carrying on, let's print some messages to ensure everything is setup correctly
-
-
-```c++
-
-if (!isModelLoaded) {
-        load("drumLoopVAE.pt");
-    }
-
-    bool should_interpolate = false;   // flag to check if we should interpolate
-
-    // =================================================================================
-    // ===         1. ACCESSING GUI PARAMETERS
-    // Refer to:
-    // https://neuralmidifx.github.io/docs/V2_1_0/datatypes/GuiParams#accessing-the-ui-parameters
-    // =================================================================================
-    // check if the buttons have been clicked, if so, update the DPLdata
-    auto ButtonATriggered = gui_params.wasButtonClicked("Random A");
-    if (ButtonATriggered) {
-        should_interpolate = true;
-        PrintMessage("Button A Clicked");
-        DPLdata.latent_A = torch::randn({ 1, 128 });
-    }
-    auto ButtonBTriggered = gui_params.wasButtonClicked("Random B");
-    if (ButtonBTriggered) {
-        should_interpolate = true;
-        PrintMessage("Button B Clicked");
-        DPLdata.latent_B = torch::randn({ 1, 128 });
-    }
-
-    // check if the interpolate slider has changed, if so, update the DPLdata
-    auto sliderValue = gui_params.getValueFor("Interpolate");
-    bool sliderChanged = (sliderValue != DPLdata.interpolate_slider_value);
-    if (sliderChanged) {
-        should_interpolate = true;
-        PrintMessage("Slider Changed");
-        DPLdata.interpolate_slider_value = sliderValue;
-    }
-```
-
-<img src="{{ site.baseurl }}/assets/gifs/tut2/gui_test.gif">
-
-Seeing that the GUI is working as expected, we can now implement the interpolation process
-
-To interpolate we need both states to be randomized, as a result, to simplify the code, 
-we will ensure that on the first call to `deploy()` both `latent_A` and `latent_B` are randomized.
-
-
-```c++
+private:
+    // AB Interpolation Parameters
+    torch::Tensor latent_A = torch::randn({ 1, 128 });
+    torch::Tensor latent_B = torch::randn({ 1, 128 });
+    torch::Tensor latentVector;
+    double interpolate_slider_value = 0.0;
     
-    // ... previous code
-    
-    // =================================================================================
-    // ===         2. initialize latent vectors on the first call
-    // =================================================================================
-    if (DPLdata.latent_A.size(0) == 0) {
-        DPLdata.latent_A = torch::randn({ 1, 128 });
-    }
-    if (DPLdata.latent_B.size(0) == 0) {
-        DPLdata.latent_B = torch::randn({ 1, 128 });
-    }
+    // ---------------------------------------------------------------------------------------- 
+    // !! the following were added in the previous demo! make sure you've read the previous demo !!
+    // ----------------------------------------------------------------------------------------
+    // add any member variables or methods you need here
+    torch::Tensor voice_thresholds = torch::ones({ 9 }, torch::kFloat32) * 0.5f;
+    torch::Tensor max_counts_allowed = torch::ones({ 9 }, torch::kFloat32) * 32;
+    int sampling_mode = 0;
+    float temperature = 1.0f;
+    std::map<int, int> voiceMap;
+
+    torch::Tensor hits;
+    torch::Tensor velocities;
+    torch::Tensor offsets;
 ```
 
-Now, to finish this demo, we need to interpolate between `latent_A` and `latent_B` and store the result in `latent`.
+### Randomizing the Latent Vectors
+
+Next, we will modify the `deploy()` function to randomize the latent vectors when the buttons are clicked or the 
+slider is moved
 
 ```c++
-    
-    // ... previous code
-    
-    // =================================================================================
-    // ===         Inference
-    // =================================================================================
+        // check if buttons were clicked to randomize the pattern
+        auto ButtonATriggered = gui_params.wasButtonClicked("Random A");
+        if (ButtonATriggered) {
+            latent_A = torch::randn({ 1, 128 });
+            shouldInterpolate = true;
+        }
 
-    bool newPatternGenerated = false;
-
-    if (should_interpolate) {
-
-        if (isModelLoaded)
-        {
-            // calculate interpolated latent vector
-            auto slider_value = DPLdata.interpolate_slider_value;
-            auto latent_A = DPLdata.latent_A;
-            auto latent_B = DPLdata.latent_B;
-            auto latentVector = (1 - slider_value) * latent_A + slider_value * latent_B;
-            
-            // ... previous code
+        // check if buttons were clicked to randomize the pattern
+        auto ButtonBTriggered = gui_params.wasButtonClicked("Random B");
+        if (ButtonBTriggered) {
+            cout << "Random B" << endl;
+            latent_B = torch::randn({ 1, 128 });
+            shouldInterpolate = true;
+        }
+        
+        // get interpolate slider value if changed
+        if (gui_params.wasParamUpdated("Interpolate")) {
+            interpolate_slider_value = gui_params.getValueFor("Interpolate");
+            shouldInterpolate = true;
+        }
 ```
+
+The `shouldInterpolate` flag is used to check if we should interpolate between the two latent vectors or not in the next step.
+
+### Interpolating the Latent Vectors
+
+We will implement the following method to interpolate between the two latent vectors:
+
+```c++
+// previous code
+
+private:
+    
+    // ...
+    
+    // interpolation method
+    void interpolate() {
+        latentVector = (1 - interpolate_slider_value) * latent_A + interpolate_slider_value * latent_B;
+    }
+    
+    // ...
+```
+
+### Generating and Playback
+
+Once we have the latent vector, we will be doing the exact same procedure as the previous demo, with one exception. 
+Instead of using a random latent vector, we will be using the interpolated latent vector.
+
+```c++
+ void generatePatternUsingLatent() {
+
+        // Prepare above for inference
+        std::vector<torch::jit::IValue> inputs;
+        inputs.emplace_back(latentVector);
+        inputs.emplace_back(voice_thresholds);
+        inputs.emplace_back(max_counts_allowed);
+        inputs.emplace_back(sampling_mode);
+        inputs.emplace_back(temperature);
+
+        // Get the scripted method
+        auto sample_method = model.get_method("sample");
+
+        // Run inference
+        auto output = sample_method(inputs);
+
+        // Extract the generated tensors from the output
+        hits = output.toTuple()->elements()[0].toTensor();
+        velocities = output.toTuple()->elements()[1].toTensor();
+        offsets = output.toTuple()->elements()[2].toTensor();
+    }
+```
+
+### Putting it all together
+
+```c++
+   
+    // this method runs on a per-event basis.
+    // the majority of the deployment will be done here!
+    std::pair<bool, bool> deploy (
+        std::optional<MidiFileEvent> & new_midi_event_dragdrop,
+        std::optional<EventFromHost> & new_event_from_host,
+        bool gui_params_changed_since_last_call,
+        bool new_preset_loaded_since_last_call,
+        bool new_midi_file_dropped_on_visualizers,
+        bool new_audio_file_dropped_on_visualizers) override {
+
+
+        // Try loading the model if it hasn't been loaded yet
+        if (!isModelLoaded) {
+            load("drumLoopVAE.pt");
+        }
+
+        // flag to check if a new latent vector should be interpolated
+        bool shouldInterpolate = false;
+
+        // check if new preset was loaded
+        if (new_preset_loaded_since_last_call) {
+            loadTensorsFromPreset();
+            shouldInterpolate = true;
+            cout << "New Preset Loaded" << endl;
+        }
+
+        // check if buttons were clicked to randomize the pattern
+        auto ButtonATriggered = gui_params.wasButtonClicked("Random A");
+        if (ButtonATriggered) {
+            latent_A = torch::randn({ 1, 128 });
+            CustomPresetData->tensor("latent_A", latent_A);
+            shouldInterpolate = true;
+        }
+
+        // check if buttons were clicked to randomize the pattern
+        auto ButtonBTriggered = gui_params.wasButtonClicked("Random B");
+        if (ButtonBTriggered) {
+            cout << "Random B" << endl;
+            latent_B = torch::randn({ 1, 128 });
+            CustomPresetData->tensor("latent_A", latent_A);
+            shouldInterpolate = true;
+        }
+
+        // get interpolate slider value if changed
+        if (gui_params.wasParamUpdated("Interpolate")) {
+            interpolate_slider_value = gui_params.getValueFor("Interpolate");
+            shouldInterpolate = true;
+        }
+
+        // Check if voice map should be updated
+        bool voiceMapChanged = false;
+        if (gui_params_changed_since_last_call) {
+            voiceMapChanged = updateVoiceMap();
+        }
+
+
+        // if the voice map has changed, or a new pattern has been generated,
+        // prepare the playback sequence
+        if ((voiceMapChanged || shouldInterpolate) && isModelLoaded) {
+            interpolate();
+            generatePatternUsingLatent();
+            preparePlaybackSequence();
+            preparePlaybackPolicy();
+            return {true, true};
+        }
+
+        // your implementation goes here
+        return {false, false};
+    }
+```
+
+
 
 <img src="{{ site.baseurl }}/assets/gifs/tut2/interpolate.gif">
 
@@ -270,17 +321,22 @@ In this demo, we will use this feature to save the `A` and `B` latent vectors. T
 lines which notifies the preset manager to take a snapshot of these tensors.
 
 ```c++
-if (should_interpolate) {
+        // check if buttons were clicked to randomize the pattern
+        auto ButtonATriggered = gui_params.wasButtonClicked("Random A");
+        if (ButtonATriggered) {
+            latent_A = torch::randn({ 1, 128 });
+            CustomPresetData->tensor("latent_A", latent_A);  // <--- this line
+            shouldInterpolate = true;
+        }
 
-        if (isModelLoaded)
-        {
-            // ... previous code
-
-            // Backup the data for preset saving
-            CustomPresetData->tensor("latent_A", latent_A);
-            CustomPresetData->tensor("latent_B", latent_B);
-
-            // ... previous code
+        // check if buttons were clicked to randomize the pattern
+        auto ButtonBTriggered = gui_params.wasButtonClicked("Random B");
+        if (ButtonBTriggered) {
+            cout << "Random B" << endl;
+            latent_B = torch::randn({ 1, 128 });
+            CustomPresetData->tensor("latent_B", latent_B); // <--- this line
+            shouldInterpolate = true;
+        }
 ```
 
 Moreover, we will also add the following lines to the `deploy()` method to load the tensors from the preset manager
@@ -290,19 +346,37 @@ As soon as a preset is loaded, the `new_preset_loaded_since_last_call` flag will
 check for this flag and subsequently, load your saved tensors
 
 ```c++
-    // check if the preset has changed, if so, update the MDLdata
-    if (new_preset_loaded_since_last_call) {
-        should_interpolate = true;
-        auto l_a = CustomPresetData->tensor("latent_A");
-        auto l_b = CustomPresetData->tensor("latent_B");
-        if (l_a != std::nullopt) {
-            DPLdata.latent_A = *l_a;
-        }
-        if (l_b != std::nullopt) {
-            DPLdata.latent_B = *l_b;
-        }
+    
+    deploy() {
+    
+    // ...
         
+        // check if new preset was loaded
+        if (new_preset_loaded_since_last_call) {
+            loadTensorsFromPreset();
+            shouldInterpolate = true;
+            cout << "New Preset Loaded" << endl;
+            
     }
+    
+private:
+    
+    // ...
+    
+        void loadTensorsFromPreset() {
+        auto A = CustomPresetData->tensor("latent_A");  // get reference to the tensor (if it exists)
+        if (A != std::nullopt)                          // <--- this line checks if the tensor exists in the preset manager
+        {
+            latent_A = *A;                              //  <--- this line loads the tensor from the preset manager
+        }
+        auto B = CustomPresetData->tensor("latent_B");
+        if (B != std::nullopt)
+        {
+            latent_B = *B;
+        }
+    }
+    
+    // ...
 ```
 
 <img src="{{ site.baseurl }}/assets/gifs/demo2/final.gif">
