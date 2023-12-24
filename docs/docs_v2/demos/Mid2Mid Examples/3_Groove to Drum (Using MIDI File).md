@@ -142,29 +142,36 @@ What can be seen above is that we will create three tensors for `hits`, `velocit
 The `groove` information will then be placed in the third voice (closed hihat channel) of the tensor. 
 
 
-### Declaring Required Local Variables in `DeploymentData.h.h`
-Given that we will repeatedly update `hits`, `velocities`, and `offsets` tensors upon arrival of new MIDI events, 
-we will need to create these tensors somewhere outside the `deploy()` function. 
-To this end, we will start with modifying the `DeploymentData.h` struct in [DeploymentData.h](https://github.com/neuralmidifx/Mid2Mid_Grv2DrmMidi/tree/master/PluginCode/DeploymentData.h)
+### Declaring Required Local Variables 
+
+We will need to declare the following local variables in the `deploy.h` method:
 
 ```c++
-            // DeploymentData.h
-            
-            
-            struct DPLData
-            {                
-                // groove information
-                torch::Tensor groove_hits = torch::zeros({1, 32, 1}, torch::kFloat32);
-                torch::Tensor groove_velocities = torch::zeros({1, 32, 1}, torch::kFloat32);
-                torch::Tensor groove_offsets = torch::zeros({1, 32, 1}, torch::kFloat32);
-            
-                // following will be used for the inference
-                // contains the above information in a single tensor of shape (1, 32, 27)
-                torch::Tensor groove_hvo = torch::zeros({1, 32, 27}, torch::kFloat32);
-            
-                // Latent vector
-                torch::Tensor latent_vector = torch::zeros({1, 128}, torch::kFloat32);
-            };
+
+    // ...
+
+private:
+
+    // density of tge pattern to be generated
+    float density = 0.5f;
+
+    // following will be used for the inference
+    // contains the above information in a single tensor of shape (1, 32, 27)
+    torch::Tensor groove_hvo = torch::zeros({1, 32, 27}, torch::kFloat32);
+
+    // !! Same as the previous two demos !!
+    // add any member variables or methods you need here
+    torch::Tensor latent_vector = torch::zeros({1, 128}, torch::kFloat32);
+    torch::Tensor voice_thresholds = torch::ones({ 9 }, torch::kFloat32) * 0.5f;
+    torch::Tensor max_counts_allowed = torch::ones({ 9 }, torch::kFloat32) * 32;
+    int sampling_mode = 0;
+    float temperature = 1.0f;
+    std::map<int, int> voiceMap;
+
+    torch::Tensor hits;
+    torch::Tensor velocities;
+    torch::Tensor offsets;
+
             
 ```
 
@@ -175,6 +182,8 @@ Moreover, the `groove_hvo` tensor is a concatenation of `groove_hits`, `groove_v
 
 
 ### deploy()
+
+#### Accessing / Processing the Dropped MIDI File
 Let's start with accessing a dropped MIDI file!
 
 As mentioned in the [documentation](https://neuralmidifx.github.io/docs/V2_1_0/datatypes/MidiVisualizersData#accessing-the-content-of-a-dropped-midi-file), the plugin will
@@ -190,27 +199,195 @@ and then access the events as follows:
         }
 ``` 
 
-Once we have the events processed, we will use the `encode` method as follows:
+As such, we will implement the following method to process the events:
 
 ```c++
-            // preparing the input to encode() method
-            std::vector<torch::jit::IValue> enc_inputs;
-            enc_inputs.emplace_back(DPLdata.groove_hvo);
-            enc_inputs.emplace_back(torch::tensor(
-                                        density,
-                                        torch::kFloat32).unsqueeze_(0));
+// ...
+        deploy(...) {
+        // ... 
+            
+        // check if a new midi file has been dropped on the visualizers
+        bool shouldEncodeGroove = updateInputFromMidiFile();
+        
+        // ...
+        }
+        
+private:
+    // ...
+    
+    // checks if a new midi file has been dropped on the visualizers and
+    // updates the input tensor accordingly
+    bool updateInputFromMidiFile() {
+        // check if a midi file has been dropped on the visualizers
+        auto new_sequence = midiVisualizersData->get_visualizer_data("MidiDropWidget");
 
-            // get the encode method
-            auto encode = model.get_method("encode");
+        // return false if no new sequence is available
+        if (new_sequence == std::nullopt) {
+            return false;
+        }
+        
+        // clear out existing groove input
+        auto groove_hits = torch::zeros({1, 32, 1}, torch::kFloat32);
+        auto groove_velocities = torch::zeros({1, 32, 1}, torch::kFloat32);
+        auto groove_offsets = torch::zeros({1, 32, 1}, torch::kFloat32);
+        for (const auto& event : *new_sequence) {
+            if (event.isNoteOnEvent()) {
+                // PrintMessage(event.getDescription().str());
+                auto ppq  = event.Time(); // time in ppq
+                auto velocity = event.getVelocity(); // velocity
+                auto div = round(ppq / .25f);
+                auto offset = (ppq - (div * .25f)) / 0.125 * 0.5 ;
+                auto grid_index = (long long) fmod(div, 32);
+                
+                // check if louder if overlapping
+                if (groove_hits[0][grid_index][0].item<float>() > 0) {
+                    if (groove_velocities[0][grid_index][0].item<float>() < velocity) {
+                        groove_velocities[0][grid_index][0] = velocity;
+                        groove_offsets[0][grid_index][0] = offset;
+                    }
+                } else {
+                    groove_hits[0][grid_index][0] = 1;
+                    groove_velocities[0][grid_index][0] = velocity;
+                    groove_offsets[0][grid_index][0] = offset;
+                }
+            }
 
-            // encode the input
-            auto encoder_output = encode(enc_inputs);
+        }
 
-            // get latent vector from encoder output
-            DPLdata.latent_vector = encoder_output.toTuple()->elements()[2].toTensor();
+        // stack up the groove information into a single tensor
+        groove_hvo = torch::concat(
+            {
+                groove_hits,
+                groove_velocities,
+                groove_offsets
+            }, 2);
+
+        // ignore the operations (I'm just changing the formation of the tensor)
+        groove_hvo = torch::zeros({1, 32, 27});
+        groove_hvo.index_put_(
+            {torch::indexing::Ellipsis, 2},
+            groove_hits.index({torch::indexing::Ellipsis, 0}));
+        groove_hvo.index_put_(
+            {torch::indexing::Ellipsis, 11},
+            groove_velocities.index({torch::indexing::Ellipsis, 0}));
+        groove_hvo.index_put_(
+            {torch::indexing::Ellipsis, 20},
+            groove_offsets.index({torch::indexing::Ellipsis, 0}));
+        
+        return true;
+    }
+    
 ```
 
-The complete code for the deploy method can be seen in [PluginCode/Deploy.cpp](https://github.com/neuralmidifx/Mid2Mid_Grv2DrmMidi/blob/master/PluginCode/Deploy.cpp)
+#### Encode the Groove Information into a latent vector, and decode it into a drum sequence 
+
+Whenever the groove or the density is changed, we will need to encode the groove information into the latent vector.
+
+To do so, we will implement the following method:
+
+
+```c++
+// ...
+        deploy(...) {
+        // ... 
+            
+        // encode the groove if necessary
+        if (shouldEncodeGroove) {
+            if (isModelLoaded) {
+                encodeGroove();
+                generatePattern();
+            }
+        }
+        
+        // ...
+        }
+        
+private:
+    // ...
+    
+    // encodes the groove into a latent vector using the encoder
+    void encodeGroove() {
+        // preparing the input to encode() method
+        std::vector<torch::jit::IValue> enc_inputs;
+        enc_inputs.emplace_back(groove_hvo);
+        enc_inputs.emplace_back(torch::tensor(
+                                    density,
+                                    torch::kFloat32).unsqueeze_(0));
+
+        // get the encode method
+        auto encode = model.get_method("encode");
+
+        // encode the input
+        auto encoder_output = encode(enc_inputs);
+
+        // get latent vector from encoder output
+        latent_vector = encoder_output.toTuple()->elements()[2].toTensor();
+    }
+    
+    // decodes a random latent vector into a pattern < --- Similar to previous tutorials
+    void generatePattern() {
+        // ...   
+    }
+    
+```
+
+### Final `deploy()` Method
+
+```c++
+// this method runs on a per-event basis.
+    // the majority of the deployment will be done here!
+    std::pair<bool, bool> deploy (
+        std::optional<MidiFileEvent> & new_midi_event_dragdrop,
+        std::optional<EventFromHost> & new_event_from_host,
+        bool gui_params_changed_since_last_call,
+        bool new_preset_loaded_since_last_call,
+        bool new_midi_file_dropped_on_visualizers,
+        bool new_audio_file_dropped_on_visualizers) override {
+
+
+        // Try loading the model if it hasn't been loaded yet
+        if (!isModelLoaded) {
+            load("drumLoopVAE.pt");
+        }
+
+        // Check if voice map should be updated
+        bool voiceMapChanged = false;
+        if (gui_params_changed_since_last_call) {
+            voiceMapChanged = updateVoiceMap();
+        }
+
+        // check if a new midi file has been dropped on the visualizers
+        bool shouldEncodeGroove = updateInputFromMidiFile();
+
+        // check if density has been updated
+        if (gui_params.wasParamUpdated("Density")) {
+            density = gui_params.getValueFor("Density");
+            shouldEncodeGroove = true;
+        }
+
+        // encode the groove if necessary
+        if (shouldEncodeGroove) {
+            if (isModelLoaded) {
+                encodeGroove();
+                generatePattern();
+            }
+        }
+
+        // if the voice map has changed, or a new pattern has been generated,
+        // prepare the playback sequence
+        if ((voiceMapChanged || shouldEncodeGroove) && isModelLoaded) {
+            preparePlaybackSequence();
+            preparePlaybackPolicy();
+            return {true, true};
+        }
+
+        // your implementation goes here
+        return {false, false};
+    }
+```
+
+
+The complete code for the deploy method can be seen in [PluginCode/deploy.h](https://github.com/neuralmidifx/Mid2Mid_Grv2DrmMidi/blob/master/PluginCode/deploy.h)
 We can see that the plugin is
 now working as expected:
 
