@@ -146,10 +146,11 @@ we will modify `"UI"` field of the [`settings.json`](https://github.com/neuralmi
 
 ```json
     {
-        "UI": {
-            "Tabs": {
-                "show_grid": false,
-                "draw_borders_for_components": false,
+            "UI": {
+                "resizable": true,
+                "maintain_aspect_ratio": true,
+                "width": 1000,
+                "height": 800,
                 "tabList": [
                     {
                         "name": "RandomGeneration",
@@ -159,7 +160,8 @@ we will modify `"UI"` field of the [`settings.json`](https://github.com/neuralmi
                             "label": "Randomize",
                             "isToggle": false,
                             "topLeftCorner": "Kh",
-                            "bottomRightCorner": "Pm"
+                            "bottomRightCorner": "Pm",
+                            "info": "Press this button to generate a random pattern"
                         }],
                         "MidiDisplays": []
                     }
@@ -284,7 +286,7 @@ Following the same steps as above, we can re-build the plugin and re-open it in 
 
 ## Deploy() method
 
-Remember that all your implementation will take place in the [`Deploy.cpp`](https://github.com/neuralmidifx/Mid2Mid_UnconRandoGen/blob/master/PluginCode/Deploy.cpp) file. 
+Remember that all your implementation will take place in the [`deploy.h`](https://github.com/neuralmidifx/Mid2Mid_UnconRandoGen/blob/master/PluginCode/deploy.h) file. 
 
 In here we will ensure that the model is loaded, then generate a random latent vector and pass it to the model to generate a new sequence.
 
