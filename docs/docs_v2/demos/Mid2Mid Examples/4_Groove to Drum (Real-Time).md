@@ -131,49 +131,83 @@ will be triggering the deployment process on each incoming midi note
 The processing here is very similar to the previous tutorial with the exception that the notes are received one by one
 in real-time, rather than all at once from a midi file.
 
-As such the only difference to the [deploy()](https://github.com/neuralmidifx/Mid2Mid_Grv2DrmRT/blob/master/PluginCode/Deploy.cpp) 
+As such the only difference to the [deploy()](https://github.com/neuralmidifx/Mid2Mid_Grv2DrmRT/blob/master/PluginCode/deploy.h) 
 function is as follows:
 
-```cpp
-    
-    // previous code here
-
-    if ((new_event_from_host != std::nullopt) || gui_params_changed_since_last_call) {
-
-        // =================================================================================
-        // ===         1. Check (and Process)
-        //              incoming events from host
-        // = Refer to:
-        // https://neuralmidifx.github.io/docs/V2_1_0/datatypes/EventFromHost
-        // =================================================================================
-        if (new_event_from_host->isFirstBufferEvent()) {
-            // clear hits, velocities, offsets
-            DPLdata.groove_hits = torch::zeros({1, 32, 1}, torch::kFloat32);
-            DPLdata.groove_velocities = torch::zeros({1, 32, 1}, torch::kFloat32);
-            DPLdata.groove_offsets = torch::zeros({1, 32, 1}, torch::kFloat32);
+```c++
+// ...
+        deploy(...) {
+        // ... 
+            
+        // check if a new midi file has been dropped on the visualizers
+        bool shouldEncodeGroove = updateGrooveUsingHostEvent(new_event_from_host);
+        
+        // ...
         }
-
-        if (new_event_from_host->isNoteOnEvent()) {
-            auto ppq  = new_event_from_host->Time().inQuarterNotes(); // time in ppq
-            auto velocity = new_event_from_host->getVelocity(); // velocity
+        
+private:
+    // ...
+    
+    // checks if a new host event has been received and
+    // updates the input tensor accordingly
+    bool updateGrooveUsingHostEvent(std::optional<EventFromHost> & new_event) {
+       
+        // return false if no new event is available
+        if (new_event == std::nullopt) {
+            return false;
+        }
+        
+        if (new_event->isFirstBufferEvent()) {
+            // clear hits, velocities, offsets
+            groove_hits = torch::zeros({1, 32, 1}, torch::kFloat32);
+            groove_velocities = torch::zeros({1, 32, 1}, torch::kFloat32);
+            groove_offsets = torch::zeros({1, 32, 1}, torch::kFloat32);
+        }
+        
+        if (new_event->isNoteOnEvent()) {
+            auto ppq  = new_event->Time().inQuarterNotes(); // time in ppq
+            auto velocity = new_event->getVelocity(); // velocity
             auto div = round(ppq / .25f);
             auto offset = (ppq - (div * .25f)) / 0.125 * 0.5 ;
             auto grid_index = (long long) fmod(div, 32);
 
             // check if louder if overlapping
-            if (DPLdata.groove_hits[0][grid_index][0].item<float>() > 0) {
-                if (DPLdata.groove_velocities[0][grid_index][0].item<float>() < velocity) {
-                    DPLdata.groove_velocities[0][grid_index][0] = velocity;
-                    DPLdata.groove_offsets[0][grid_index][0] = offset;
+            if (groove_hits[0][grid_index][0].item<float>() > 0) {
+                if (groove_velocities[0][grid_index][0].item<float>() < velocity) {
+                    groove_velocities[0][grid_index][0] = velocity;
+                    groove_offsets[0][grid_index][0] = offset;
                 }
             } else {
-                DPLdata.groove_hits[0][grid_index][0] = 1;
-                DPLdata.groove_velocities[0][grid_index][0] = velocity;
-                DPLdata.groove_offsets[0][grid_index][0] = offset;
+                groove_hits[0][grid_index][0] = 1;
+                groove_velocities[0][grid_index][0] = velocity;
+                groove_offsets[0][grid_index][0] = offset;
             }
         }
+        
+
+        // stack up the groove information into a single tensor
+        groove_hvo = torch::concat(
+            {
+                groove_hits,
+                groove_velocities,
+                groove_offsets
+            }, 2);
+
+        // ignore the operations (I'm just changing the formation of the tensor)
+        groove_hvo = torch::zeros({1, 32, 27});
+        groove_hvo.index_put_(
+            {torch::indexing::Ellipsis, 2},
+            groove_hits.index({torch::indexing::Ellipsis, 0}));
+        groove_hvo.index_put_(
+            {torch::indexing::Ellipsis, 11},
+            groove_velocities.index({torch::indexing::Ellipsis, 0}));
+        groove_hvo.index_put_(
+            {torch::indexing::Ellipsis, 20},
+            groove_offsets.index({torch::indexing::Ellipsis, 0}));
+        
+        return true;
+    }
     
-    // previous code here
 ```
 
 <img src="{{ site.baseurl }}/assets/gifs/demo4/final.gif">
