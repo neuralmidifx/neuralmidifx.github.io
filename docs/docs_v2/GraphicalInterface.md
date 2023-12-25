@@ -420,6 +420,39 @@ The above can be read as follows:
             "info" --> The info of the MIDI visualizer (will be shown when hovering over the MIDI visualizer)
 ```
 
+#### Customizing the MIDI Visualizer (Advanced)
+
+The midi visualizer by default shows 12 notes (C, C#, D, D#, E, F, F#, G, G#, A, A#, B) and all octaves are mapped to the same row.
+
+If you want a more detailed visualizer, you can add the following fields to the json file
+
+```json
+{
+    "MidiDisplays": [
+        {
+            "label": "MidiVisualizerA",
+            "topLeftCorner": "Av",
+            "bottomRightCorner": "Gz",
+            "allowToDragOutAsMidi": true,
+            "allowToDragInMidi": false,
+            "needsPlayhead": true,
+            "PlayheadLoopDurationQuarterNotes": 8.0,
+            "info": "Pattern A Visualization",
+            "custom_voices": ["Kick", "Snare", "Chat", "Ohat", "Low Tom", "Mid Tom", "High Tom", "Crash", "Ride"],
+            "custom_pitches": [36, 38, 42, 46, 41, 43, 45, 49, 51]
+        }
+    ]
+}
+```
+
+The above can be read as follows:
+
+```text
+            "custom_voices" --> The custom voices to show in the visualizer
+            "custom_pitches" --> The custom pitches associated with the custom voices
+```
+
+In this case, the visualizer will show the custom voices along with an additional row for notes that are not in the custom pitches list.
 
 ### Adding in-tab Audio Visualizers
 To add an audio visualizer, add a new entry to the `AudioDisplays` array. 
