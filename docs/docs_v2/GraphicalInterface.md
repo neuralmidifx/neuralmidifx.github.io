@@ -422,6 +422,8 @@ The above can be read as follows:
 
 #### Customizing the MIDI Visualizer (Advanced)
 
+##### A. Custom Voices/Pitches
+
 The midi visualizer by default shows 12 notes (C, C#, D, D#, E, F, F#, G, G#, A, A#, B) and all octaves are mapped to the same row.
 
 If you want a more detailed visualizer, you can add the following fields to the json file
@@ -453,6 +455,36 @@ The above can be read as follows:
 ```
 
 In this case, the visualizer will show the custom voices along with an additional row for notes that are not in the custom pitches list.
+
+##### B. Onset Visualizer
+
+If you want to only visualize the onsets in a midi sequence, you can use the following:
+
+```json
+{
+    "MidiDisplays": [
+        {
+            "label": "MidiVisualizerGroove",
+            "topLeftCorner": "Fb",
+            "bottomRightCorner": "Ld",
+            "allowToDragOutAsMidi": true,
+            "allowToDragInMidi": true,
+            "needsPlayhead": true,
+            "PlayheadLoopDurationQuarterNotes": 8.0,
+            "info": "Instrumental Groove Visualization",
+            "isOnsetVisualizer": true
+        }
+    ]
+}
+```
+
+The above can be read as follows:
+
+```text
+            "isOnsetVisualizer" --> If true, the visualizer will only show the onsets
+```
+
+In this visualizer, the onsets are shown as a square and the height and opacity of the square is proportional to the velocity of the note.
 
 ### Adding in-tab Audio Visualizers
 To add an audio visualizer, add a new entry to the `AudioDisplays` array. 
