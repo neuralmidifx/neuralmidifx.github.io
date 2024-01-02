@@ -233,7 +233,8 @@ To access the values of these elements, refer to [GuiParams]({{site.baseurl}}/do
             "horizontal": true,
             "show_label": true,
             "info": "This is a slider", 
-            "exclude_from_presets": false
+            "exclude_from_presets": false,
+            "allow_reset_to_default": false
         }
     ]  
 }
@@ -253,6 +254,7 @@ The above can be read as follows:
         "show_label" --> Whether or not to show the label of the slider
         "info" --> The info of the slider (will be shown when hovering over the slider)
         "exclude_from_presets" --> if true, this value will not change when loading a preset
+        "allow_reset_to_default" --> if true, pressing the "reset to default" button will reset this value to the default value, otherwise it will not
 ```
 
 ### Adding Rotary Knobs
@@ -273,7 +275,9 @@ To access the values of these elements, refer to [GuiParams]({{site.baseurl}}/do
             "bottomRightCorner": "Pp", 
             "show_label": true,
             "info": "This is a rotary knob",
-            "exclude_from_presets": false
+            "exclude_from_presets": false,
+            "allow_reset_to_default": false
+
         }
     ]
 }
@@ -291,7 +295,8 @@ The above can be read as follows:
             "bottomRightCorner" --> The bottom right corner of the rotary knob (in the grid)
             "show_label" --> Whether or not to show the label of the rotary knob
             "info" --> The info of the rotary knob (will be shown when hovering over the rotary knob)
-            "exclude_from_presets" --> if true, this value will not change when loading a preset
+            "exclude_from_presets" --> if true, this value will not change when loading a preset,
+            "allow_reset_to_default" --> if true, pressing the "reset to default" button will reset this value to the default value, otherwise it will not
 ```
 ### Adding Buttons
 #### Adding Click/Trigger Buttons
@@ -330,7 +335,8 @@ To access the values of these elements, refer to [GuiParams]({{site.baseurl}}/do
                         "bottomRightCorner": "Dg",
                         "show_label": false, 
                         "info": "...",
-                        "exclude_from_presets": true
+                        "exclude_from_presets": true,
+                        "allow_reset_to_default": false
                     }
               ]
 }
@@ -347,7 +353,8 @@ For both of the above, you can interpret the parameters as follows:
             "bottomRightCorner" --> The bottom right corner of the button (in the grid)
             "show_label" --> Whether or not to show the label of the button
             "info" --> The info of the button (will be shown when hovering over the button)
-            "exclude_from_presets" --> if true, this value will not change when loading a preset
+            "exclude_from_presets" --> if true, this value will not change when loading a preset,
+            "allow_reset_to_default" --> if true, pressing the "reset to default" button will reset this value to the default value, otherwise it will not (only for toggle buttons)
 ```
 
 ### Adding Combo Boxes
@@ -364,7 +371,8 @@ To access the values of these elements, refer to [GuiParams]({{site.baseurl}}/do
             "bottomRightCorner": "Zz",
             "items": [ "Item 1", "Item 2", "Item 3" ],
             "info": "ComboBox 1 Info",
-            "exclude_from_presets": false
+            "exclude_from_presets": false,
+            "allow_reset_to_default": false
 
         }
     ]
@@ -379,7 +387,8 @@ The above can be read as follows:
             "bottomRightCorner" --> The bottom right corner of the combo box (in the grid)
             "items" --> The items of the combo box
             "info" --> The info of the combo box (will be shown when hovering over the combo box)
-            "exclude_from_presets" --> if true, this value will not change when loading a preset
+            "exclude_from_presets" --> if true, this value will not change when loading a preset,
+            "allow_reset_to_default" --> if true, pressing the "reset to default" button will reset this value to the default value, otherwise it will not
 ```
 
 ### Adding in-tab Midi Visualizers
@@ -441,7 +450,8 @@ If you want a more detailed visualizer, you can add the following fields to the 
             "PlayheadLoopDurationQuarterNotes": 8.0,
             "info": "Pattern A Visualization",
             "custom_voices": ["Kick", "Snare", "Chat", "Ohat", "Low Tom", "Mid Tom", "High Tom", "Crash", "Ride"],
-            "custom_pitches": [36, 38, 42, 46, 41, 43, 45, 49, 51]
+            "custom_pitches": [36, 38, 42, 46, 41, 43, 45, 49, 51],
+            "show_grid": true
         }
     ]
 }
@@ -452,6 +462,7 @@ The above can be read as follows:
 ```text
             "custom_voices" --> The custom voices to show in the visualizer
             "custom_pitches" --> The custom pitches associated with the custom voices
+            "show_grid" --> If true, the grid will be shown
 ```
 
 In this case, the visualizer will show the custom voices along with an additional row for notes that are not in the custom pitches list.
